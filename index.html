@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=.box, initial-scale=1.0">
+    <title>Juan Web Developer</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="/assets/img/icon.png">
+</head>
+<body class="hidden">
+    <!--<div class="center-loader" id="onLoad">
+        <div class="lds-facebook"><div></div><div></div><div></div></div>
+    </div>-->
+    
+    <!-- Navbar -->
+
+    <nav class="navbar">
+        <a href="#"  class="brand">Juan <span class="highlight">Sueldo</span></a>
+        <div class="wrapper">
+            <div class="loader">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="links-container">
+            <li class="links-item"><a href="#" class="link active">Inicio</a></li>
+            <li class="links-item"><a href="#about-section" class="link">Sobre mi</a></li>
+            <li class="links-item"><a href="#project-section" class="link">Proyectos</a></li>
+            <li class="links-item"><a href="#contact-section" class="link">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home -->
+
+    <section class="home">
+        <div class="hero-content">
+            <h1 class="hero-heading"><span class="highlight">hola, <br></span> soy Juan</h1>
+            <div class="box">
+                <h1>WEB <span class="highlight">DEVELOPER</span></h1>
+            </div>
+        </div>
+        <div class="container-img">
+            <!--<img src="/assets/img/Perfil2.jpg" alt="" class="image">-->
+        </div>
+    </section>
+
+    <!-- About section -->
+
+    <section class="about" id="about-section">
+        <h2 class="heading"><span class="highlight">Sobre mi</span></h2>
+        <p class="sub-heading">Soy un desarrollador web que se encuenta en la busqueda de una empresa, para poder ampliar mis conocimientos, adquirir experiencia, y seguir aprendiendo.
+            Actualmente me encuentro cursando la carrera de Técnico en Sistemas Informaticos en la UTN.
+        </p>
+        <div class="container-btn">
+            <div class="box-btn">
+                <button class="download">Descargar <span class="highlight">CV</span></button>
+            </div>
+        </div>
+        <h2 class="heading">Habilidades</h2>
+        <div class="skill-container">
+            <div class="skill-card" style="--bg: #f06529">
+              <p class="skill">HTML</p>
+            </div>
+            <div class="skill-card" style="--bg: #379ad6">
+                <p class="skill">CSS</p>
+            </div>
+            <div class="skill-card large" style="--bg: #f7df1e">
+                <p class="skill">JavaScript</p>
+            </div>
+            <div class="skill-card" style="--bg: #cc6699">
+                <p class="skill">C#</p>
+            </div>
+            <div class="skill-card" style="--bg: #5ed9fb">
+                <p class="skill">C</p>
+            </div>
+            <div class="skill-card" style="--bg: #83cd29">
+                <p class="skill">.NET</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project section -->
+
+    <section class="project" id="project-section">
+        <h2 class="heading heading-white"><span class="highlight">Proyectos</span></h2>
+        <div class="filters">
+            <button class="filter-btn active" id="all">Todos</button>
+            <button class="filter-btn" id="c#">C#</button>
+            <button class="filter-btn center" id="c">C</button>
+            <button class="filter-btn" id="fullstack">fullStack</button>
+        </div>
+        <div class="project-container">
+           <div class="project-card">
+                <img src="/assets/img/calculadora.jpeg" alt="">
+                <div class="content">
+                    <h1 class="project-name">Calculadora</h1>
+                    <span class="tags">HTML,CSS,JavaScript</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="/assets/img/Weather.png" alt="">
+                <div class="content">
+                    <h1 class="project-name">Weather App</h1>
+                    <span class="tags">HTML,CSS,JavaScript</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact form -->
+
+    <section class="contact" id="contact-section">
+        <h2 class="heading"><span class="highlight">Contacto</span></h2>
+        <form class="contact-form" action="https://formsubmit.co/juan.sueldo1989@gmail.com" method="POST">
+            <div class="name">
+                <input type="text" class="first-name" required placeholder="Nombre" name="nombre">
+                <input type="text" class="last-name" required placeholder="Apellido" name="apellido">
+            </div>
+            <input type="email" required class="email" placeholder="Email" name="email">
+            <textarea class="message" placeholder="Mensaje" required name="mensaje"></textarea>
+            <div class="container-btn">
+                <div class="box-btn">
+                    <button class="download" type="submit"><span class="highlight">Enviar</span></button>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <!-- Footer -->
+
+    <footer class="footer">
+        <div class="container-footer-all">
+            <div class="footer-content">
+                <div class="colum-1">
+                    <h3 class="home-text">Juan <span class="highlight">Sueldo</span></h3>
+                </div>
+                 <div class="colum-2">
+                    <h3 class="follow">Seguime <span class="highlight">en</span></h3>
+                    <ul class="footer-list">
+                        <li class="footer-list-item"><a href="https://www.facebook.com/juan.sueldo.x/" target="blank"><i class='bx bxl-facebook icon'></i></a></li>
+                        <li class="footer-list-item"><a href="https://www.instagram.com/juans_182/" target="blank"><i class='bx bxl-instagram icon' ></i></a></li>
+                        <li class="footer-list-item"><a href="https://github.com/juansueldo" target="blank"><i class='bx bxl-github icon' ></i></a></li>
+                        <li class="footer-list-item"><a href="https://www.linkedin.com/in/juan-sueldo/" target="blank"><i class='bx bxl-linkedin icon' ></i></a></li>
+                        <li class="footer-list-item"><a href=""><i class='bx bxl-youtube icon' ></i></a></li>
+                    </ul>
+                </div>
+                <div class="colum-3">
+                    <h3><span class="highlight">Desde</span> Quilmes, Buenos Aires, Argentina</h3>
+                </div>
+            </div>    
+            <div class="copyright">
+                2022 &copy; Todos los derechos reservados | <a href="#">Juan Sueldo</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="/assets/js/script.js"></script>
+</body>
+</html>
