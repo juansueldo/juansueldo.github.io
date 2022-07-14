@@ -1,0 +1,23 @@
+{
+  "name": "juansueldo.github.io",
+  "version": "1.0.0",
+  "description": "Personal Web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juansueldo/juansueldo.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juansueldo/juansueldo.github.io/issues"
+  },
+  "homepage": "https://github.com/juansueldo/juansueldo.github.io#readme",
+  "devDependencies": {
+    "sass": "^1.53.0"
+  }
+}
