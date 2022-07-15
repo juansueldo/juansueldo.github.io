@@ -1,13 +1,13 @@
 // toggle
 
-const toggleBtn = document.querySelector(".toggle-btn");
+const toggleBtn = document.querySelector(".header__navbar__toggle-btn");
 const menu = document.getElementById('menu');
-const links = document.querySelectorAll('.link');
-const button = document.querySelector('.project-button');
+const links = document.querySelectorAll('.header__navbar__menu__link');
+const button = document.querySelector('.projects__container__button');
 const buttonColor = document.querySelector('.box-container');
 
 
-button.addEventListener("click", function(){
+button.addEventListener("click", ()=>{
   button.classList.toggle('is-active-button');
   });
   
