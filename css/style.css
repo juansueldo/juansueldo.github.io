@@ -289,6 +289,12 @@ body::-webkit-scrollbar-thumb {
   box-shadow: 0 0 120px rgba(0, 255, 0, 0.2), 0 0 200px rgba(0, 255, 0, 0.4), 0 0 300px rgba(0, 255, 0, 0.6), 0 0 400px rgba(0, 255, 0, 0.8), 0 0 450px rgb(0, 255, 0);
 }
 
+span img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
 /* ABOUT */
 .about {
   width: 100%;
@@ -381,18 +387,11 @@ body::-webkit-scrollbar-thumb {
 .skill-card {
   height: 100px;
   border-radius: 10px;
-  border: 1px solid #464646;
   box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
-  background: #464646;
   text-align: center;
   position: relative;
   cursor: pointer;
   transition: 0.5s;
-}
-
-.skill-card i {
-  color: #B4F00A;
-  font-size: 5rem;
 }
 
 .skill-card img {
@@ -401,7 +400,7 @@ body::-webkit-scrollbar-thumb {
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
-  filter: grayscale(80%);
+  filter: grayscale(100%);
 }
 
 .skill-card img:hover {
@@ -570,7 +569,7 @@ body::-webkit-scrollbar-thumb {
     height: 200px;
   }
   .skill-container {
-    grid-template-columns: 50% 50%;
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
     grid-gap: 1em;
   }
@@ -591,6 +590,11 @@ body::-webkit-scrollbar-thumb {
   .home__container__right {
     width: 400px;
     height: 200px;
+  }
+  .skill-container {
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 1em;
   }
   .projects__box-container {
     grid-template-columns: 50% 50%;
@@ -618,9 +622,13 @@ body::-webkit-scrollbar-thumb {
     height: 200px;
   }
   .skill-container {
-    grid-template-columns: 50% 50%;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto;
     grid-gap: 1em;
+  }
+  .skill-card {
+    background: none;
+    border: none;
   }
   .projects__box-container {
     grid-template-columns: 50% 50%;
