@@ -125,7 +125,7 @@ body::-webkit-scrollbar-thumb {
 
 .visibility {
   transform: translateX(0);
-  transition: 1.5s;
+  transition: 0.5s;
   opacity: 1;
   pointer-events: all;
   font-weight: bold;
