@@ -97,7 +97,7 @@ body::-webkit-scrollbar-thumb {
   padding: 0 10vw;
   flex-direction: column;
   transform: translateX(200%);
-  transition: 2.3s;
+  transition: 1.5s;
   pointer-events: none;
   opacity: 0;
   background: #060708;
