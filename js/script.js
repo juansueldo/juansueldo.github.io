@@ -24,6 +24,9 @@ cube.addEventListener("click", () => {
   }
 });
 
+$('#link-w98').click(function(){
+  window.location.href = 'w98/index.html'; 
+})
 toggleBtn.addEventListener('click', () => {
   menu.classList.toggle('visibility');
 
