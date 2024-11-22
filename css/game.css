@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+.battlefield {
+    height: 90%;
+    width: 100%;
+    background-color: #fff;
+    border: 3px solid #333;
+    overflow: hidden;
+    display: grid;
+    font-family: "Press Start 2P", system-ui;
+    border-style: inset;
+    border-width: 2px;
+    border-color: #aaa #ccc #bbb #ddd;
+}
+.battlefield .ps2p {
+    font-family: "Press Start 2P", system-ui;
+}
+.container-opponent, .container-player{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.character-select{
+    padding: 10px;
+}
+
+.container-opponent {
+    align-items: flex-start;
+    background-color: #f8f8f8;
+}
+
+.player-player {
+    align-items: flex-end;
+    background-color: #eaeaea;
+}
+
+.player-info {
+    width: 60%;
+}
+
+.player-name {
+    font-weight: bold;
+}
+
+.player-level {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.health-bar {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.experience-bar {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.hp-label {
+    font-size: 0.8em;
+    margin-right: 5px;
+    color: #333;
+}
+
+.exp-label {
+    font-size: 0.8em;
+    margin-right: 5px;
+    color: #333;
+}
+
+.exp-bar {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-left: 5px;
+}
+
+.hp-bar {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-left: 17px;
+}
+
+.hp-fill {
+    width: 100%; /* Ajusta este valor para simular el HP */
+    height: 8px;
+    background-color: #66ff00;
+}
+.exp-fill {
+    width: 100%; /* Ajusta este valor para simular el HP */
+    height: 8px;
+    background-color: #ffd000;
+}
+
+.hp-warning{
+    background-color: #ffd000 !important;
+}
+
+.hp-danger{
+    background-color: #f00 !important;
+}
+
+.player-sprite {
+    width: 70px;
+    height: 70px;
+    background-color: #ccc;
+    border: 2px solid #333;
+    border-radius: 50%;
+}
+
+.opponent-sprite {
+    background-image: url('opponent-pokemon.png');
+    background-size: cover;
+}
+
+.player-sprite {
+    background-image: url('player-pokemon.png');
+    background-size: cover;
+}
+
+.options {
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+}
+
+.dialogue {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.action-continue{
+    float: right;
+    position: absolute;
+    bottom: 30px;
+
+}
+.options-start{
+    position: relative;
+}
+
+
+.d-none{
+    display: none !important;
+}
+
+.mb-3{
+  margin-bottom: 1.5rem;
+}
+
+.right{
+    float: right;
+}
+/* Agregar una transición suave para las barras de vida */
+#player-hp, #opponent-hp, #player-exp {
+    transition: width 0.5s ease-in-out;
+}
+
+.fire, .izquierda{
+    background-color: #f00 !important;
+}
+
+.grass{
+    background-color: #7ed60a !important;
+}
+
+.water, .derecha{
+    background-color: #0077ff !important;
+}
+
+.electric{
+    background-color: #e0d206 !important;
+}
+
+.poison, .centro{
+    background-color: #d906e0 !important;
+}
+
+.psychic{
+    background-color: #e921d8 !important;
+}
+
+.ghost{
+    background-color: #8f21e9 !important;
+}
+
+.rock{
+    background-color: #a15813 !important;
+}
+
+.bug{
+    background-color: #53a113 !important;
+}
+
+.fighting{
+    background-color: #ff004c !important;
+}

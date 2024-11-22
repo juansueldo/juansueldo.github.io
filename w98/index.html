@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/w98.css">
+    <link rel="stylesheet" href="/css/98.css">
+    <link rel="stylesheet" href="/css/game.css">
+    <script src="/js/jquery-min.js"></script>
+</head>
+<body>
+    <div class="desktop">
+        <!-- Iconos en el escritorio -->
+        <div class="icons">
+          <div class="icon" data-window="my-computer">
+            <img src="/img/computer_explorer-4.png" alt="My Computer">
+            <span>My Computer</span>
+          </div>
+          <div class="icon" data-window="documents">
+            <img src="/img/directory_open_file_mydocs_2k-4.png" alt="Documents">
+            <span>Documents</span>
+          </div>
+          <div class="icon" data-window="projects">
+            <img src="/img/directory_closed-4.png" alt="Projects">
+            <span>Projects</span>
+          </div>
+          <div class="icon" data-window="recycle-bin">
+            <img src="/img/recycle_bin_empty-4.png" alt="Recycle Bin">
+            <span>Recycle Bin</span>
+          </div>
+          <div class="icon" data-window="my-rpg">
+            <img src="/img/game_solitaire-0.png" alt="My RPG">
+            <span>My RPG</span>
+          </div>
+        </div>
+    
+        <!-- Modales -->
+        <div class="modal" id="my-computer">
+          <div class="window">
+            <div class="title-bar cursor-move">
+              <div class="title-bar-text">A Window With Stuff In It</div>
+              <div class="title-bar-controls">
+                <button aria-label="Minimize" class="minimize"></button>
+                <button aria-label="Maximize" class="maximized"></button>
+                <button aria-label="Close" class="close"></button>
+              </div>
+            </div>
+            <div class="window-body">
+              <div class="consolebody" id="consolebody"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal" id="my-rpg">
+          <div class="modal-header">
+            <div class="title-bar">
+              <div class="title-bar-text">My Computer</div>
+              <div class="title-bar-controls">
+                <button aria-label="Minimize" class="minimize"></button>
+                <button aria-label="Maximize" class="maximized"></button>
+                <button aria-label="Close" class="close"></button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-content">
+            <div class="battlefield" id="character-start">
+              <div class="options options-start">
+                <div class="dialogue">
+                  <p id="dialogue-text"></p>
+                </div>
+                 <div class="d-none mb-3" id="container-selector">
+                   <select name="" id="classplayer" class="ps2p">
+                     <option value="" class="ps2p">Select one</option>
+                     <option value="izquierda" class="ps2p">Izquierda</option>
+                     <option value="centro" class="ps2p">Centro</option>
+                     <option value="derecha" class="ps2p">Derecha</option>
+                   </select>
+                 </div>
+                 <div class="d-none mb-3" id="container-input">
+                    <input type="text" id="name-player" class="ps2p">
+                 </div>
+                 <div class="actions action-continue">
+                      <button id="continue" class="ps2p">Continuar</button>
+                  </div>
+              </div>
+              <button id="auto-complete" class="ps2p">autocompletar</button>
+          </div>
+          <div class="battlefield d-none" id="battlefield">
+              <div class="container-opponent"></div>
+              <div class="container-player"></div>
+      
+              <div class="options">
+                  <div class="dialogue">
+                      <p id="dialogue-text-combat">¿Qué quieres hacer?</p>
+                  </div>
+                  <div class="actions" id="actions">
+                      <button id="fight" class="ps2p">Luchar</button>
+                      <button class="ps2p">Mochila</button>
+                      <button id="change" class="ps2p">Pokémon</button>
+                      <button class="ps2p">Huir</button>
+                  </div>
+                  <div class="actions d-none" id="skills">
+                  </div>
+                  <div class="actions d-none" id="friends">
+                  </div>
+                  <div class="actions d-none" id="end-battle"><button id="continue-end-battle">Continuar</button></div>
+              </div>
+          </div>
+          </div>
+        </div>
+    
+        <div class="modal" id="recycle-bin">
+          <div class="window">
+            <div class="title-bar cursor-move">
+              <div class="title-bar-text">A Window With Stuff In It</div>
+              <div class="title-bar-controls">
+                <button aria-label="Minimize" class="minimize"></button>
+                <button aria-label="Maximize" class="maximized"></button>
+                <button aria-label="Close" class="close"></button>
+              </div>
+            </div>
+            <div class="window-body">
+              <p>There's so much room for activities!</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="modal" id="documents">
+          <div class="window">
+            <div class="title-bar cursor-move">
+              <div class="title-bar-text">A Window With Stuff In It</div>
+              <div class="title-bar-controls">
+                <button aria-label="Minimize" class="minimize"></button>
+                <button aria-label="Maximize" class="maximized"></button>
+                <button aria-label="Close" class="close"></button>
+              </div>
+            </div>
+            <div class="window-body">
+              <p>There's so much room for activities!</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal" id="projects">
+          <div class="window">
+            <div class="title-bar cursor-move">
+              <div class="title-bar-text">Projects</div>
+              <div class="title-bar-controls">
+                <button aria-label="Minimize" class="minimize"></button>
+                <button aria-label="Maximize" class="maximized"></button>
+                <button aria-label="Close" class="close"></button>
+              </div>
+            </div>
+            <div class="window-body">
+              <div class="field-row mb-3">
+                <label for="text17">URL</label>
+                <input class="w-100 cursor-pointer url-open" id="text17" type="text" value="https://github.com/juansueldo" readonly/>
+              </div>
+              
+              <div class="body-light mb-3">
+                <div class="icons">
+                  <div class="icon" data-window="my-computer">
+                    <img src="/img/computer_explorer-4.png" alt="My Computer">
+                    <span>My Computer</span>
+                  </div>
+                  <div class="icon" data-window="documents">
+                    <img src="/img/directory_open_file_mydocs_2k-4.png" alt="Documents">
+                    <span>Documents</span>
+                  </div>
+                  <div class="icon" data-window="projects">
+                    <img src="/img/directory_closed-4.png" alt="Projects">
+                    <span>Projects</span>
+                  </div>
+                  <div class="icon" data-window="recycle-bin">
+                    <img src="/img/recycle_bin_empty-4.png" alt="Recycle Bin">
+                    <span>Recycle Bin</span>
+                  </div>
+                  <div class="icon" data-window="my-rpg">
+                    <img src="/img/game_solitaire-0.png" alt="My RPG">
+                    <span>My RPG</span>
+                  </div>
+                </div>
+              </div>
+              <div class="status-bar">
+                <input class="status-bar-field cursor-pointer url-open" id="text17" type="text" value="https://www.linkedin.com/in/juan-sueldo" readonly/>
+                <p class="status-bar-field">Slide 1</p>
+                <p class="status-bar-field">CPU Usage: 14%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="field-row slider slider-hidden" id="slider">
+          <label for="range28">Color</label>
+          <div class="is-vertical">
+            <input id="range28" class="has-box-indicator" type="range" min="1" max="3" step="1" value="1" />
+          </div>
+        </div>
+
+        <!-- Barra de tareas -->
+        <div class="taskbar">
+          <div class="start-button" id="start-button">
+            <span>Start</span>
+          </div>
+          <div class="taskbar-apps"></div>
+          <div class="icon" data-window="documents">
+            
+          </div>
+          <div class="taskbar-clock">
+            <img src="img/paint_file-4.png" style="height: 20px; width: auto;" id="img-color">
+            <p>12:00 PM</p>
+          </div>
+        </div>
+    
+        <!-- Menú de inicio -->
+        <div class="start-menu" id="start-menu">
+          <ul>
+            <li>Programs</li>
+            <li>Documents</li>
+            <li>Settings</li>
+            <li>Find</li>
+            <li>Help</li>
+            <li>Run...</li>
+            <li>Shut Down</li>
+          </ul>
+        </div>
+      </div>
+    
+      <script src="/js/w98.js"></script>
+      <script src="/js/game.js"></script>
+</body>
+</html>
