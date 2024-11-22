@@ -172,5 +172,8 @@ $(document).ready(function () {
             window.open(url, '_blank');
         }
     });
+    $("#shutdown").click(function(){
+      window.location.href = '/index.html';
+    })
 });
   
