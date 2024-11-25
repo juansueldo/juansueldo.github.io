@@ -129,21 +129,21 @@ $(document).ready(function () {
     });
   
     $startButton.on('click', function () {
-      $startMenu.toggle();
+      $startMenu.toggleClass('hidden');
     });
   
     
     $(document).on('click', function (e) {
-      if (!$startMenu.is(e.target) && !$startButton.is(e.target)) {
-        $startMenu.hide();
+      if (!$startButton.is(e.target) && !$startMenu.is(e.target)) {
+        $startMenu.addClass('hidden');
       }
       if (!$slider.is(e.target) && !$iconColor.is(e.target)) {
-        $slider.addClass('slider-hidden');
+        $slider.addClass('hidden');
       }
     });
   
     $iconColor.on('click', function () {
-      $slider.toggleClass('slider-hidden');
+      $slider.toggleClass('hidden');
     });
   
     
