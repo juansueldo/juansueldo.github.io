@@ -3,8 +3,7 @@ $(document).ready(function () {
     let offsetX = 0;
     let offsetY = 0;
     let currentModal = null;
-    let stopTyping = false;
-     
+    let stopTyping=false;
     
     const $icons = $('.icon');
     const $modals = $('.modal');
@@ -39,7 +38,7 @@ $(document).ready(function () {
       
         if (windowId === "my-computer") {
           $consoletext.empty();
-          stopTyping = false;
+          stopTyping=false;
           const texts = [
             "> Hola, bienvenido a Mi PC, mi nombre es Juan Sueldo",
             "> ¿En qué puedo ayudarte hoy?",
@@ -54,6 +53,7 @@ $(document).ready(function () {
   
     function typeAllText(texts, container) {
       let index = 0;
+      
       function typeNextText() {
         if(stopTyping) return;
         if (index < texts.length) {
@@ -90,7 +90,7 @@ $(document).ready(function () {
     $closeButtons.on('click', function () {
       const $modal = $(this).closest('.modal');
       $modal.css('display', 'none');
-      stopTyping = true;
+      stopTyping= true;
       $consoletext.empty();
     });
   
