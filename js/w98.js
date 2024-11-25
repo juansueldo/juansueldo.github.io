@@ -10,7 +10,7 @@ $(document).ready(function () {
     const $desktop = $('.desktop');
     const $maximizeButtons = $('.maximized');
     const $iconColor = $('#img-color');
-    const $consolebody = $('#consolebody');
+    const $consoletext = $('#text-console');
     const $startButton = $('#start-button');
     const $startMenu = $('#start-menu');
     const $slider = $('#slider');
@@ -36,6 +36,7 @@ $(document).ready(function () {
         });
       
         if (windowId === "my-computer") {
+          $consoletext.empty();
           const texts = [
             "> Hola, bienvenido a Mi PC, mi nombre es Juan Sueldo",
             "> ¿En qué puedo ayudarte hoy?",
@@ -43,7 +44,7 @@ $(document).ready(function () {
             "> También puedo mostrarte información sobre el sistema",
             "> Si necesitas algo más, solo dímelo"
           ];
-          typeAllText(texts, $consolebody);
+          typeAllText(texts, $consoletext);
         }
       });
       
@@ -175,5 +176,24 @@ $(document).ready(function () {
     $("#shutdown").click(function(){
       window.location.href = '/index.html';
     })
+    // Configuración del sprite
+    const $sprite = $("#sprite"); // Selección del elemento
+    const frameWidth = 100; // Ancho de cada cuadro en el sprite sheet
+    const frameCount = 8; // Número total de cuadros en el sprite sheet
+    let currentFrame = 0; // Cuadro inicial
+  
+    // Animar el sprite
+    function animateSprite() {
+      // Calcular la posición del cuadro actual en el eje X
+      const position = -currentFrame * frameWidth;
+      $sprite.css("background-position", `${position}px 0`);
+  
+      // Mover al siguiente cuadro
+      currentFrame = (currentFrame + 1) % frameCount;
+    }
+  
+    // Reproducir la animación cada 100ms
+    setInterval(animateSprite, 100);
+
 });
   
