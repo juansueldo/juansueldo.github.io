@@ -97,7 +97,7 @@
                   <div class="actions" id="actions">
                       <button id="fight" class="ps2p">Luchar</button>
                       <button class="ps2p">Mochila</button>
-                      <button id="change" class="ps2p">Pokémon</button>
+                      <button id="change" class="ps2p">Compañero</button>
                       <button class="ps2p">Huir</button>
                   </div>
                   <div class="actions d-none" id="skills">
@@ -191,7 +191,7 @@
           </div>
         </div>
     
-        <div class="field-row slider slider-hidden" id="slider">
+        <div class="field-row slider hidden" id="slider">
           <label for="range28">Color</label>
           <div class="is-vertical">
             <input id="range28" class="has-box-indicator" type="range" min="1" max="3" step="1" value="1" />
@@ -199,10 +199,10 @@
         </div>
 
         <!-- Barra de tareas -->
-        <div class="taskbar">
-          <div class="start-button" id="start-button">
-            <span>Start</span>
-          </div>
+        <div class="window taskbar">
+          <button " id="start-button">
+            Start
+          </button>
           <div class="taskbar-apps"></div>
           <div class="icon" data-window="documents">
             
@@ -214,7 +214,7 @@
         </div>
     
         <!-- Menú de inicio -->
-        <div class="start-menu" id="start-menu">
+        <div class="window start-menu hidden" id="start-menu">
           <ul>
             <li>Programs</li>
             <li>Documents</li>
