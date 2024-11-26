@@ -90,8 +90,10 @@ $(document).ready(function () {
     $closeButtons.on('click', function () {
       const $modal = $(this).closest('.modal');
       $modal.css('display', 'none');
-      stopTyping= true;
-      $consoletext.empty();
+      if($modal.find('.consoletext').length > 0){
+        stopTyping= true;
+        $consoletext.empty();
+      }
     });
   
     $maximizeButtons.on('click', function () {
@@ -157,36 +159,39 @@ $(document).ready(function () {
     
     $rangeInput.on('input', function () {
       let colorValue;
-      let theme;
-      let font;
+      let windowColor;
+      let fontColor;
       let light;
       let dark;
       switch (parseInt($rangeInput.val())) {
         case 1:
           colorValue = "#008080";
-          theme = "#c0c0c0";
-          font = "#fff";
-          light ="#000";
-          dark = "#fff";
+          windowColor = "#c0c0c0";
+          fontColor = "#222";
+          light ="#fff";
+          dark = "#000";
           break;
         case 2:
           colorValue = "#242222";
-          theme = "#000";
-          font = "#fff";
+          windowColor = "#000";
+          fontColor = "#fff";
           light ="#000";
           dark = "#fff";
           break;
         case 3:
-          colorValue = "#4682b4";
-          theme = "#000";
+          colorValue = "#c0c0c0";
+          windowColor = "#fff";
+          fontColor = "#222";
+          light ="#fff";
+          dark = "#000";
           break;
         default:
           colorValue = "#008080";
           break;
       }
       $(':root').css('--background-desktop', colorValue);
-      $(':root').css('--background-window', theme);
-      $(':root').css('--font-color', font);
+      $(':root').css('--background-window', windowColor);
+      $(':root').css('--font-color', fontColor);
       $(':root').css('--light-color', light);
       $(':root').css('--dark-color', dark);
     });
@@ -199,24 +204,18 @@ $(document).ready(function () {
     });
     $("#shutdown").click(function(){
       window.location.href = '/index.html';
-    })
-    // Configuración del sprite
-    const $sprite = $("#sprite"); // Selección del elemento
-    const frameWidth = 100; // Ancho de cada cuadro en el sprite sheet
-    const frameCount = 8; // Número total de cuadros en el sprite sheet
-    let currentFrame = 0; // Cuadro inicial
+    });
+
+    const $sprite = $("#sprite");
+    const frameWidth = 100;
+    const frameCount = 8;
+    let currentFrame = 0;
   
-    // Animar el sprite
     function animateSprite() {
-      // Calcular la posición del cuadro actual en el eje X
       const position = -currentFrame * frameWidth;
       $sprite.css("background-position", `${position}px 0`);
-  
-      // Mover al siguiente cuadro
       currentFrame = (currentFrame + 1) % frameCount;
     }
-  
-    // Reproducir la animación cada 100ms
     setInterval(animateSprite, 100);
 
 });
