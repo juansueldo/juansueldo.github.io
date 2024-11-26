@@ -157,21 +157,38 @@ $(document).ready(function () {
     
     $rangeInput.on('input', function () {
       let colorValue;
+      let theme;
+      let font;
+      let light;
+      let dark;
       switch (parseInt($rangeInput.val())) {
         case 1:
           colorValue = "#008080";
+          theme = "#c0c0c0";
+          font = "#fff";
+          light ="#000";
+          dark = "#fff";
           break;
         case 2:
-          colorValue = "#ff6347";
+          colorValue = "#242222";
+          theme = "#000";
+          font = "#fff";
+          light ="#000";
+          dark = "#fff";
           break;
         case 3:
           colorValue = "#4682b4";
+          theme = "#000";
           break;
         default:
           colorValue = "#008080";
           break;
       }
       $(':root').css('--background-desktop', colorValue);
+      $(':root').css('--background-window', theme);
+      $(':root').css('--font-color', font);
+      $(':root').css('--light-color', light);
+      $(':root').css('--dark-color', dark);
     });
 
     $('.url-open').click(function() {

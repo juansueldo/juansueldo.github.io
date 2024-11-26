@@ -1,6 +1,6 @@
 
 :root{
-    --background-desktop: #008080;
+  --background-desktop: #008080;
 }
 /* Reset */
 body, html {
@@ -64,24 +64,14 @@ body, html {
   padding: 5px 15px !important;
   z-index: 9999;
 }
-  
-.start-button {
-  background: linear-gradient(to bottom, #c0c0c0, #808080);
-  border: 1px solid #000;
+ 
+.start-button { 
   border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 5px 10px;
   margin-right: 10px;
-  cursor: pointer;
-  color: black;
-  font-weight: bold;
-  box-shadow: inset -1px -1px #fff, inset 1px 1px #000;
-}
-  
-.start-button:hover {
-  background: linear-gradient(to bottom, #808080, #c0c0c0);
 }
   
 .taskbar-apps {
@@ -208,7 +198,7 @@ body, html {
   padding: 20px;
   height: 92%;
   width: 100%;
-  overflow: scroll;
+ 
   background-color: #242222;
   border-style:inset;
   border-width: 2px;
