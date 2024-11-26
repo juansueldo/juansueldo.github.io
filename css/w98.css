@@ -99,6 +99,7 @@ body, html {
   top: -100px;
   left: 100px;
   width: 700px;
+  height: 550px;
   background: var(--background-window);
   display: none;
   z-index: 1000;
@@ -252,4 +253,7 @@ body, html {
   height: 100px; /* Altura del cuadro del sprite */
   background: url('/img/code_100x100.png') 0 0 no-repeat; /* Ruta de tu sprite sheet */
   background-size: auto; /* Ajusta si tu sprite tiene más cuadros */
+}
+.modal-body{
+  height: 95%;
 }
