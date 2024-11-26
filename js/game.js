@@ -14,6 +14,7 @@ const $selectorclass= document.getElementById("classplayer");
 const $inputcontainer= document.getElementById("container-input");
 const $nameplayer= document.getElementById("name-player");
 const $battlefield= document.getElementById("battlefield");
+const $grid= document.getElementById("content-grid");
 const $start= document.getElementById("character-start");
 const $testBtn= document.getElementById("auto-complete");
 const $endBattle = document.getElementById("end-battle");
@@ -118,7 +119,7 @@ $continue.addEventListener('click', async function() {
         skillsUI(player);
         opponentUI(cpu);
         $start.classList.add('d-none');
-        $battlefield.classList.remove("d-none");
+        $grid.classList.remove("d-none");
         break; 
     default:
   }
@@ -145,8 +146,81 @@ $testBtn.addEventListener('click', function(){
     skillsUI(player);
     opponentUI(cpu);
     $start.classList.add('d-none');
-    $battlefield.classList.remove("d-none");
+    $grid.classList.remove("d-none");
+    gridStart();
 });
+
+function gridStart(){
+    let playerPosition = { x: 2, y: 2 }; // Posición inicial del jugador
+    let enemyPosition = { x: 4, y: 4 }; // Posición del enemigo
+
+    const gridSize = 50;
+    let grid = $('#grid');
+    grid.empty(); // Limpiar la grilla si ya tiene contenido
+
+    // Función para actualizar la posición del jugador y detectar contacto con el enemigo
+    function updatePlayerPosition() {
+        grid.empty(); // Limpiar la grilla
+
+        // Generar la grilla
+        for (let i = 0; i < gridSize; i++) {
+            for (let j = 0; j < gridSize; j++) {
+                let cell = $('<div>').addClass('grid-cell');
+                grid.append(cell);
+
+                // Colocar al jugador y enemigo
+                if (i === playerPosition.x && j === playerPosition.y) {
+                    cell.addClass('player');
+                } else if (i === enemyPosition.x && j === enemyPosition.y) {
+                    cell.addClass('enemy');
+                }
+
+                // Comprobar si el jugador está en la misma posición que el enemigo
+                if (playerPosition.x === enemyPosition.x && playerPosition.y === enemyPosition.y) {
+                    cell.addClass('contact'); // Agregar una clase de contacto
+                    $grid.classList.add("d-none");
+                    $battlefield.classList.remove('d-none');
+                }
+
+                // Agregar evento de clic para mover al jugador
+                cell.on('click', function() {
+                    playerPosition.x = i;
+                    playerPosition.y = j;
+                    updatePlayerPosition();
+                });
+            }
+        }
+    }
+
+    // Inicializar la grilla
+    updatePlayerPosition();
+
+    // Mover al jugador usando las teclas
+    $(document).on('keydown', function(event) {
+        switch(event.key) {
+            case 'ArrowUp': // Flecha arriba
+            case 'w': // Tecla W
+                if (playerPosition.x > 0) playerPosition.x--;
+                break;
+            case 'ArrowDown': // Flecha abajo
+            case 's': // Tecla S
+                if (playerPosition.x < gridSize - 1) playerPosition.x++;
+                break;
+            case 'ArrowLeft': // Flecha izquierda
+            case 'a': // Tecla A
+                if (playerPosition.y > 0) playerPosition.y--;
+                break;
+            case 'ArrowRight': // Flecha derecha
+            case 'd': // Tecla D
+                if (playerPosition.y < gridSize - 1) playerPosition.y++;
+                break;
+            default:
+                return;
+        }
+        updatePlayerPosition();
+    });
+}
+
 
 // Evento para abrir el menú de habilidades
 $fight.addEventListener('click', async function() {
