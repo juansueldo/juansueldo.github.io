@@ -1,7 +1,3 @@
-
-:root{
-  --background-desktop: #008080;
-}
 /* Reset */
 body, html {
   margin: 0;
@@ -63,6 +59,8 @@ body, html {
   align-items: center;
   padding: 5px 15px !important;
   z-index: 9999;
+  
+  
 }
  
 .start-button { 
@@ -79,14 +77,15 @@ body, html {
 }
   
 .taskbar-clock {
-  color: black;
   padding: 5px;
-  border-style: inset;
   display: flex;
   justify-content: space-between;
   align-items: center;
   max-height: 20px;
   width: 90px;
+  border-style:inset;
+  border-width: 2px;
+  border-color: #aaa #ccc #bbb #ddd; 
 }
 
 .cursor-move{
@@ -100,23 +99,22 @@ body, html {
   top: -100px;
   left: 100px;
   width: 700px;
-
-  background: #c0c0c0;
+  background: var(--background-window);
   display: none;
   z-index: 1000;
 }
   
 .modal-header {
-  background: linear-gradient(to bottom, #c0c0c0, #808080);
+  background: linear-gradient(to bottom, var(--background-window), #808080);
   padding: 5px;
-  border-bottom: 1px solid black;
-  color: black;
+  border-bottom: 1px solid var(--dark-color);
+  color: var(--dark-color);
   font-weight: bold;
 }
   
 .modal-content {
   padding: 10px;
-  background: white;
+  background: var(--light-color);
   height: 100%;
 }
   
@@ -125,7 +123,7 @@ body, html {
   border: none;
   cursor: pointer;
   font-size: 16px;
-  color: black;
+  color: var(--dark-color);
 }
   
 .slider{
@@ -133,7 +131,7 @@ body, html {
   bottom: 55px;
   right: 30px;
   width: 80px;
-  background: #c0c0c0;
+  background: var(--background-window);;
   padding: 5px;
   z-index: 9999;
 }
@@ -150,8 +148,20 @@ body, html {
   left: 10px;
   width: 200px;
   z-index: 9999;
+  display: flex;
 }
-  
+.side-bar{
+  max-width: 20px;
+  padding: 2px;
+  background: linear-gradient(90deg, navy, #1084d0);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  color: #fff;
+}
+.options-menu{
+  width: 100%;
+} 
 .start-menu ul {
   list-style: none;
   margin: 0;
@@ -216,7 +226,7 @@ body, html {
   box-sizing: border-box;
   height: 80%;
   width: 100%;
-  background-color: #fff;
+  background-color: var(--light-color);
   overflow: scroll;
   padding: 10px;
   border-style: inset;
@@ -224,7 +234,7 @@ body, html {
   border-color: #aaa #ccc #bbb #ddd;
 }
 .body-light span{
-  color: #000;
+  color: var(--dark-color);
 }
 
 .w-100{
@@ -235,7 +245,7 @@ body, html {
   margin-bottom: 1.5rem;
 }
 .url-open{
-  color: #000 !important;
+  color: var(--dark-color) !important;
 }
 #sprite {
   width: 100px; /* Ancho del cuadro del sprite */
