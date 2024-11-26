@@ -206,3 +206,42 @@
 .fighting{
     background-color: #ff004c !important;
 }
+
+.battlefield-grid {
+    display: flex;
+    overflow: scroll;
+    box-sizing: border-box;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 20px;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); /* Celdas de al menos 50px, pero se expanden a 1fr */
+    grid-template-rows: repeat(auto-fill, minmax(50px, 1fr)); /* Similar a las columnas: filas con un tamaño flexible */
+    gap: 5px;
+    width: 100%; /* Asegura que el grid ocupe todo el espacio disponible */
+    height: 100%; /* Asegura que el grid ocupe toda la altura disponible */
+}
+
+.grid-cell {
+    width: 100%;  /* Asegura que cada celda ocupe el 100% de su espacio disponible */
+    height: 100%; /* Hace lo mismo con la altura de las celdas */
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: var(--background-window)
+}
+
+.player {
+    background-color: blue;
+    border-radius: 50%;
+}
+
+.enemy {
+    background-color: red;
+    border-radius: 50%;
+}
