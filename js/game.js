@@ -19,6 +19,7 @@ const $start= document.getElementById("character-start");
 const $testBtn= document.getElementById("auto-complete");
 const $endBattle = document.getElementById("end-battle");
 const $endBattleBtn= document.getElementById("continue-end-battle");
+const $escape = document.getElementById("scape");
 
 let playerHP = 100;
 let opponentHP = 100;
@@ -53,9 +54,21 @@ const skills =[
     { name: 'Plus valia', damage: 10, pp: 10, sp_attack: 10, type: 'izquierda', subtype: 'izquierda' },
 ]
 
-let player={ name: "", level: 1, hp: 20, exp: 0, max_exp: 20, max_hp: 20, sp_attack: 0, sp_defence: 0, pp: 10, type: "", skills: []};
+let player={ name: "", level: 1, hp: 20, exp: 0, max_exp: 20, max_hp: 20, sp_attack: 0, sp_defence: 0, pp: 40, type: "", skills: []};
 
-let cpu={ name: 'Julian', level: 1, hp: 10, exp: 0, max_exp: 20, max_hp: 10, sp_attack: 0, sp_defence: 0, pp: 40, type: "", skills: []};
+let cpu;
+// Array de enemigos con posiciones y datos
+let enemies = [
+    { name: 'Julian', level: 1, hp: 10, max_hp: 10, sp_attack: 0, pp: 40, type: 'derecha', skills: [], position: { x: 4, y: 4 } },
+    { name: 'Lucia', level: 2, hp: 15, max_hp: 15, sp_attack: 5, pp: 30, type: 'izquierda', skills: [], position: { x: 6, y: 6 } },
+    { name: 'Carlos', level: 3, hp: 20, max_hp: 20, sp_attack: 7, pp: 20, type: 'centro', skills: [], position: { x: 8, y: 8 } },
+    { name: 'Esteban', level: 1, hp: 10, max_hp: 10, sp_attack: 0, pp: 40, type: 'derecha', skills: [], position: { x: 5, y: 5 } },
+    { name: 'Natalia', level: 2, hp: 15, max_hp: 15, sp_attack: 5, pp: 30, type: 'izquierda', skills: [], position: { x: 4, y: 9 } },
+    { name: 'Emilia', level: 3, hp: 0, max_hp: 20, sp_attack: 7, pp: 20, type: 'centro', skills: [], position: { x: 1, y: 1 } },
+];
+
+// Inicializar la grilla con los enemigos
+
 
 let classPlayer="";
 
@@ -139,26 +152,22 @@ $testBtn.addEventListener('click', function(){
     classPlayer="izquierda"
     player.name=nameplayer
     player.type=classPlayer;
-    cpu.type=assignOpponentType(classPlayer);
     player.skills=addStarterSkills(player, skills);
-    cpu.skills=addStarterSkills(cpu, skills);
     playerUI(player);
     skillsUI(player);
-    opponentUI(cpu);
     $start.classList.add('d-none');
     $grid.classList.remove("d-none");
-    gridStart();
+    gridStart(enemies);
 });
 
-function gridStart(){
+function gridStart(enemies) {
     let playerPosition = { x: 2, y: 2 }; // Posición inicial del jugador
-    let enemyPosition = { x: 4, y: 4 }; // Posición del enemigo
 
-    const gridSize = 50;
+    const gridSize = 25; // Tamaño de la grilla
     let grid = $('#grid');
     grid.empty(); // Limpiar la grilla si ya tiene contenido
 
-    // Función para actualizar la posición del jugador y detectar contacto con el enemigo
+    // Función para actualizar la posición del jugador y detectar contacto con los enemigos
     function updatePlayerPosition() {
         grid.empty(); // Limpiar la grilla
 
@@ -168,22 +177,35 @@ function gridStart(){
                 let cell = $('<div>').addClass('grid-cell');
                 grid.append(cell);
 
-                // Colocar al jugador y enemigo
+                // Colocar al jugador
                 if (i === playerPosition.x && j === playerPosition.y) {
                     cell.addClass('player');
-                } else if (i === enemyPosition.x && j === enemyPosition.y) {
-                    cell.addClass('enemy');
                 }
 
-                // Comprobar si el jugador está en la misma posición que el enemigo
-                if (playerPosition.x === enemyPosition.x && playerPosition.y === enemyPosition.y) {
-                    cell.addClass('contact'); // Agregar una clase de contacto
-                    $grid.classList.add("d-none");
-                    $battlefield.classList.remove('d-none');
-                }
+                // Colocar a los enemigos
+                enemies.forEach((enemy, index) => {
+                    if(enemy.hp > 0){
+                        if (i === enemy.position.x && j === enemy.position.y) {
+                            cell.addClass('enemy');
+                            cell.attr('data-enemy-index', index); // Vincular el índice del enemigo
+    
+                            // Comprobar si el jugador está en la misma posición que este enemigo
+                            if (playerPosition.x === enemy.position.x && playerPosition.y === enemy.position.y) {
+                                cell.addClass('contact'); // Clase de contacto
+                                enemy.type=assignOpponentType(player.type);
+                                enemy.skills=addStarterSkills(enemy, skills);
+                                opponentUI(enemy);
+                                $grid.classList.add("d-none");
+                                $battlefield.classList.remove('d-none');
+                                cpu=enemy;
+                                return;
+                            }
+                        }
+                    }
+                });
 
                 // Agregar evento de clic para mover al jugador
-                cell.on('click', function() {
+                cell.on('click', function () {
                     playerPosition.x = i;
                     playerPosition.y = j;
                     updatePlayerPosition();
@@ -196,8 +218,8 @@ function gridStart(){
     updatePlayerPosition();
 
     // Mover al jugador usando las teclas
-    $(document).on('keydown', function(event) {
-        switch(event.key) {
+    $(document).on('keydown', function (event) {
+        switch (event.key) {
             case 'ArrowUp': // Flecha arriba
             case 'w': // Tecla W
                 if (playerPosition.x > 0) playerPosition.x--;
@@ -219,6 +241,18 @@ function gridStart(){
         }
         updatePlayerPosition();
     });
+
+    // Función para iniciar el combate con un enemigo
+    function startCombat(enemy) {
+        console.log(`Iniciando combate con ${enemy.name}`);
+        // Ocultar la grilla y mostrar el campo de batalla
+        $grid.addClass("d-none");
+        $battlefield.classList.remove('d-none');
+        // Aquí puedes agregar lógica para configurar el combate con el enemigo seleccionado
+        cpu = { ...enemy }; // Configurar al enemigo como el oponente
+        opponentUI(cpu); // Actualizar la interfaz del oponente
+        typeText(`Te has encontrado con ${enemy.name}. ¡Prepárate para luchar!`, $dialogueTextCombat);
+    }
 }
 
 
@@ -269,9 +303,10 @@ async function attack(move, player) {
         await typeText(`¡Has ganado! ${cpu.name} ha sido derrotado.`,$dialogueTextCombat);
         gainExperience(player, 20);
         
-        $skills.classList.add('d-none');
-        $endBattle.classList.remove('d-none');
-
+        /*$skills.classList.add('d-none');
+        $endBattle.classList.remove('d-none');*/
+        $battlefield.classList.add("d-none");
+        $grid.classList.remove('d-none');
         return;
     }
     // Ataque de respuesta del oponente
@@ -301,6 +336,7 @@ async function opponentAttack(player) {
         $skills.classList.add('d-none');
         $start.classList.remove('d-none');
         $battlefield.classList.add("d-none");
+    $grid.classList.remove('d-none');
     } else {
         // Volver al menú de acciones del jugador después de una breve pausa
         setTimeout(async () => {
@@ -323,6 +359,11 @@ async function cancelAttack() {
 $endBattleBtn.addEventListener('click', function(){
     $start.classList.remove('d-none');
     $battlefield.classList.add("d-none");
+    
+});
+$escape.addEventListener('click', function(){
+    $battlefield.classList.add("d-none");
+    $grid.classList.remove('d-none');
 })
 
 // Función para mostrar la UI del oponente
