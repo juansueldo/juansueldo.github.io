@@ -1,0 +1,362 @@
+:root {
+    --main-color: #e91574;
+    --highlight-color: #15edb0;
+    --shadow-one: rgba(0, 255, 0, 0.2);
+    --shadow-two: rgba(0, 255, 0, 0.4);
+    --shadow-three: rgba(0, 255, 0, 0.6);
+    --shadow-four: rgba(0, 255, 0, 0.8);
+    --shadow-five: rgb(0, 255, 0);
+  }
+body {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #13112b, #24243e);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+header.scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 99%;
+    background-color: #111;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+/* Media query para dispositivos pequeños */
+@media (max-width: 768px) {
+    .menu-toggle {
+        width: 30px;
+        position: relative;
+        cursor: pointer;
+        display: block;
+        right: 60px;
+    }
+    
+    .menu-toggle span,
+    .menu-toggle::before,
+    .menu-toggle::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: #fff;
+        border-radius: 5px;
+        position: absolute;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .menu-toggle span{
+        background-color: #15edb0;
+        border-radius: 5px;
+    }
+    .menu-toggle::before {
+        top: -8px;
+    }
+    
+    .menu-toggle::after {
+        top: 8px;
+    }
+    
+    .menu-toggle.active span {
+        opacity: 0; /* Ocultar la barra del medio */
+    }
+    
+    .menu-toggle.active::before {
+        transform: translateY(8px) rotate(45deg); /* Crear la barra de la cruz */
+        background-color: #15edb0;
+    }
+    
+    .menu-toggle.active::after {
+        transform: translateY(-8px) rotate(-45deg); /* Crear la otra barra de la cruz */
+        background-color: #15edb0;
+    }
+    header {
+        position: fixed; /* Fijo en la parte superior */
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #111; /* Color de fondo al hacer scroll */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombras para destacar */
+    }
+    .nav-links {
+        display: none; /* Oculta el menú inicialmente */
+        flex-direction: column;
+        align-items: center; /* Centra los enlaces dentro del contenedor */
+        position: absolute;
+        top: 55px;
+        right: 0;
+        background-color: #111;
+        width: 100%;
+        height: 100vh;
+        font-size: 1.5rem;
+    }
+    
+    .nav-links.active {
+        display: flex; /* Muestra el menú cuando está activo */
+    }
+    
+    .nav-links a {
+        text-align: left; /* Justifica el texto dentro del enlace */
+        width: 100%; /* Asegura que los enlaces ocupen todo el ancho */
+        margin: 10px 0; /* Espaciado entre enlaces */
+        padding: 40px; /* Espaciado interno para mejorar la usabilidad */
+        box-sizing: border-box; /* Incluye el padding en el ancho del enlace */
+    }
+    
+}
+
+.logo{
+    text-transform: uppercase;
+    font-weight: 900;
+    cursor: pointer;
+}
+.logo a{
+    text-decoration: none;
+    color: white;
+}
+
+header nav a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+}
+
+header nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; /* Coloca la línea en la parte inferior del enlace */
+    left: 0;
+    width: 0;
+    height: 2px; /* Grosor de la línea */
+    background-color: #15edb0; /* Color de la línea */
+    transition: width 0.3s ease; /* Transición suave en la propiedad width */
+}
+
+header nav a:hover::after {
+    width: 100%; /* La línea crecerá al 100% del ancho del enlace al hacer hover */
+}
+
+header nav a:hover {
+    color: #15edb0; /* Cambia el color del texto al hacer hover */
+}
+
+#home {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;
+    padding: 20px;
+    height: 90vh;
+    align-items: center;
+}
+#experience{
+    height: 90vh;
+}
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    line-height: 1.2;
+    align-items: center;
+}
+.hero h1{
+    font-size: 3.5rem;
+}
+
+.highlight {
+    color: #15edb0;
+}
+.highlight-alt {
+    background-image: linear-gradient(to right, #FF512F 0%, #DD2476 51%, #FF512F 100%);
+    -webkit-background-clip: text;  /* Para navegadores basados en WebKit (Chrome, Safari, etc.) */
+    background-clip: text;  /* Para otros navegadores modernos */
+    color: transparent;  /* Hace que el color del texto sea transparente para que solo el gradiente sea visible */
+}
+
+.social-media a{
+    text-decoration: none;
+    color: #DD2476;
+    font-size: 2.5rem;
+    padding: 5px 20px;
+    cursor: pointer;
+}
+.buttons{
+    margin-top: 20px;
+}
+.btn-resume {background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%)}
+.btn-resume {
+   margin: 10px;
+   padding: 15px 45px;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #575454;
+   border-radius: 10px;
+   display: block;
+   cursor: pointer;
+   border: none;
+ }
+
+ .btn-resume:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
+
+.code-section {
+    width: 99%;
+    height: 99%;
+    margin: 0 auto;
+    background: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    font-family: 'Courier New', Courier, monospace;
+    z-index: 1;
+}
+
+.code-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: #333;
+    padding: 10px;
+}
+
+.code-header .button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.code-header .close {
+    background: #ff5f57;
+}
+
+.code-header .minimize {
+    background: #ffbd2e;
+}
+
+.code-header .maximize {
+    background: #28c840;
+}
+
+.code-body {
+    padding: 20px;
+    color: #dcdcdc;
+    overflow-x: auto;
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
+.code-body .keyword {
+    color: #569cd6;
+}
+
+.code-body .string {
+    color: #d69d85;
+}
+
+.code-body .function {
+    color: #dcdcaa;
+}
+
+.social-icons {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    color: white;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 768px) {
+    #home {
+        grid-template-columns: 1fr; /* Una sola columna */
+    }
+
+    .hero {
+        margin-bottom: 20px;
+    }
+}
+.reflect {
+    -webkit-box-reflect: below -25px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.3)));
+  }
+  
+  .reflect--black {
+    -webkit-box-reflect: below -25px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(235, 15, 15, 0.3)));
+  }
+
+  .box {
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0f0c29, #13112b, #24243e);
+    overflow: hidden;
+    transform: skewY(-0deg);
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .box::before {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 500%;
+    background: linear-gradient(var(--highlight-color), var(--main-color));
+    animation: animate 10s linear infinite;
+  }
+  
+  .box::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    background: #24243e;
+    border-radius: 5px;
+  }
+  
+  @keyframes animate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
