@@ -1,5 +1,5 @@
 :root {
-    --main-color: #e91574;
+    --main-color: #ff0000;
     --highlight-color: #15edb0;
     --shadow-one: rgba(0, 255, 0, 0.2);
     --shadow-two: rgba(0, 255, 0, 0.4);
@@ -47,6 +47,7 @@ header.scrolled {
     color: white;
     cursor: pointer;
 }
+
 
 /* Media query para dispositivos pequeños */
 @media (max-width: 768px) {
@@ -112,12 +113,19 @@ header.scrolled {
         right: 0;
         background-color: #111;
         width: 100%;
+    
         height: 100vh;
+        z-index: 9999;
         font-size: 1.5rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
     }
     
     .nav-links.active {
         display: flex; /* Muestra el menú cuando está activo */
+        transform: translateY(0);
+    opacity: 1;
     }
     
     .nav-links a {
@@ -272,24 +280,17 @@ header nav a:hover {
 }
 
 .code-body {
-    padding: 20px;
-    color: #dcdcdc;
-    overflow-x: auto;
-    font-size: 1em;
-    line-height: 1.5em;
+    height: 100%;
+    box-sizing: content-box;
+    max-width: 100%;
 }
 
-.code-body .keyword {
-    color: #569cd6;
-}
-
-.code-body .string {
-    color: #d69d85;
-}
-
-.code-body .function {
-    color: #dcdcaa;
-}
+.keyword { color: #dcdcaa; } /* Palabras clave */
+        .variable { color: #9cdcfe; } /* Variables */
+        .string { color: #ce9178; } /* Strings */
+        .boolean { color: #569cd6; } /* Booleanos */
+        .function { color: #c586c0; } /* Funciones */
+        .number { color: #b5cea8; } /*
 
 .social-icons {
     text-align: center;
@@ -313,20 +314,13 @@ header nav a:hover {
         margin-bottom: 20px;
     }
 }
-.reflect {
-    -webkit-box-reflect: below -25px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.3)));
-  }
-  
-  .reflect--black {
-    -webkit-box-reflect: below -25px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(235, 15, 15, 0.3)));
-  }
 
   .box {
     height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #0f0c29, #13112b, #24243e);
+    /*background: linear-gradient(135deg, #0f0c29, #13112b, #24243e);*/
     overflow: hidden;
     transform: skewY(-0deg);
     margin-bottom: 20px;
@@ -340,15 +334,15 @@ header nav a:hover {
     position: absolute;
     width: 30px;
     height: 500%;
-    background: linear-gradient(var(--highlight-color), var(--main-color));
-    animation: animate 10s linear infinite;
+    background: linear-gradient(to right, #FF512F 0%, #DD2476 51%, #FF512F 100%);
+    animation: animate 6s linear infinite;
   }
   
   .box::after {
     content: "";
     position: absolute;
     inset: 4px;
-    background: #24243e;
+   /* background: #24243e;*/
     border-radius: 5px;
   }
   
@@ -359,4 +353,120 @@ header nav a:hover {
     100% {
       transform: rotate(360deg);
     }
+  }
+
+  .CodeMirror {
+    font-size: 16px;
+    width: 100%;
+    height: 100% !important;
+    
+   
+}
+.cm-s-monokai.CodeMirror { background: #272822; color: #f8f8f2; }
+.cm-s-monokai div.CodeMirror-selected { background: #49483E; }
+.cm-s-monokai .CodeMirror-line::selection, .cm-s-monokai .CodeMirror-line > span::selection, .cm-s-monokai .CodeMirror-line > span > span::selection { background: rgba(73, 72, 62, .99); }
+.cm-s-monokai .CodeMirror-line::-moz-selection, .cm-s-monokai .CodeMirror-line > span::-moz-selection, .cm-s-monokai .CodeMirror-line > span > span::-moz-selection { background: rgba(73, 72, 62, .99); }
+.cm-s-monokai .CodeMirror-gutters { background: #272822; border-right: 0px; }
+.cm-s-monokai .CodeMirror-guttermarker { color: white; }
+.cm-s-monokai .CodeMirror-guttermarker-subtle { color: #d0d0d0; }
+.cm-s-monokai .CodeMirror-linenumber { color: #d0d0d0; }
+.cm-s-monokai .CodeMirror-cursor { border-left: 1px solid #f8f8f0; }
+
+.cm-s-monokai span.cm-comment { color: #75715e; }
+.cm-s-monokai span.cm-atom { color: #ae81ff; }
+.cm-s-monokai span.cm-number { color: #ae81ff; }
+
+.cm-s-monokai span.cm-comment.cm-attribute { color: #97b757; }
+.cm-s-monokai span.cm-comment.cm-def { color: #bc9262; }
+.cm-s-monokai span.cm-comment.cm-tag { color: #bc6283; }
+.cm-s-monokai span.cm-comment.cm-type { color: #5998a6; }
+
+.cm-s-monokai span.cm-property, .cm-s-monokai span.cm-attribute { color: #a6e22e; }
+.cm-s-monokai span.cm-keyword { color: #f92672; }
+.cm-s-monokai span.cm-builtin { color: #66d9ef; }
+.cm-s-monokai span.cm-string { color: #e6db74; }
+
+.cm-s-monokai span.cm-variable { color: #f8f8f2; }
+.cm-s-monokai span.cm-variable-2 { color: #9effff; }
+.cm-s-monokai span.cm-variable-3, .cm-s-monokai span.cm-type { color: #66d9ef; }
+.cm-s-monokai span.cm-def { color: #fd971f; }
+.cm-s-monokai span.cm-bracket { color: #f8f8f2; }
+.cm-s-monokai span.cm-tag { color: #f92672; }
+.cm-s-monokai span.cm-header { color: #ae81ff; }
+.cm-s-monokai span.cm-link { color: #ae81ff; }
+.cm-s-monokai span.cm-error { background: #f92672; color: #f8f8f0; }
+
+.cm-s-monokai .CodeMirror-activeline-background { background: #373831; }
+.cm-s-monokai .CodeMirror-matchingbracket {
+text-decoration: underline;
+color: white !important;
+}
+
+#experience {
+    padding: 50px 20px;
+
+    color: #fff;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.card{
+    height: 50% !important;
+    width: 50%;
+}
+
+
+.company-name {
+    font-size: 1.5rem;
+    color: #15edb0;
+}
+
+.position {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.date {
+    font-size: 1rem;
+    color: #bbb;
+}
+
+.responsibilities {
+    margin-top: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+.responsibilities li {
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.responsibilities li::before {
+    content: "•";
+    color: #f0db4f;
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+}
+.-z-10 {
+    z-index: -10;
+  }
+  .-top-0 {
+    top: -98px;
+  }
+  .absolute {
+    border-top: 2px solid #13112b;
+    position: absolute;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
   }

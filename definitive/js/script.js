@@ -37,3 +37,19 @@ document.addEventListener('scroll', () => {
         header.classList.remove('scrolled');
     }
 });
+
+const editor = CodeMirror.fromTextArea(document.getElementById("codeEditor"), {
+    mode: "javascript",
+    theme: "monokai",  // Puedes cambiar a "dracula" o "monokai"
+    lineNumbers: true,
+    autoCloseBrackets: true,
+    matchBrackets: true,
+    indentUnit: 4,
+    tabSize: 4
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    setTimeout(() => {
+        document.querySelector(".box").classList.add("show");
+    }, 500); // 5 segundos
+});
