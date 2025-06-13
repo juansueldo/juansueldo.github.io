@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JS DEV </title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;600;900&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="assets/libs/splide/css/splide.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <h1 class="logo">JUAN <span class="hightlight">SUELDO</span></h1>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="menu" id="menu">
+            <a href="#home"  data-index="0">HOME</a>
+            <a href="#about" data-index="1">ABOUT ME</a>
+            <a href="#projects" data-index="2">PROJECTS</a>
+            <a href="#contact" data-index="3">CONTACT</a>
+        </div>
+  </nav>
+
+  <div class="container">
+    <div class="scroll-wrapper" id="scrollWrapper">
+      <!--  HOME -->
+      <section id="home" class="item">
+        <div class="container-section-home">
+            <h1 class="hightlight title-home">Hello,</h1><h1 class="title-home" style="color: #fff">I'm Juan</h1>
+            <div class="box reflect" id="link-definitive"><h1>WEB <span class="hightlight">DEVELOPER</span></h1></div>
+        </div>
+      </section>
+      <!-- HOME -->
+
+      <!-- ABOUT -->
+      <section id="about" class="item">
+        <div class="container-sections">
+            <div class="div">
+                <h1>ABOUT ME</h1>
+  
+                <p class="description">I graduated from the National Technological University (UTN) with a degree in Programming.
+                </br>I have two years of experience in web development, specializing in Laravel. 
+                </br>I'm passionate about building efficient, scalable, and user-friendly web applications.</p>
+                </br>
+                <div class="box reflect" id="download"><h1>DOWNLOAD <span class="gradient-text">CV</span></h1></div>
+            </div>
+            <div class="right-content">
+                <img class="profile" src="https://avatars.githubusercontent.com/u/78236717?v=4" alt="profile">
+                 <!--<div class="bubble-container" id="bubbleContainer"></div>-->
+            </div>
+        </div>
+      </section>
+      <!-- ABOUT -->
+
+      <!--PROJECTS-->
+      <section id="projects" class="item">
+        <div class="container-sections projects">
+          <h1>PROJECTS</h1>
+
+          <div class="splide" style="padding: 70px;">
+            <div class="splide__track">
+              <ul class="splide__list">
+              </ul>
+            </div>
+            <div class="my-slider-progress">
+              <div class="my-slider-progress-bar"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--PROJECTS-->
+
+      <!--CONTACT-->
+      <section id="contact" class="item">
+        <h1>CONTACT ME</h1>
+        <div style="display: flex; justify-content: center;">
+            <a href="https://github.com/juansueldo" target="blank"><i class='bx bxl-github icon highlight' ></i></a>
+            <a href="https://www.linkedin.com/in/juan-sueldo/" target="blank"><i class='bx bxl-linkedin icon highlight' ></i></a>
+        </div>
+        <footer>
+            © <script>document.write(new Date().getFullYear());</script> developed by Juan Sueldo
+        </footer>
+      </section>
+      <!--CONTACT-->
+  
+  <script src="/assets/libs/splide/js/splide.js" defer></script>
+  <script type="module" src="./assets/js/main.js"></script>
+</body>
+</html>
