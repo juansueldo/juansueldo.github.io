@@ -1,16 +1,25 @@
+---
+interface Props {
+  intro: string,
+  specialization: string,
+  education: string,
+  passion: string,
+}
+const { intro, specialization, education, passion } = Astro.props;
+--- 
 <article class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row">
   <div class="text-pretty order-2 md:order-1 space-y-4">
     <p class="text-2xl text-base font-normal text-black/70 dark:text-white/70">
-      I'm a Full Stack Developer with 2 years of experience building and maintaining web applications.
+      {intro}
     </p>
     <p class="text-2xl text-base font-normal text-black/70 dark:text-white/70">
-      I specialize in both frontend and backend development, with a strong foundation in PHP, JavaScript, and modern frameworks.
+      {specialization}
     </p>
     <p class="text-2xl text-base font-normal text-black/70 dark:text-white/70">
-      I hold a Technical Degree in Programming from UTN (National Technological University), where I developed my skills in software design, databases, and agile development methodologies.
+      {education}
     </p>
     <p class="text-2xl text-base font-normal text-black/70 dark:text-white/70">
-      I'm passionate about building clean, efficient, and user-centered digital solutions.
+      {passion}
     </p>
   </div>
 </article>

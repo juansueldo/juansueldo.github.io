@@ -3,14 +3,24 @@ import Experience from "./Experience.astro";
 import SocialNetworks from "./SocialNetworks.astro";
 import Article from "./Article.astro";
 import HiglightButton from "./HiglightButton.astro";
+interface Props {
+  title: string,
+  intro: string,
+  specialization: string,
+  education: string,
+  passion: string,
+  button_initial: string,
+  button_highlight: string,
+}
+const { title, intro, specialization, education, passion, button_initial, button_highlight } = Astro.props;
 ---
 <section id="about" class="py-16 px-4 flex flex-col items-center justify-center">
-    <h2 class="text-[4.5rem] hightlight-text text-center font-bold">About</h2>
+    <h2 class="text-[4.5rem] hightlight-text text-center font-bold">{title}</h2>
     <div class="flex justify-between p-4">
       <div class="basis-3/5 flex flex-col items-center gap-4 mt-6">
        <SocialNetworks/>
-        <Article/>
-        <HiglightButton width="fit" id="link-definitive" text="Download" hightlight_text="CV"/>
+        <Article intro={intro} specialization={specialization} education={education} passion={passion}/>
+        <HiglightButton width="fit" id="link-definitive" text={button_initial} hightlight_text={button_highlight}/>
       </div>
       <div class="basis-3/5 relative overflow-hidden" id="skills"></div>
     </div>    

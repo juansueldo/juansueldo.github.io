@@ -6,15 +6,18 @@ interface Props {
   about: string,
   projects: string
   experience: string,
+  light: string,
+  dark: string,
+  system: string
 }
-const { about, projects, experience } = Astro.props;
+const { about, projects, experience, light, dark, system } = Astro.props;
 ---
 
 <header class="fixed top-0 left-0 w-full bg-[#f8f7fa] dark:bg-[#111] z-50 transition-all duration-300" id="navbar">
   <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
     <a href="#hero" class="text-xl font-bold text-black dark:text-white">Juan <span class="hightlight-text">Sueldo</span></a>
       <!-- Desktop Menu -->
-      <MenuDesktop about={about} projects={projects} experience={experience}/>
+      <MenuDesktop about={about} projects={projects} experience={experience} light={light} dark={dark} system={system}/>
       <!-- Hamburger Button -->
       <HamburgerButton/>
   </nav>

@@ -52,6 +52,7 @@ export class ThemeManager {
             this.setupEventListeners();
             this.setupMediaQuery();
             this.applyStoredSettings();
+            this.checkUrlLanguageSync();
             this.isInitialized = true;
             console.log('ThemeManager inicializado correctamente');
         } catch (error) {
@@ -145,9 +146,49 @@ export class ThemeManager {
         const storedLang = this.getCurrentLanguage();
         
         this.applyTheme(storedTheme);
+        
+        // Manejar el idioma almacenado
         if (this.elements.langButtons.length > 0) {
-            this.applyLanguage(storedLang);
+            this.handleStoredLanguage(storedLang);
         }
+    }
+
+    /**
+     * Maneja el idioma almacenado sin navegar automáticamente
+     */
+    handleStoredLanguage(lang) {
+        // Solo actualizar la UI sin navegar
+        document.documentElement.setAttribute('lang', lang);
+        this.updateActiveLanguageButton(lang);
+        this.updateCurrentLangText(lang);
+    }
+
+    /**
+     * Verifica si el idioma de la URL coincide con el almacenado
+     */
+    checkUrlLanguageSync() {
+        const storedLang = this.getCurrentLanguage();
+        const currentPath = window.location.pathname;
+        const urlLang = currentPath.split('/')[1];
+    
+        if ((urlLang === 'es' || urlLang === 'en') && urlLang !== storedLang) {
+            if (typeof localStorage !== 'undefined') {
+                localStorage.setItem(this.config.storageKeys.lang, urlLang);
+            }
+            this.updateActiveLanguageButton(urlLang);
+            this.updateCurrentLangText(urlLang);
+        } else if (urlLang) {
+            this.updateCurrentLangText(urlLang);
+        }
+    }
+
+    /**
+     * Obtiene el idioma actual de la URL
+     */
+    getCurrentUrlLanguage() {
+        const currentPath = window.location.pathname;
+        const urlLang = currentPath.split('/')[1];
+        return (urlLang === 'es' || urlLang === 'en') ? urlLang : null;
     }
 
     /**
@@ -310,24 +351,49 @@ export class ThemeManager {
      * Establece y aplica un idioma
      */
     setLanguage(lang) {
-        this.applyLanguage(lang);
-        
-        // Ejecutar callback si existe
+        // Ejecutar callback antes del cambio si existe
         if (typeof this.config.callbacks.onLanguageChange === 'function') {
             this.config.callbacks.onLanguageChange(lang);
         }
+        
+        this.applyLanguage(lang);
     }
 
     /**
      * Aplica el idioma
      */
     applyLanguage(lang) {
-        document.documentElement.setAttribute('lang', lang);
-        this.updateActiveLanguageButton(lang);
-        
-        // CORREGIDO: Verificar si localStorage está disponible
+        // Verificar si localStorage está disponible
         if (typeof localStorage !== 'undefined') {
             localStorage.setItem(this.config.storageKeys.lang, lang);
+        }
+
+        // Obtener la ruta actual
+        const currentPath = window.location.pathname;
+        
+        // Extraer el idioma actual de la URL
+        const currentLang = currentPath.split('/')[1]; // Obtiene el primer segmento de la ruta
+        
+        // Si el idioma es diferente al actual, navegar a la nueva ruta
+        if (currentLang !== lang) {
+            // Construir la nueva URL
+            let newPath;
+            
+            if (currentLang === 'es' || currentLang === 'en') {
+                // Si estamos en una página con idioma, reemplazar el idioma
+                newPath = currentPath.replace(`/${currentLang}`, `/${lang}`);
+            } else {
+                // Si no hay idioma en la URL, agregar el nuevo idioma
+                newPath = `/${lang}${currentPath}`;
+            }
+            
+            // Navegar a la nueva URL
+            window.location.href = newPath;
+        } else {
+            // Si el idioma es el mismo, solo actualizar el atributo lang
+            document.documentElement.setAttribute('lang', lang);
+            this.updateActiveLanguageButton(lang);
+            this.updateCurrentLangText(lang);
         }
     }
 
@@ -341,7 +407,13 @@ export class ThemeManager {
             button.setAttribute('aria-pressed', isActive.toString());
         });
     }
-
+    updateCurrentLangText(lang) {
+        const currentLangSpan = document.getElementById('current-lang');
+        if (currentLangSpan) {
+            currentLangSpan.textContent = lang.toUpperCase();
+        }
+    }
+    
     /**
      * Alterna la visibilidad de un dropdown
      */
@@ -382,6 +454,7 @@ export class ThemeManager {
         return {
             theme: this.getCurrentTheme(),
             language: this.getCurrentLanguage(),
+            urlLanguage: this.getCurrentUrlLanguage(),
             isInitialized: this.isInitialized,
             isDarkMode: document.documentElement.classList.contains('dark')
         };

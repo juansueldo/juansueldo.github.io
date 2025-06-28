@@ -5,26 +5,12 @@ import Javascript from "./icons/Javascript.astro";
 import Laravel from "./icons/Laravel.astro";
 import Php from "./icons/Php.astro";
 
-const PROJECTS = [
-  {
-    title: "DragGrid",
-    description:
-      "A lightweight JavaScript library for creating grid layouts with draggable and resizable elements, perfect for building dashboards, control panels, and other modular interface systems.",
-    image: "./projects/demo-draggrid.png",
-    live_url: "https://draggrid.netlify.app",
-    url_code: "https://github.com/juansueldo/draggrid",
-    technologies: ["javascript", "html", "css"]
-  },
-  {
-    title: "Shiftmanager",
-    description:"App that allows you to register users, doctors and patients, to assign and manage shifts, scheduling events on Google Calendar.",
-    image: "/projects/demo-draggrid.png",
-    live_url: "https://draggrid.netlify.app",
-    url_code: "https://github.com/juansueldo/draggrid",
-    technologies: ["laravel", "php", "javascript", "html", "css"]
-  }
-];
+interface Props {
+  projects: any,
+}
+const { projects } = Astro.props;
 
+const PROJECTS = projects;
 // Mapeo simple para los íconos de tecnologías
 const techIcons = {
   html: Html,
@@ -35,7 +21,7 @@ const techIcons = {
 };
 ---
 
-{PROJECTS.map((project) => (
+{PROJECTS.map((project: any) => (
   <div class="bg-gray-100 dark:bg-[#1b1b1b] rounded-2xl shadow-lg p-6">
     <h3 class="text-xl font-semibold mb-3 text-gray-800 dark:text-white">{project.title}</h3>
 
@@ -64,7 +50,7 @@ const techIcons = {
     </div>
 
     <ul class="flex flex-wrap gap-2 text-sm text-gray-700 dark:text-gray-300">
-      {project.technologies.map((tech) => {
+      {project.technologies.map((tech: string) => {
         const Icon = techIcons[tech as keyof typeof techIcons];
         return Icon ? (
           <li class="bg-gray-100 dark:bg-[#292828] px-2 py-1 rounded">

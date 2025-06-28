@@ -4,6 +4,12 @@ import Sun from "./icons/Sun.astro";
 import Moon from "./icons/Moon.astro";
 import System from "./icons/System.astro";
 
+interface Props {
+  light: string
+  dark: string
+  system: string
+}
+const { light, dark, system } = Astro.props;
 ---
 
 <li class="relative">
@@ -15,6 +21,6 @@ import System from "./icons/System.astro";
         </span>
     </button>
     <div id="theme-dropdown" class="absolute right-0 mt-2 w-40 bg-white dark:bg-[#1b1b1b] rounded-lg shadow-lg border border-gray-200 dark:border-[#1c1b1b] hidden z-10">
-        <ButtonsTheme light="Light" dark="Dark" system="System">
+        <ButtonsTheme light={light} dark={dark} system={system}/>
     </div>
 </li>

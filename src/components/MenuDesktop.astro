@@ -6,14 +6,17 @@ interface Props {
   about: string,
   projects: string
   experience: string,
+  light: string,
+  dark: string,
+  system: string
 }
-const { about, projects, experience } = Astro.props;
+const { about, projects, experience, light, dark, system } = Astro.props;
 ---
 <ul class="hidden md:flex gap-6 text-lg font-medium text-black dark:text-white items-center">
     <li><a href="#about" class="hover:text-blue-400 transition-colors p-2">{about}</a></li>
     <li><a href="#projects" class="hover:text-blue-400 transition-colors p-2">{projects}</a></li>
     <li><a href="#experience" class="hover:text-blue-400 transition-colors p-2">{experience}</a></li>    
     <!--Toogle Theme -->
-    <ToogleTheme/>
+    <ToogleTheme light={light} dark={dark} system={system}/>
     <ToogleLang/>
 </ul>
