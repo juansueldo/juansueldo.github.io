@@ -10,8 +10,8 @@ export class DecryptAnimation {
             "Bootstrap       ", "Astro           ",
         ];
 
-        this.charset = options.charset || "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+=-";
-        this.blockingSelectors = options.blockingSelectors || ['.text-white-500'];
+        this.charset = options.charset || "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+=-";
+        this.blockingSelectors = options.blockingSelectors || ['.text-white', '.text-black'];
 
         this.interval = null;
         this.usedTexts = new Set();

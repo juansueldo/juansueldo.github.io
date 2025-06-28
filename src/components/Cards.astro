@@ -10,7 +10,7 @@ const PROJECTS = [
     title: "DragGrid",
     description:
       "A lightweight JavaScript library for creating grid layouts with draggable and resizable elements, perfect for building dashboards, control panels, and other modular interface systems.",
-    image: "/projects/demo-draggrid.png",
+    image: "./projects/demo-draggrid.png",
     live_url: "https://draggrid.netlify.app",
     url_code: "https://github.com/juansueldo/draggrid",
     technologies: ["javascript", "html", "css"]
@@ -67,8 +67,8 @@ const techIcons = {
       {project.technologies.map((tech) => {
         const Icon = techIcons[tech as keyof typeof techIcons];
         return Icon ? (
-          <li class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
-            <Icon class="w-5 h-5" />
+          <li class="bg-gray-100 dark:bg-[#292828] px-2 py-1 rounded">
+            <Icon class="size-5 cursor-pointer hover:scale-110 transition-all duration-300" />
           </li>
         ) : null;
       })}
