@@ -1,16 +1,14 @@
 ---
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import { ViewTransitions } from "astro:transitions"
 interface Props {
   title: string
-  description: string
+  description: string,
+  lang: string
 }
-
-const { description, title } = Astro.props
+const { description, title, lang } = Astro.props
 ---
 <!doctype html>
-<html lang="en">
+<html lang={lang || 'en'} class="scroll-smooth">
 	<script is:inline>
 		const theme = localStorage.getItem('theme') || 'system';
 		if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -27,9 +25,9 @@ const { description, title } = Astro.props
 		<ViewTransitions />
 	</head>
 	<body class="bg-[#f8f7fa] dark:bg-[#111] flex flex-col min-h-screen justify-center content-center">
-		<Header/>
+		
 		<slot />
-		<Footer />
+		
 		<style is:global>
 			:root {
 				color-scheme: light dark;

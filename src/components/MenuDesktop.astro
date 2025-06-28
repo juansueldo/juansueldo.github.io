@@ -1,11 +1,18 @@
 ---
 import ToogleTheme from "./ToogleTheme.astro";
 import ToogleLang from "./ToogleLang.astro";
+
+interface Props {
+  about: string,
+  projects: string
+  experience: string,
+}
+const { about, projects, experience } = Astro.props;
 ---
 <ul class="hidden md:flex gap-6 text-lg font-medium text-black dark:text-white items-center">
-    <li><a href="#about" class="hover:text-blue-400 transition-colors p-2">About</a></li>
-    <li><a href="#projects" class="hover:text-blue-400 transition-colors p-2">Projects</a></li>
-    <li><a href="#experience" class="hover:text-blue-400 transition-colors p-2">Experience</a></li>    
+    <li><a href="#about" class="hover:text-blue-400 transition-colors p-2">{about}</a></li>
+    <li><a href="#projects" class="hover:text-blue-400 transition-colors p-2">{projects}</a></li>
+    <li><a href="#experience" class="hover:text-blue-400 transition-colors p-2">{experience}</a></li>    
     <!--Toogle Theme -->
     <ToogleTheme/>
     <ToogleLang/>

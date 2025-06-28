@@ -1,11 +1,17 @@
 ---
 import ButtonsTheme from "./ButtonsTheme.astro";
 import ButtonsLang from "./ButtonsLang.astro";
+interface Props {
+  about: string,
+  projects: string
+  experience: string,
+}
+const { about, projects, experience } = Astro.props;
 ---
 <div id="mobileMenu" class="fixed top-0 right-0 h-screen w-full bg-[#fff] dark:bg-[#111] flex-col items-center justify-center gap-10 text-black dark:text-white text-3xl font-bold hidden md:hidden transition-all duration-300">
-      <a href="#about" class="hover:text-blue-400">About</a>
-      <a href="#projects" class="hover:text-blue-400">Projects</a>
-      <a href="#contacts" class="hover:text-blue-400">Contact</a>
+      <a href="#about" class="hover:text-blue-400">{about}</a>
+      <a href="#projects" class="hover:text-blue-400">{projects}</a>
+      <a href="#experience" class="hover:text-blue-400">{experience}</a>
       <a class="relative">
         <div class="flex gap-2">
           <ButtonsTheme light="" dark="" system=""/>

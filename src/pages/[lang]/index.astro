@@ -1,0 +1,60 @@
+---
+import es from '../../i18n/es';
+import en from '../../i18n/en';
+import Header from "../../components/Header.astro";
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Projects from '../../components/Projects.astro';
+import Experience from "../../components/Experience.astro";
+import Footer from "../../components/Footer.astro";
+
+import Layout from '../../layouts/Layout.astro';
+import type {Language} from '../../types/language.type';
+
+export function getStaticPaths(){
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } }
+  ];
+}
+
+export const defaultRedirect = "/es";
+const lang  = Astro.params.lang as Language;
+const translations = { es, en };
+const t = translations[lang as 'es' | 'en'] || translations.es;
+
+---
+
+<Layout title={t.layout.title}, description={t.layout.description} lang={lang}>
+  <Header about={t.nav.about} projects={t.nav.projects} experience={t.nav.experience}/>
+	<Hero hello={t.hero.hello} name={t.hero.name} text={t.hero.text} hightlight_text={t.hero.hightlight_text}/>
+	<About />
+	<Experience />
+	<Projects />
+  <Footer />
+</Layout>
+
+<script>
+	import { Navigation } from "../../assets/js/navigation";
+	import { DecryptAnimation } from "../../assets/js/decryptAnimation";
+	import { ThemeManager } from "../../assets/js/themeManager";
+  
+	new Navigation;
+  new DecryptAnimation(document.getElementById('skills'), {
+    
+    charset: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+=-",
+    blockingSelectors: ['.text-white', '.text-black']
+  });
+    
+    new ThemeManager({
+    defaultTheme: 'light', // Cambia esto si quieres que inicie en claro
+    callbacks: {
+      onThemeChange: (theme: string) => {
+        console.log('Tema cambiado a:', theme);
+      }
+    }
+  });
+  
+
+
+</script>
