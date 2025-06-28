@@ -1,0 +1,44 @@
+---
+import HiglightButton from "./HiglightButton.astro";
+---
+<section id="hero" class="relative w-full min-h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden">
+    <div class="absolute inset-0 -z-10 bg-[url('/bgLight.svg')] dark:bg-[url('/bgDark.svg')] bg-repeat bg-[length:500px]"></div>
+    <div class="absolute inset-0 -z-10 pointer-events-none bg-gradient-to-b from-[rgba(255,255,255,0.3)] via-transparent to-[rgba(255,255,255,1)] dark:from-[rgba(17,17,17,0.8)] dark:via-transparent dark:to-[#111]"></div>
+
+    <h1 class="text-[7.5rem] hightlight-text font-bold">Hello,</h1>
+    <h1 class="text-[7.5rem] text-black dark:text-white font-bold">I'm Juan</h1>
+
+    <HiglightButton width="fit" id="hero-button" text="WEB" hightlight_text="DEVELOPER"/>
+
+    <div id="light" class="absolute w-40 h-20 -z-50  blur-[15px] opacity-100 bg-gradient-to-r from-blue-400 via-[#0af019] to-[#0088ff] rounded-full pointer-events-none transition-transform duration-300 ease-linear" style="transform: translate(-50%, -50%)"></div>
+</section>
+<script>
+    const hero = document.getElementById("hero");
+    const light = document.getElementById("light");
+
+    if (hero && light) {
+        let angle = 0;
+
+        function animateLight() {
+            if (!hero) return;
+            const rect = hero.getBoundingClientRect();
+
+            const radiusX = rect.width / 3;
+            const radiusY = rect.height / 3;
+            angle += 0.01;
+
+            const x = Math.cos(angle) * radiusX + rect.width / 2;
+            const y = Math.sin(angle) * radiusY + rect.height / 2.1;
+
+            if (light) {
+                light.style.left = `${x}px`;
+                light.style.top = `${y}px`;
+            }
+
+            requestAnimationFrame(animateLight);
+        }
+
+        animateLight();
+    }
+
+</script>

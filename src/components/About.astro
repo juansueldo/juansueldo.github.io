@@ -1,0 +1,19 @@
+---
+import Experience from "./Experience.astro";
+import SocialNetworks from "./SocialNetworks.astro";
+import Article from "./Article.astro";
+import HiglightButton from "./HiglightButton.astro";
+---
+<section id="about" class="py-16 px-4">
+    <h2 class="text-[4.5rem] hightlight-text text-center font-bold">About</h2>
+    <div class="flex justify-between p-4">
+      <div class="basis-3/5 flex flex-col items-center gap-4 mt-6">
+       <SocialNetworks/>
+        <Article/>
+        <HiglightButton width="fit" id="link-definitive" text="Download" hightlight_text="CV"/>
+        <h2 class="text-black/90 dark:text-white/90 text-base font-bold">Experience</h2>
+        <Experience/>  
+      </div>
+      <div class="basis-2/5 relative overflow-hidden" id="skills"></div>
+    </div>    
+</section>

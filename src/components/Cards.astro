@@ -1,0 +1,78 @@
+---
+import Html from "./icons/Html.astro";
+import Css from "./icons/Css.astro";
+import Javascript from "./icons/Javascript.astro";
+import Laravel from "./icons/Laravel.astro";
+import Php from "./icons/Php.astro";
+
+const PROJECTS = [
+  {
+    title: "DragGrid",
+    description:
+      "A lightweight JavaScript library for creating grid layouts with draggable and resizable elements, perfect for building dashboards, control panels, and other modular interface systems.",
+    image: "/projects/demo-draggrid.png",
+    live_url: "https://draggrid.netlify.app",
+    url_code: "https://github.com/juansueldo/draggrid",
+    technologies: ["javascript", "html", "css"]
+  },
+  {
+    title: "Shiftmanager",
+    description:"App that allows you to register users, doctors and patients, to assign and manage shifts, scheduling events on Google Calendar.",
+    image: "/projects/demo-draggrid.png",
+    live_url: "https://draggrid.netlify.app",
+    url_code: "https://github.com/juansueldo/draggrid",
+    technologies: ["laravel", "php", "javascript", "html", "css"]
+  }
+];
+
+// Mapeo simple para los íconos de tecnologías
+const techIcons = {
+  html: Html,
+  css: Css,
+  javascript: Javascript,
+  laravel: Laravel,
+  php: Php
+};
+---
+
+{PROJECTS.map((project) => (
+  <div class="bg-gray-100 dark:bg-[#1b1b1b] rounded-2xl shadow-lg p-6">
+    <h3 class="text-xl font-semibold mb-3 text-gray-800 dark:text-white">{project.title}</h3>
+
+    <img class="rounded mb-3" src={project.image} alt={`${project.title} demo`} />
+
+    <p class="text-gray-600 dark:text-gray-300 mb-3">{project.description}</p>
+
+    <div class="flex justify-around items-center mb-3 gap-4">
+      <a href={project.live_url} class="flex items-center gap-2 hover:underline text-gray-500 dark:text-gray-400" target="_blank" rel="noopener">
+        <!-- Icono Web -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 0c-2.5 2-4 5.5-4 10s1.5 8 4 10m0-20c2.5 2 4 5.5 4 10s-1.5 8-4 10m-8-10h16" />
+        </svg>
+        Web
+      </a>
+
+      <a href={project.url_code} class="flex items-center gap-2 hover:underline text-gray-500 dark:text-gray-400" target="_blank" rel="noopener">
+        <!-- Icono GitHub -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.082-.729.082-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.809 1.305 3.495.997.108-.776.418-1.305.76-1.604-2.665-.304-5.467-1.334-5.467-5.931 0-1.311.47-2.381 1.236-3.221-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 013.003-.404c1.02.005 2.047.137 3.003.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.873.12 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.625-5.479 5.921.43.37.823 1.102.823 2.222v3.293c0 .322.218.694.825.576C20.565 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+        </svg>
+        GitHub
+      </a>
+    </div>
+
+    <ul class="flex flex-wrap gap-2 text-sm text-gray-700 dark:text-gray-300">
+      {project.technologies.map((tech) => {
+        const Icon = techIcons[tech as keyof typeof techIcons];
+        return Icon ? (
+          <li class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
+            <Icon class="w-5 h-5" />
+          </li>
+        ) : null;
+      })}
+    </ul>
+
+  </div>
+))}

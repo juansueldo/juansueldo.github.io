@@ -1,0 +1,12 @@
+---
+import ToogleTheme from "./ToogleTheme.astro";
+import ToogleLang from "./ToogleLang.astro";
+---
+<ul class="hidden md:flex gap-6 text-lg font-medium text-black dark:text-white items-center">
+    <li><a href="#about" class="hover:text-blue-400 transition-colors p-2">About</a></li>
+    <li><a href="#projects" class="hover:text-blue-400 transition-colors p-2">Projects</a></li>
+    <li><a href="#contacts" class="hover:text-blue-400 transition-colors p-2">Contact</a></li>    
+    <!--Toogle Theme -->
+    <ToogleTheme/>
+    <ToogleLang/>
+</ul>

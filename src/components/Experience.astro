@@ -1,0 +1,59 @@
+---
+const EXPERIENCE = [
+    {
+        start: "August 2023",
+        end: "Present",
+        position: "Full Stack Developer",
+        company: "INTERPLAN S.A.",
+        description:"Web application development and technical support.",
+        technologies: [
+            'CodeIgniter',
+            'PHP',
+            'MySQL',
+            'JavaScript',
+            'HTML',
+            'CSS',
+            'Bootstrap',
+            'Git'
+        ],
+    },
+    {
+        start: "March 2022",
+        end: "June 2023",
+        position: "Front End Developer",
+        company: "PICCADELY",
+        description:"Visual interface development for web applications.",
+        technologies: [
+            'HTML',
+            'CSS',
+            'JavaScript',
+            'Tailwind CSS',
+        ],
+    }
+]
+---
+<ol class="relative border-s border-gray-200 dark:border-gray-700">
+  {EXPERIENCE.map((job) => (
+    <li class="mb-10 ms-4">
+      <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+      
+      <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-white-500">
+        {job.start} – {job.end}
+      </time>
+      
+      <h3 class="text-lg font-semibold text-gray-900 dark:text-white/70">
+        {job.company} | {job.position}
+      </h3>
+      
+      <p class="mb-2 text-base font-normal text-gray-500 dark:text-gray-400">
+        {job.description}
+      </p>
+      
+      <ul class="mb-4 flex flex-wrap gap-2 text-sm text-gray-700 dark:text-gray-300">
+        {job.technologies.map((tech) => (
+          <li class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">{tech}</li>
+        ))}
+      </ul>
+    </li>
+  ))}
+</ol>

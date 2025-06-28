@@ -1,0 +1,22 @@
+---
+interface Props {
+  width: string
+  id: string
+  text: string
+  hightlight_text: string
+}
+
+const { width, id, text, hightlight_text } = Astro.props
+---
+
+<div
+  id={id}
+  class={`w-${width} box relative p-4 flex justify-center items-center bg-[#f8f7fa] dark:bg-[#111] overflow-hidden -skew-y-1 mb-2.5 mt-2.5 rounded cursor-pointer reflect-below`}
+>
+  <div class="absolute box-before h-[600%] w-[30px]"></div>
+  <div class="absolute box-after bg-[#111] dark:bg-[#f8f7fa]"></div>
+
+  <h1 class="relative text-[#f8f7fa] dark:text-[#111] text-base font-bold z-10">
+    {text} <span class="hightlight-text">{hightlight_text}</span>
+  </h1>
+</div>

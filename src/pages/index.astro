@@ -1,0 +1,33 @@
+---
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Projects from '../components/Projects.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Juan Sueldo DEV", description="Fullstack developer with 2 years of experience">
+	<Hero />
+	<About />
+	<Projects />
+</Layout>
+
+<script>
+	import { Navigation } from "../assets/js/navigation";
+	import { DecryptAnimation } from "../assets/js/decryptAnimation";
+	import { ThemeManager } from "../assets/js/themeManager";
+
+	new Navigation;
+	
+    
+    new ThemeManager({
+    defaultTheme: 'light', // Cambia esto si quieres que inicie en claro
+    callbacks: {
+      onThemeChange: (theme: string) => {
+        console.log('Tema cambiado a:', theme);
+      }
+    }
+  });
+  
+
+
+</script>

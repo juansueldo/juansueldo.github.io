@@ -1,0 +1,89 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { ViewTransitions } from "astro:transitions"
+interface Props {
+  title: string
+  description: string
+}
+
+const { description, title } = Astro.props
+---
+<!doctype html>
+<html lang="en">
+	<script is:inline>
+		const theme = localStorage.getItem('theme') || 'system';
+		if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+		  document.documentElement.classList.add('dark');
+		}
+	  </script>
+	<head>
+		<meta charset="UTF-8" />
+        <meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<ViewTransitions />
+	</head>
+	<body class="bg-[#f8f7fa] dark:bg-[#111]">
+		<Header/>
+		<slot />
+		<Footer />
+		<style is:global>
+			:root {
+				color-scheme: light dark;
+		  		--main-color: #0af019;
+		  		--highlight-color: #0088ff;
+			}
+		
+		.hightlight-text{
+		  background: linear-gradient(45deg, var(--main-color), var(--highlight-color));
+		  -webkit-background-clip: text;
+		  -webkit-text-fill-color: transparent;
+		}
+		
+		.reflect-below {
+		  -webkit-box-reflect: below -25px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.3)));
+		}
+		
+		.reflect-below-black {
+		  -webkit-box-reflect: below -25px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(235, 15, 15, 0.3)));
+		}
+		.scrolled {
+		  background: rgba(255, 255, 255, 0.05);
+		  backdrop-filter: blur(10px);
+		  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+		  position: fixed;
+		  width: 100%;
+		  top: 0;
+		  left: 0;
+		  z-index: 9999;
+		}
+		
+		@keyframes animate {
+		  0% {
+			transform: rotate(0deg);
+		  }
+		  100% {
+			transform: rotate(360deg);
+		  }
+		}
+		
+		.box-before {
+		  content: "";
+		  position: absolute;
+		  background: linear-gradient(var(--highlight-color), var(--main-color));
+		  animation: animate 4s linear infinite;
+		}
+		
+		.box-after {
+		  content: "";
+		  position: absolute;
+		  inset: 4px;
+		  border-radius: 5px;
+		}
+		</style>
+	</body>
+</html>
+

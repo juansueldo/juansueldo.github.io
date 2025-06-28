@@ -1,0 +1,40 @@
+---
+import Github from "./icons/Github.astro";
+import Linkedin from "./icons/Linkedin.astro";
+import Gmail from "./icons/Gmail.astro";
+
+const SOCIAL = [
+  {
+    title: "GitHub",
+    url: "https://github.com/juansueldo",
+    icon: Github,
+    class: "w-5 h-5 dark:bg-light"
+  },
+  {
+    title: "LinkedIn",
+    url: "https://ar.linkedin.com/in/juan-sueldo",
+    icon: Linkedin,
+    class: "w-5 h-5 bg-white rounded-sm dark:bg-white"
+  },
+  {
+    title: "Email",
+    url: "mailto:juan.sueldo1989@gmail.com",
+    icon: Gmail,
+    class: "w-5 h-5"
+  }
+];
+---
+
+<div class="flex gap-6">
+  {SOCIAL.map(({ title, url, icon: Icon, class: iconClass }) => (
+    <a
+      href={url}
+      class="flex items-center gap-2 bg-white p-2 text-gray-500 dark:text-gray-400"
+      target={url.startsWith("http") ? "_blank" : undefined}
+      rel={url.startsWith("http") ? "noopener" : undefined}
+    >
+      <Icon class={iconClass} />
+      {title}
+    </a>
+  ))}
+</div>

@@ -1,0 +1,13 @@
+---
+import ButtonsLang from "./ButtonsLang.astro"
+---
+<li class="relative">
+    <button id="lang-toggle" class="text-lg text-black dark:text-white p-2 focus:outline-none rounded-lg hover:bg-gray-100 dark:hover:bg-[#1c1b1b] transition-colors flex items-center justify-center">
+        <span id="current-lang">
+            EN
+        </span>
+    </button>
+        <div id="lang-dropdown" class="absolute right-0 mt-2 w-40 bg-white dark:bg-[#1b1b1b] rounded-lg shadow-lg border border-gray-200 dark:border-[#1c1b1b] hidden z-10">
+        <ButtonsLang/> 
+    </div>
+</li>
