@@ -30,7 +30,12 @@ export class DecryptAnimation {
                 } else {
                     this.stop();
                     this.section.querySelectorAll('.animated-text').forEach(el => {
-                        el.classList.add('opacity-0', 'translate-y-8', 'blur-md', 'scale-95');
+                        const isMobile = window.innerWidth < 768;
+                        if (isMobile) {
+                            el.classList.add('opacity-0', 'translate-x-8', 'blur-md', 'scale-95');
+                        } else {
+                            el.classList.add('opacity-0', 'translate-y-8', 'blur-md', 'scale-95');
+                        }
                         setTimeout(() => el.remove(), 500);
                     });
                     this.activeRects = [];
@@ -65,7 +70,9 @@ export class DecryptAnimation {
     }
 
     isOverlappingWithActiveRects(x, y, width, height) {
-        const margin = 10;
+        const margin = 20; // Aumentamos el margen para mejor separación
+        
+        // Verificar contra elementos activos registrados
         for (const rect of this.activeRects) {
             const rLeft = rect.x - margin;
             const rTop = rect.y - margin;
@@ -75,24 +82,60 @@ export class DecryptAnimation {
                 return true;
             }
         }
+        
+        // Verificar contra elementos DOM actualmente visibles
+        const activeElements = this.section.querySelectorAll('.animated-text');
+        for (const element of activeElements) {
+            const elementRect = element.getBoundingClientRect();
+            const sectionRect = this.section.getBoundingClientRect();
+            
+            // Convertir coordenadas absolutas a relativas del contenedor
+            const elementX = elementRect.left - sectionRect.left;
+            const elementY = elementRect.top - sectionRect.top;
+            const elementWidth = elementRect.width;
+            const elementHeight = elementRect.height;
+            
+            const eLeft = elementX - margin;
+            const eTop = elementY - margin;
+            const eRight = elementX + elementWidth + margin;
+            const eBottom = elementY + elementHeight + margin;
+            
+            if (x < eRight && x + width > eLeft && y < eBottom && y + height > eTop) {
+                return true;
+            }
+        }
+        
         return false;
     }
 
     getValidPosition(width = 300, height = 50, maxAttempts = 50) {
         const sectionRect = this.section.getBoundingClientRect();
-        const verticalMargin = 5;
+        const isMobile = window.innerWidth < 768;
+        const margin = 5;
         let attempts = 0;
+
         while (attempts < maxAttempts) {
-            const x = Math.random() * (sectionRect.width - width);
-            const y = verticalMargin + Math.random() * (sectionRect.height - height - verticalMargin * 2);
+            let x, y;
+            
+            if (isMobile) {
+                // En mobile: posición vertical más controlada
+                x = margin + Math.random() * (sectionRect.width - width - margin * 2);
+                y = margin + Math.random() * (sectionRect.height - height - margin * 2);
+            } else {
+                // En desktop: mantener lógica original
+                x = Math.random() * (sectionRect.width - width);
+                y = margin + Math.random() * (sectionRect.height - height - margin * 2);
+            }
+
             if (!this.isOverlappingWithActiveRects(x, y, width, height)) {
                 return { x, y };
             }
             attempts++;
         }
+
         return {
-            x: 50,
-            y: verticalMargin
+            x: margin,
+            y: margin
         };
     }
 
@@ -112,11 +155,16 @@ export class DecryptAnimation {
     showTextLoop() {
         const text = this.getRandomText();
         const textElement = document.createElement("div");
+        const isMobile = window.innerWidth < 768;
 
-        // Clases iniciales: opacidad 0, blur, desplazado hacia abajo, escala menor
+        // Clases iniciales según el dispositivo
+        const initialClasses = isMobile 
+            ? 'opacity-0 translate-x-8 blur-md scale-95'
+            : 'opacity-0 translate-y-8 blur-md scale-95';
+
         textElement.className = `
             text-black dark:text-white text-lg font-mono animated-text
-            opacity-0 translate-y-8 blur-md scale-95
+            ${initialClasses}
             transition-all duration-[1500ms] pointer-events-none
         `.trim();
 
@@ -124,37 +172,70 @@ export class DecryptAnimation {
 
         const targetPos = this.getValidPosition(300, 50);
 
-        // Siempre aparecerán desde abajo (bottom del contenedor)
-        const sectionHeight = this.section.offsetHeight;
-        textElement.style.left = `${targetPos.x}px`;
-        textElement.style.top = `${sectionHeight}px`;
+        // Crear un ID único para este elemento
+        const elementId = Date.now() + Math.random();
+        textElement.dataset.elementId = elementId;
+
+        if (isMobile) {
+            // En mobile: aparece desde la derecha
+            const sectionWidth = this.section.offsetWidth;
+            textElement.style.left = `${sectionWidth}px`;
+            textElement.style.top = `${targetPos.y}px`;
+        } else {
+            // En desktop: aparece desde abajo (lógica original)
+            const sectionHeight = this.section.offsetHeight;
+            textElement.style.left = `${targetPos.x}px`;
+            textElement.style.top = `${sectionHeight}px`;
+        }
 
         // Texto aleatorio enmascarado
         textElement.innerText = Array.from(text).map(() => this.randomChar()).join("");
         this.section.appendChild(textElement);
 
-        this.activeRects.push({ x: targetPos.x, y: targetPos.y, width: 300, height: 50 });
+        // Registrar la posición objetivo con ID del elemento
+        const rectData = { 
+            x: targetPos.x, 
+            y: targetPos.y, 
+            width: 300, 
+            height: 50, 
+            elementId: elementId,
+            element: textElement 
+        };
+        this.activeRects.push(rectData);
 
         // Fuerza el reflow para permitir animación
         void textElement.offsetWidth;
 
-        // Cambia top a la posición final y remueve clases de salida
-        textElement.style.top = `${targetPos.y}px`;
-        textElement.classList.remove("opacity-0", "translate-y-8", "blur-md", "scale-95");
-        textElement.classList.add("opacity-100", "translate-y-0", "scale-100");
+        // Anima a la posición final
+        if (isMobile) {
+            textElement.style.left = `${targetPos.x}px`;
+            textElement.classList.remove("opacity-0", "translate-x-8", "blur-md", "scale-95");
+            textElement.classList.add("opacity-100", "translate-x-0", "scale-100");
+        } else {
+            textElement.style.top = `${targetPos.y}px`;
+            textElement.classList.remove("opacity-0", "translate-y-8", "blur-md", "scale-95");
+            textElement.classList.add("opacity-100", "translate-y-0", "scale-100");
+        }
 
         setTimeout(() => {
             this.decryptTextStepByStep(text, textElement);
         }, 300);
 
         setTimeout(() => {
-            textElement.classList.add("opacity-0", "translate-y-8", "blur-md", "scale-95");
-            textElement.classList.remove("opacity-100", "translate-y-0", "scale-100");
+            if (isMobile) {
+                textElement.classList.add("opacity-0", "translate-x-8", "blur-md", "scale-95");
+                textElement.classList.remove("opacity-100", "translate-x-0", "scale-100");
+            } else {
+                textElement.classList.add("opacity-0", "translate-y-8", "blur-md", "scale-95");
+                textElement.classList.remove("opacity-100", "translate-y-0", "scale-100");
+            }
+            
             setTimeout(() => {
                 if (textElement.parentNode) {
                     textElement.remove();
+                    // Remover por ID del elemento para mayor precisión
                     this.activeRects = this.activeRects.filter(
-                        rect => !(rect.x === targetPos.x && rect.y === targetPos.y)
+                        rect => rect.elementId !== elementId
                     );
                 }
             }, 1500);
@@ -178,6 +259,10 @@ export class DecryptAnimation {
         this.usedTexts.clear();
         this.lastUsedText = null;
         this.activeRects = [];
+        
+        // Limpiar elementos DOM remanentes
+        this.section.querySelectorAll('.animated-text').forEach(el => el.remove());
+        
         this.startTextLoop();
     }
 }

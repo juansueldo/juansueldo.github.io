@@ -46,10 +46,10 @@ const t = translations[lang as 'es' | 'en'] || translations.es;
   });
     
     new ThemeManager({
-    defaultTheme: 'light', // Cambia esto si quieres que inicie en claro
+    defaultTheme: 'light', 
     callbacks: {
       onThemeChange: (theme: string) => {
-        console.log('Tema cambiado a:', theme);
+       
       }
     }
   });

@@ -54,7 +54,7 @@ export class ThemeManager {
             this.applyStoredSettings();
             this.checkUrlLanguageSync();
             this.isInitialized = true;
-            console.log('ThemeManager inicializado correctamente');
+           // console.log('ThemeManager inicializado correctamente');
         } catch (error) {
             console.error('Error al inicializar ThemeManager:', error);
         }
@@ -317,7 +317,7 @@ export class ThemeManager {
             localStorage.setItem(this.config.storageKeys.theme, theme);
         }
         
-        console.log(`Tema aplicado: ${theme}, Clase dark: ${html.classList.contains('dark')}`);
+       // console.log(`Tema aplicado: ${theme}, Clase dark: ${html.classList.contains('dark')}`);
     }
 
     /**
@@ -481,7 +481,7 @@ export class ThemeManager {
         this.mediaQuery = null;
         this.isInitialized = false;
 
-        console.log('ThemeManager destruido');
+       // console.log('ThemeManager destruido');
     }
 
     /**
@@ -489,7 +489,7 @@ export class ThemeManager {
      */
     forceLight() {
         document.documentElement.classList.remove('dark');
-        console.log('Forzado tema claro');
+        //console.log('Forzado tema claro');
     }
 
     /**
@@ -497,7 +497,7 @@ export class ThemeManager {
      */
     forceDark() {
         document.documentElement.classList.add('dark');
-        console.log('Forzado tema oscuro');
+       // console.log('Forzado tema oscuro');
     }
 
     /**
