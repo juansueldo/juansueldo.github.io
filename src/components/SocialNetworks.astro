@@ -2,13 +2,14 @@
 import Github from "./icons/Github.astro";
 import Linkedin from "./icons/Linkedin.astro";
 import Gmail from "./icons/Gmail.astro";
+import HiglightButton from "./HiglightButton.astro";
 
 const SOCIAL = [
   {
     title: "GitHub",
     url: "https://github.com/juansueldo",
     icon: Github,
-    class: "w-5 h-5 dark:bg-light"
+    class: "w-5 h-5 filter-white bg-white rounded-sm"
   },
   {
     title: "LinkedIn",
@@ -25,16 +26,11 @@ const SOCIAL = [
 ];
 ---
 
-<div class="flex gap-6">
+<div class="w-full flex gap-6">
   {SOCIAL.map(({ title, url, icon: Icon, class: iconClass }) => (
-    <a
-      href={url}
-      class="flex items-center gap-2 bg-white p-2 text-gray-500 dark:text-gray-400"
-      target={url.startsWith("http") ? "_blank" : undefined}
-      rel={url.startsWith("http") ? "noopener" : undefined}
-    >
+
+    <HiglightButton width="full" id="link-definitive" text={''} hightlight_text={title} url={url}>
       <Icon class={iconClass} />
-      {title}
-    </a>
+    </HiglightButton>
   ))}
 </div>

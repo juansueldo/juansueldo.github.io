@@ -19,8 +19,8 @@ export default {
     },
     about:{
         title: "About",
-        intro: "I'm a full stack developer with 2 years of experience in web application development. I specialize in developing web applications using technologies like React, Next.js, Tailwind CSS, among others.",
-        specialization: "I specialize in developing web applications using technologies like React, Next.js, Tailwind CSS, among others.",
+        intro: "I'm a full stack developer with 2 years of experience in web application development.",
+        specialization: "I specialize in developing web applications using technologies like Laravel, JavaScript, PHP, HTML, CSS among others.",
         education: "I graduated from the National Technological University (UTN) in the Programming Technician degree, where I developed my skills in software design, databases, and agile development methodologies.",
         passion: "I'm passionate about building clean, efficient, and user-centered digital solutions.",
         button_initial: "Download",

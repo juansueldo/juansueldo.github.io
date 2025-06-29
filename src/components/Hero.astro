@@ -11,12 +11,12 @@ const { hello,name, text, hightlight_text } = Astro.props
 ---
 <section id="hero" class="relative w-full min-h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden">
     <div class="absolute inset-0 -z-10 bg-[url('/bgLight.svg')] dark:bg-[url('/bgDark.svg')] bg-repeat bg-[length:500px]"></div>
-    <div class="absolute inset-0 -z-10 pointer-events-none bg-gradient-to-b from-[rgba(255,255,255,0.3)] via-transparent to-[rgba(255,255,255,1)] dark:from-[rgba(17,17,17,0.8)] dark:via-transparent dark:to-[#111]"></div>
+    <div class="absolute inset-0 -z-10 pointer-events-none bg-gradient-to-b from-[rgba(255,255,255,0.3)] via-transparent to-[#f8f7fa] dark:from-[rgba(17,17,17,0.8)] dark:via-transparent dark:to-[#111]"></div>
 
     <h1 class="text-[7.5rem] hightlight-text font-bold">{hello}</h1>
     <h1 class="text-[7.5rem] text-black dark:text-white font-bold">{name}</h1>
 
-    <HiglightButton width="fit" id="hero-button" text={text} hightlight_text={hightlight_text}/>
+    <HiglightButton width="fit" id="hero-button" text={text} hightlight_text={hightlight_text} url={'#'}/>
 
     <div id="light" class="absolute w-40 h-20 -z-50  blur-[15px] opacity-100 bg-gradient-to-r from-blue-400 via-[#0af019] to-[#0088ff] rounded-full pointer-events-none transition-transform duration-300 ease-linear" style="transform: translate(-50%, -50%)"></div>
 </section>

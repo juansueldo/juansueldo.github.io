@@ -23,20 +23,3 @@ const { intro, specialization, education, passion } = Astro.props;
     </p>
   </div>
 </article>
-<!-----
----
-// Supongamos que la traducción se pasa como prop o import
-import translations from '../locales/en.json'; // o según el idioma actual
-
-const { intro, specialization, education, passion } = translations.about;
----
-
-<article class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row">
-  <div class="text-pretty order-2 md:order-1 space-y-4">
-    <p class="text-2xl text-base font-normal text-black/70 dark:text-white/70">{intro}</p>
-    <p class="text-2xl text-base font-normal text-black/70 dark:text-white/70">{specialization}</p>
-    <p class="text-2xl text-base font-normal text-black/70 dark:text-white/70">{education}</p>
-    <p class="text-2xl text-base font-normal text-black/70 dark:text-white/70">{passion}</p>
-  </div>
-</article>
---- -->
