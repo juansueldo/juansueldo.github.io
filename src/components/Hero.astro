@@ -13,8 +13,8 @@ const { hello,name, text, hightlight_text } = Astro.props
     <div class="absolute inset-0 -z-10 bg-[url('/bgLight.svg')] dark:bg-[url('/bgDark.svg')] bg-repeat bg-[length:500px]"></div>
     <div class="absolute inset-0 -z-10 pointer-events-none bg-gradient-to-b from-[rgba(255,255,255,0.3)] via-transparent to-[#f8f7fa] dark:from-[rgba(17,17,17,0.8)] dark:via-transparent dark:to-[#111]"></div>
 
-    <h1 class="text-[7.5rem] hightlight-text font-bold">{hello}</h1>
-    <h1 class="text-[7.5rem] text-black dark:text-white font-bold">{name}</h1>
+    <h1 class="md:text-[7.5rem] text-[5.5rem] hightlight-text font-bold">{hello}</h1>
+    <h1 class="md:text-[7.5rem] text-[5.5rem] text-black dark:text-white font-bold">{name}</h1>
 
     <HiglightButton width="fit" id="hero-button" text={text} hightlight_text={hightlight_text} url={'#'}/>
 
