@@ -9,7 +9,7 @@ interface Props {
 
 const { hello,name, text, hightlight_text } = Astro.props
 ---
-<section id="hero" class="relative md:w-full md:min-h-screen h-[650px] flex flex-col justify-center items-center text-center px-4 overflow-hidden">
+<section id="hero" class="relative w-full min-h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden">
     <div class="absolute inset-0 -z-10 bg-[url('/bgLight.svg')] dark:bg-[url('/bgDark.svg')] bg-repeat bg-[length:500px]"></div>
     <div class="absolute inset-0 -z-10 pointer-events-none bg-gradient-to-b from-[rgba(255,255,255,0.3)] via-transparent to-[#f8f7fa] dark:from-[rgba(17,17,17,0.8)] dark:via-transparent dark:to-[#111]"></div>
 
