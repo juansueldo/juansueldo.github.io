@@ -42,7 +42,15 @@ const t = translations[lang as 'es' | 'en'] || translations.es;
   new DecryptAnimation(document.getElementById('skills'), {
     
     charset: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+=-",
-    blockingSelectors: ['.text-white', '.text-black']
+    blockingSelectors: ['.text-white', '.text-black'],
+fixedPositions: [
+        { x: 20, y: 30 },
+        { x: 250, y: 60 },
+        { x: 50, y: 150 },
+        { x: 200, y: 250 },
+        { x: 100, y: 350 },
+        { x: 300, y: 100 }
+    ]
   });
     
     new ThemeManager({
