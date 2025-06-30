@@ -71,7 +71,19 @@ export class DecryptAnimation {
             this.skillsElement.style.opacity = "0";
         }
     }
-
+    isOverlappingWithActiveRects(x, y, width, height) {
+        const margin = 10;
+        for (const rect of this.activeRects) {
+            const rLeft = rect.x - margin;
+            const rTop = rect.y - margin;
+            const rRight = rect.x + rect.width + margin;
+            const rBottom = rect.y + rect.height + margin;
+            if (x < rRight && x + width > rLeft && y < rBottom && y + height > rTop) {
+                return true;
+            }
+        }
+        return false;
+    }
     getValidPosition(width = 300, height = 50) {
         if (this.fixedPositions && this.fixedPositions.length > 0) {
             // Usar posiciones fijas sin preocuparse por colisiones
