@@ -12,6 +12,249 @@ export class DecryptAnimation {
 
         this.charset = options.charset || "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+=-";
         this.blockingSelectors = options.blockingSelectors || ['.text-white', '.text-black'];
+        this.fixedPositions = options.fixedPositions || null;
+        this.fixedPositionsIndex = 0;
+        this.initialText = options.initialText || 'Skills';
+        this.interval = null;
+        this.currentTextIndex = 0; // Cambiado: índice secuencial en lugar de Set
+        this.activeRects = [];
+        this.observer = null;
+
+        this.skillsElement = null;
+
+        this.init();
+    }
+
+    init() {
+        this.createSkillsElement();
+        this.showSkills();
+
+        this.observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio === 1) {
+                    // Cambiado: delay más corto antes de empezar la animación
+                    setTimeout(() => {
+                        this.startTextLoop();
+                        this.hideSkills();
+                    }, 100); // Reducido de implícito ~1500ms a 800ms
+                } else {
+                    this.stop();
+                    this.showSkills();
+                    this.section.querySelectorAll('.animated-text').forEach(el => el.remove());
+                    this.activeRects = [];
+                }
+            });
+        }, {
+            threshold: 1.0
+        });
+
+        this.observer.observe(this.section);
+    }
+
+    createSkillsElement() {
+        this.skillsElement = document.createElement('div');
+        this.skillsElement.className = `
+            absolute inset-0 flex items-center justify-center 
+            text-3xl font-mono text-black dark:text-white transition-opacity duration-700
+        `;
+        this.skillsElement.innerText = this.initialText;
+        this.section.appendChild(this.skillsElement);
+    }
+
+    showSkills() {
+        if (this.skillsElement) {
+            this.skillsElement.style.opacity = "1";
+        }
+    }
+
+    hideSkills() {
+        if (this.skillsElement) {
+            // Cambiado: transición más lenta para que dure más tiempo visible
+            this.skillsElement.style.transition = "opacity 1000ms ease-out";
+            this.skillsElement.style.opacity = "0";
+        }
+    }
+
+    isOverlappingWithActiveRects(x, y, width, height) {
+        const margin = 10;
+        for (const rect of this.activeRects) {
+            const rLeft = rect.x - margin;
+            const rTop = rect.y - margin;
+            const rRight = rect.x + rect.width + margin;
+            const rBottom = rect.y + rect.height + margin;
+            if (x < rRight && x + width > rLeft && y < rBottom && y + height > rTop) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    getValidPosition(width = 300, height = 50) {
+        if (this.fixedPositions && this.fixedPositions.length > 0) {
+            const pos = this.fixedPositions[this.fixedPositionsIndex];
+            this.fixedPositionsIndex = (this.fixedPositionsIndex + 1) % this.fixedPositions.length;
+            return { x: pos.x, y: pos.y };
+        }
+        return this.originalRandomPosition(width, height);
+    }
+
+    // Cambiado: sistema secuencial en lugar de aleatorio
+    getNextText() {
+        const text = this.texts[this.currentTextIndex];
+        this.currentTextIndex = (this.currentTextIndex + 1) % this.texts.length;
+        return text;
+    }
+
+    randomChar() {
+        return this.charset[Math.floor(Math.random() * this.charset.length)];
+    }
+
+    originalRandomPosition(width, height) {
+        const sectionRect = this.section.getBoundingClientRect();
+        const isMobile = window.innerWidth < 768;
+        const margin = 5;
+        let attempts = 0, maxAttempts = 50;
+
+        while (attempts < maxAttempts) {
+            let x, y;
+            if (isMobile) {
+                x = margin + Math.random() * (sectionRect.width - width - margin * 2);
+                y = margin + Math.random() * (sectionRect.height - height - margin * 2);
+            } else {
+                x = Math.random() * (sectionRect.width - width);
+                y = margin + Math.random() * (sectionRect.height - height - margin * 2);
+            }
+            if (!this.isOverlappingWithActiveRects(x, y, width, height)) {
+                return { x, y };
+            }
+            attempts++;
+        }
+        return { x: margin, y: margin };
+    }
+
+    decryptTextStepByStep(targetText, element) {
+        let step = 0;
+        const interval = setInterval(() => {
+            step++;
+            const revealed = targetText.substring(0, step);
+            let randomPart = "";
+            for (let i = step; i < targetText.length; i++) {
+                randomPart += this.randomChar();
+            }
+            element.innerText = revealed + randomPart;
+            if (step >= targetText.length) {
+                clearInterval(interval);
+                element.innerText = targetText;
+            }
+        }, 100);
+    }
+
+    showTextLoop() {
+        const text = this.getNextText(); // Cambiado: usar getNextText() en lugar de getRandomText()
+        const textElement = document.createElement("div");
+        const isMobile = window.innerWidth < 768;
+
+        const initialClasses = isMobile 
+            ? 'opacity-0 translate-x-8 blur-md scale-95'
+            : 'opacity-0 translate-y-8 blur-md scale-95';
+
+        textElement.className = `
+            text-black dark:text-white text-lg font-mono animated-text
+            ${initialClasses}
+            transition-all duration-[1500ms] pointer-events-none
+        `.trim();
+
+        textElement.style.position = "absolute";
+
+        const targetPos = this.getValidPosition(300, 50);
+        const elementId = Date.now() + Math.random();
+        textElement.dataset.elementId = elementId;
+
+        if (isMobile) {
+            const sectionWidth = this.section.offsetWidth;
+            textElement.style.left = `${sectionWidth}px`;
+            textElement.style.top = `${targetPos.y}px`;
+        } else {
+            const sectionHeight = this.section.offsetHeight;
+            textElement.style.left = `${targetPos.x}px`;
+            textElement.style.top = `${sectionHeight}px`;
+        }
+
+        textElement.innerText = Array.from(text).map(() => this.randomChar()).join("");
+        this.section.appendChild(textElement);
+
+        const rectData = { 
+            x: targetPos.x, 
+            y: targetPos.y, 
+            width: 300, 
+            height: 50, 
+            elementId: elementId,
+            element: textElement 
+        };
+        this.activeRects.push(rectData);
+
+        void textElement.offsetWidth;
+
+        if (isMobile) {
+            textElement.style.left = `${targetPos.x}px`;
+            textElement.classList.remove("opacity-0", "translate-x-8", "blur-md", "scale-95");
+            textElement.classList.add("opacity-100", "translate-x-0", "scale-100");
+        } else {
+            textElement.style.top = `${targetPos.y}px`;
+            textElement.classList.remove("opacity-0", "translate-y-8", "blur-md", "scale-95");
+            textElement.classList.add("opacity-100", "translate-y-0", "scale-100");
+        }
+
+        setTimeout(() => {
+            this.decryptTextStepByStep(text, textElement);
+        }, 300);
+
+        setTimeout(() => {
+            if (isMobile) {
+                textElement.classList.add("opacity-0", "translate-x-8", "blur-md", "scale-95");
+                textElement.classList.remove("opacity-100", "translate-x-0", "scale-100");
+            } else {
+                textElement.classList.add("opacity-0", "translate-y-8", "blur-md", "scale-95");
+                textElement.classList.remove("opacity-100", "translate-y-0", "scale-100");
+            }
+            
+            setTimeout(() => {
+                if (textElement.parentNode) {
+                    textElement.remove();
+                    this.activeRects = this.activeRects.filter(
+                        rect => rect.elementId !== elementId
+                    );
+                }
+            }, 2000);
+        }, 10000);
+    }
+
+    startTextLoop() {
+        if (this.interval) return;
+        this.interval = setInterval(() => this.showTextLoop(), 2000);
+    }
+
+    stop() {
+        if (this.interval) {
+            clearInterval(this.interval);
+            this.interval = null;
+        }
+    }
+}
+/*export class DecryptAnimation {
+    constructor(section, options = {}) {
+        this.section = section;
+
+        this.texts = options.texts || [
+            "JavaScript      ", "PHP             ", "Laravel         ",
+            "HTML            ", "CSS             ", "Angular         ",
+            "GIT             ", "C#              ", ".NET            ",
+            "Node.js         ", "MySQL           ", "Tailwind CSS    ",
+            "Bootstrap       ", "Astro           ",
+        ];
+
+        this.charset = options.charset || "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+=-";
+        this.blockingSelectors = options.blockingSelectors || ['.text-white', '.text-black'];
         this.fixedPositions = options.fixedPositions || null; // Nuevo: lista fija
         this.fixedPositionsIndex = 0;
         this.initialText= options.initialText || 'Skills';
@@ -252,3 +495,4 @@ randomChar() {
         }
     }
 }
+*/
