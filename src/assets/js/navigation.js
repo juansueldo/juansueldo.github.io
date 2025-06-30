@@ -20,9 +20,9 @@ export class Navigation {
   setupScrollEffect() {
     window.addEventListener('scroll', () => {
       if (window.scrollY > 10) {
-        this.navbar.classList.add('backdrop-blur-md', 'bg-opacity-90','scrolled');
+        this.navbar.classList.add('backdrop-blur-md', 'bg-opacity-90','dark:bg-opacity-70','scrolled');
       } else {
-        this.navbar.classList.remove('backdrop-blur-md', 'bg-opacity-90','scrolled');
+        this.navbar.classList.remove('backdrop-blur-md', 'bg-opacity-90','dark:bg-opacity-70','scrolled');
       }
     });
   }
