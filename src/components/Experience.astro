@@ -7,7 +7,7 @@ const { title, experience } = Astro.props;
 const EXPERIENCE = experience;
 ---
 <section id="experience" class="py-16 px-4 flex flex-col items-center justify-center">
-    <h2 class="text-[4.5rem] mb-10 hightlight-text text-center font-bold">{title}</h2>
+    <h2 class="text-[3rem] md:text-[4.5rem] mb-10 hightlight-text text-center font-bold">{title}</h2>
     <ol class="relative border-s border-gray-200 dark:border-gray-700">
       {EXPERIENCE.map((job: any) => (
         <li class="mb-10 ms-4">
