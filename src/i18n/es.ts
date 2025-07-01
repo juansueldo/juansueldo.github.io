@@ -3,7 +3,7 @@
 export default {
     layout: {
         title: "Juan Sueldo DEV",
-        description: "Un portafolio para mostrar mis proyectos y habilidades.",
+        description: "Porfolio de Juan Sueldo | Desarrollador web con 2 años de experiencia.",
     },
     nav:{
         about: "Sobre mí", 
