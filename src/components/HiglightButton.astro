@@ -4,10 +4,11 @@ interface Props {
   id: string
   text: any
   hightlight_text: any,
-  url: any  
+  url: any,
+  btnstyle: string
 }
 
-const { width, id, text, hightlight_text,url='#' } = Astro.props
+const { width, id, text, hightlight_text,url='#',btnstyle='box' } = Astro.props
 ---
 
 <a
@@ -16,7 +17,7 @@ const { width, id, text, hightlight_text,url='#' } = Astro.props
   {...(url !== '#' ? { target: "_blank" } : {})}
   class={`w-${width} box relative p-4 flex justify-center items-center bg-[#f8f7fa] dark:bg-[#111] overflow-hidden -skew-y-1 mb-2.5 mt-2.5 rounded cursor-pointer reflect-below`}
 >
-  <div class="absolute box-before h-[600%] w-[30px]"></div>
+  <div class=`absolute ${btnstyle}-before h-[600%] w-[30px]`></div>
   <div class="absolute box-after bg-[#111] dark:bg-[#f8f7fa]"></div>
 
   <h1 class="relative text-[#f8f7fa] dark:text-[#111] flex gap-1 text-base font-bold z-10">
