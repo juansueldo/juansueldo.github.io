@@ -8,10 +8,10 @@ const EXPERIENCE = experience;
 ---
 <section id="experience" class="py-16 px-4 flex flex-col items-center justify-center">
     <h2 class="text-[3rem] md:text-[4.5rem] mb-10 hightlight-text text-center font-bold">{title}</h2>
-    <ol class="relative border-s border-gray-200 dark:border-gray-700">
+    <ol class="relative border-s" style="border-image: linear-gradient(4deg, #0af019, #0088ff) 1;">
       {EXPERIENCE.map((job: any) => (
         <li class="mb-10 ms-4">
-          <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+          <div class="absolute w-3 h-3 box-before rounded-full mt-1.5 -start-1.5 border"></div>
           
           <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-white-500">
             {job.start} – {job.end}
