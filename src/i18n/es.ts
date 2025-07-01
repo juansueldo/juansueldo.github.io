@@ -1,9 +1,9 @@
 import { getYearsOfExperience } from "../utils/experience";
-
+const yearsOfExperience = getYearsOfExperience();
 export default {
     layout: {
         title: "Juan Sueldo DEV",
-        description: `Porfolio de Juan Sueldo | Desarrollador web con ${getYearsOfExperience} años de experiencia.`,
+        description: `Porfolio de Juan Sueldo | Desarrollador web con ${yearsOfExperience} años de experiencia.`,
     },
     nav:{
         about: "Sobre mí", 
@@ -21,7 +21,7 @@ export default {
     },
     about:{
         title: "Sobre mí",
-        intro: `Soy un desarrollador web full stack con ${getYearsOfExperience} años de experiencia en el desarrollo de aplicaciones web.`,
+        intro: `Soy un desarrollador web full stack con ${yearsOfExperience} años de experiencia en el desarrollo de aplicaciones web.`,
         specialization: "Me especializo en el desarrollo de aplicaciones web utilizando tecnologías como Laravel, JavaScript, PHP, HTML, CSS entre otras.",
         education: "Me gradué de la Universidad Tecnológica Nacional (UTN) en la carrera de Tecnicatura en Programación, donde desarrollé mis habilidades en diseño de software, bases de datos y metodologías ágiles de desarrollo.",
         passion: "Me apasiona el desarrollo de aplicaciones web y la creación de soluciones digitales eficientes y centradas en el usuario.",
