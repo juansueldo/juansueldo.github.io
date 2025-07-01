@@ -1,8 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import es from '../i18n/es';
+import en from '../i18n/en';
+
+const lang  = Astro.params.lang;
+const translations = { es, en };
+const t = translations[lang as 'es' | 'en'] || translations.es;
 ---
 
-<Layout title="Juan Sueldo DEV" description='' lang='es'>
+<Layout title={t.layout.title}, description={t.layout.description} lang={lang}>
     <script>
         window.location.href = '/es';
     </script>
