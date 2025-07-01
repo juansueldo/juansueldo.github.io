@@ -21,6 +21,16 @@ const { description, title, lang } = Astro.props
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/faviconalt.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={`https://juansueldo.dev/${lang}`} />
+		<meta property="og:image" content="/thumbnail/thumbnail_light.png" />
+		<meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
+		
+		  <!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content="/thumbnail/thumbnail_light.png" />
 		<title>{title}</title>
 		<ViewTransitions />
 	</head>
