@@ -1,7 +1,7 @@
 export default {
     layout: {
         title: "Juan Sueldo DEV",
-        description: "adasdasd",
+        description: "Juan Sueldo's Portfolio | Web Developer with 2 years of experience",
     },
     nav:{
         about: "About", 
