@@ -17,9 +17,13 @@ const { description, title, lang } = Astro.props
 	  </script>
 	<head>
 		<meta charset="UTF-8" />
+		<title>{title}</title>
         	<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/faviconalt.svg" />
+
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
 		<meta name="generator" content={Astro.generator} />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={`https://juansueldo.dev/${lang}`} />
@@ -31,7 +35,7 @@ const { description, title, lang } = Astro.props
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content="/thumbnail/thumbnail_light.png" />
-		<title>{title}</title>
+		
 		<ViewTransitions />
 	</head>
 	<body class="bg-[#f8f7fa] dark:bg-[#111] flex flex-col min-h-screen justify-center content-center">
