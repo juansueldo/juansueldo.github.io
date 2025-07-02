@@ -50,30 +50,35 @@ const { description, title, lang } = Astro.props
 		  		--highlight-color: #0088ff;
 			}
 		
-		.hightlight-text{
-		  background: linear-gradient(45deg, var(--main-color), var(--highlight-color));
-		  -webkit-background-clip: text;
-		  -webkit-text-fill-color: transparent;
-		}
+			.hightlight-text{
+		  		background: linear-gradient(45deg, var(--main-color), var(--highlight-color));
+		  		-webkit-background-clip: text;
+		  		-webkit-text-fill-color: transparent;
+			}
+			.dark .hightlight-text{
+				background: linear-gradient(45deg, var(--main-color), var(--highlight-color));
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
 		
-		.dark .reflect-below {
-		  -webkit-box-reflect: below -25px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.3)));
-		}
+			.dark .reflect-below {
+		  		-webkit-box-reflect: below -25px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.3)));
+			}
 		
-		.reflect-below {
-		  -webkit-box-reflect: below -25px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(235, 15, 15, 0.61)));
-		}
+			.reflect-below {
+		  		-webkit-box-reflect: below -25px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(235, 15, 15, 0.61)));
+			}
 
-		.scrolled {
-		  background: rgba(255, 255, 255, 0.05);
-		  backdrop-filter: blur(10px);
-		  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-		  position: fixed;
-		  width: 100%;
-		  top: 0;
-		  left: 0;
-		  z-index: 9999;
-		}
+			.scrolled {
+		  		background: rgba(255, 255, 255, 0.05);
+				backdrop-filter: blur(10px);
+				box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+				position: fixed;
+				width: 100%;
+				top: 0;
+				left: 0;
+				z-index: 9999;
+			}
 		
 		@keyframes animate {
 		  0% {
