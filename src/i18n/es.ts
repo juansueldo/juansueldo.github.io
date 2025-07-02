@@ -27,6 +27,7 @@ export default {
         passion: "Me apasiona el desarrollo de aplicaciones web y la creación de soluciones digitales eficientes y centradas en el usuario.",
         button_initial: "Descargar",
         button_highlight: "CV",
+        skills: "Habilidades",
     },
     experience:{
         title: "Experiencia",

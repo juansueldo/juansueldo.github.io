@@ -15,9 +15,9 @@ const { width, id, text, hightlight_text,url='#',btnstyle='box' } = Astro.props
   id={id}
   {...(url !== '#' ? { href: url } : {})}
   {...(url !== '#' ? { target: "_blank" } : {})}
-  class={`w-${width} box relative p-4 flex justify-center items-center bg-[#f8f7fa] dark:bg-[#111] overflow-hidden -skew-y-1 mb-2.5 mt-2.5 rounded cursor-pointer reflect-below`}
+  class={`group w-${width} box relative p-4 flex justify-center items-center bg-[#f8f7fa] dark:bg-[#111] overflow-hidden -skew-y-1 mb-2.5 mt-2.5 rounded cursor-pointer reflect-below dark:reflect-below`}
 >
-  <div class=`absolute ${btnstyle}-before h-[600%] w-[30px]`></div>
+  <div class=`absolute ${btnstyle}-before h-[600%] w-[30px] group-hover:btn-hover`></div>
   <div class="absolute box-after bg-[#111] dark:bg-[#f8f7fa]"></div>
 
   <h1 class="relative text-[#f8f7fa] dark:text-[#111] flex gap-1 text-base font-bold z-10">

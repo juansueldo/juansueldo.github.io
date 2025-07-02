@@ -27,6 +27,7 @@ export default {
         passion: "I'm passionate about building clean, efficient, and user-centered digital solutions.",
         button_initial: "Download",
         button_highlight: "CV",
+        skills: "Skills",
     },
     experience:{
         title: "Experience",

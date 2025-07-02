@@ -16,7 +16,7 @@ export class DecryptAnimation {
         this.fixedPositionsIndex = 0;
         this.initialText = options.initialText || 'Skills';
         this.interval = null;
-        this.currentTextIndex = 0; // Cambiado: índice secuencial en lugar de Set
+        this.currentTextIndex = 0;
         this.activeRects = [];
         this.observer = null;
 
@@ -36,7 +36,7 @@ export class DecryptAnimation {
                     setTimeout(() => {
                         this.startTextLoop();
                         this.hideSkills();
-                    }, 100); // Reducido de implícito ~1500ms a 800ms
+                    }, 50); // Reducido de implícito ~1500ms a 800ms
                 } else {
                     this.stop();
                     this.showSkills();
@@ -231,8 +231,17 @@ export class DecryptAnimation {
 
     startTextLoop() {
         if (this.interval) return;
-        this.interval = setInterval(() => this.showTextLoop(), 2000);
+    
+        // Limpia si quedara algo por seguridad
+        clearInterval(this.interval);
+        this.interval = null;
+    
+        setTimeout(() => {
+            this.showTextLoop();
+            this.interval = setInterval(() => this.showTextLoop(), 2000);
+        }, 100);
     }
+    
 
     stop() {
         if (this.interval) {
