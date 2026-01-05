@@ -50,11 +50,11 @@ export default {
                 ],
             },
             {
-                start: "Marzo 2022",
+                start: "Noviembre 2023",
                 end: "Junio 2023",
-                position: "Desarrollador Front End",
+                position: "Encargado de Logística y Atención al Cliente/Desarrollador Front End",
                 company: "PICCADELY",
-                description:"Desarrollo de interfaces visuales para aplicaciones web.",
+                description:"Durante 8 años desempeñé distintos roles en la empresa, abarcando atención al cliente, gestión de personal, logística y producción. En el último período, participé en el desarrollo de aplicaciones web internas, colaborando en la creación de interfaces y herramientas para optimizar procesos operativos.",
                 technologies: [
                     'HTML',
                     'CSS',
