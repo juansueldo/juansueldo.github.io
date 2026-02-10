@@ -50,7 +50,7 @@ export default {
                 ],
             },
             {
-                start: "Noviembre 2023",
+                start: "Noviembre 2013",
                 end: "Junio 2023",
                 position: "Encargado de Logística y Atención al Cliente/Desarrollador Front End",
                 company: "PICCADELY",
