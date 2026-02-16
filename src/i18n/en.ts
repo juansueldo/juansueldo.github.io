@@ -51,11 +51,11 @@ export default {
                 ],
             },
             {
-                start: "March 2022",
+                start: "November 2013",
                 end: "June 2023",
-                position: "Front End Developer",
+                position: "Logistics and Customer Service Manager / Front-End Developer",
                 company: "PICCADELY",
-                description:"Visual interface development for web applications.",
+                description:"For 8 years, I held various roles within the company, including customer service, staff management, logistics, and production. In my most recent period there, I was involved in the development of internal web applications, collaborating on the creation of interfaces and tools aimed at optimizing operational processes.",
                 technologies: [
                     'HTML',
                     'CSS',
