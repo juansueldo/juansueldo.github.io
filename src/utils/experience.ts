@@ -1,5 +1,5 @@
 export const getYearsOfExperience = (): number => {
-    const startDate = new Date(2022, 2); // Marzo (mes 2)
+    const startDate = new Date(2023, 7); // Marzo (mes 2)
     const now = new Date();
 
     let years = now.getFullYear() - startDate.getFullYear();

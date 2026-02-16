@@ -28,6 +28,7 @@ export default {
         button_initial: "Download",
         button_highlight: "CV",
         skills: "Skills",
+        url: "/files/en/Juan_Sueldo_CV.pdf",
     },
     experience:{
         title: "Experience",
