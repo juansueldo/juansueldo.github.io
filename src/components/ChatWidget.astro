@@ -1,0 +1,11 @@
+```jsx
+---
+// components/ChatWidget.astro
+---
+<script>
+  const script = document.createElement('script');
+  script.src = 'https://dwidget.xtz.mobi/chat/js/683756d5d3c27';
+  script.onload = () => window.ChatWidget?.run();
+  document.head.appendChild(script);
+</script>
+```
