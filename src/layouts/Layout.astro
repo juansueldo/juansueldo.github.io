@@ -113,6 +113,74 @@ const { description, title, lang } = Astro.props
     		  content: "";
                   position: absolute;
   		}
+/*Borrar*/
+		:root {
+  --color-primary: #0f172a;
+  --color-accent: #6366f1;
+  --color-accent-hover: #4f46e5;
+  --color-accent-light: #e0e7ff;
+  --radius: 8px;
+  --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-decoration: none;
+  transition: 
+    background var(--transition),
+    color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+  outline: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--theme {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.btn--theme:hover {
+  background-color: var(--color-accent-hover);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn--theme:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: none;
+}
+
+.hover--theme {
+  transition: color var(--transition), background var(--transition);
+}
+
+.hover--theme:hover {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent-hover);
+}
+
+.w-100 {
+  width: 100%;
+}
+/*Borrar*/
 		</style>
 	</body>
 </html>
