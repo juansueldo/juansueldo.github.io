@@ -2,11 +2,104 @@
 // Banner.astro
 ---
 
-<div id="banner-container"></div>
+<!-- Botón para abrir el modal -->
+<button
+  id="open-banner-modal"
+  class="group relative inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-white font-semibold rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_24px_rgba(99,102,241,0.5)] hover:-translate-y-0.5 active:scale-95"
+>
+  <span class="relative z-10 flex items-center gap-2">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+    </svg>
+    Contactanos
+  </span>
+  <span class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-violet-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+</button>
+
+<!-- Backdrop -->
+<div
+  id="banner-modal-backdrop"
+  class="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"
+></div>
+
+<!-- Modal -->
+<div
+  id="banner-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="banner-modal-title"
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
+>
+  <div
+    id="banner-modal-panel"
+    class="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl pointer-events-auto
+           scale-95 opacity-0 transition-all duration-300 ease-out"
+  >
+    <!-- Header -->
+    <div class="flex items-center justify-between px-6 pt-5 pb-4 border-b border-slate-100">
+      <h2 id="banner-modal-title" class="text-lg font-bold text-slate-800 tracking-tight">
+        ¿Cómo podemos ayudarte?
+      </h2>
+      <button
+        id="close-banner-modal"
+        aria-label="Cerrar modal"
+        class="flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 transition-all duration-200 hover:rotate-90"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Banner container -->
+    <div class="p-6">
+      <div id="banner-container" class="min-h-[80px]"></div>
+    </div>
+  </div>
+</div>
 
 <script>
+  // Cargar el script del banner
   const script = document.createElement('script');
   script.src = 'https://dwidget.xtz.mobi/callme/js/68497a2d892cb';
   script.onload = () => window.CallmeBanner?.run();
   document.head.appendChild(script);
+
+  // Modal logic
+  const openBtn   = document.getElementById('open-banner-modal');
+  const closeBtn  = document.getElementById('close-banner-modal');
+  const backdrop  = document.getElementById('banner-modal-backdrop');
+  const modal     = document.getElementById('banner-modal');
+  const panel     = document.getElementById('banner-modal-panel');
+
+  function openModal() {
+    backdrop.classList.remove('opacity-0', 'pointer-events-none');
+    backdrop.classList.add('opacity-100', 'pointer-events-auto');
+    modal.classList.remove('pointer-events-none');
+    // Forzar reflow antes de la animación de entrada
+    panel.getBoundingClientRect();
+    panel.classList.remove('scale-95', 'opacity-0');
+    panel.classList.add('scale-100', 'opacity-100');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    panel.classList.remove('scale-100', 'opacity-100');
+    panel.classList.add('scale-95', 'opacity-0');
+    backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+    backdrop.classList.add('opacity-0', 'pointer-events-none');
+    setTimeout(() => {
+      modal.classList.add('pointer-events-none');
+      document.body.style.overflow = '';
+    }, 300);
+  }
+
+  openBtn?.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+  backdrop?.addEventListener('click', closeModal);
+
+  // Cerrar con ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
 </script>
