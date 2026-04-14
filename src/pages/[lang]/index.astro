@@ -38,9 +38,10 @@ const t = translations[lang as 'es' | 'en'] || translations.es;
 	import { Navigation } from "../../assets/js/navigation";
 	import { DecryptAnimation } from "../../assets/js/decryptAnimation";
 	import { ThemeManager } from "../../assets/js/themeManager";
-  import { trackVisit } from "../../assets/js/ips";
+  import { trackVisit, pingBackend } from "../../assets/js/ips";
   
   trackVisit();
+  pingBackend();
 	new Navigation;
   new DecryptAnimation(document.getElementById('skills'), {
     
