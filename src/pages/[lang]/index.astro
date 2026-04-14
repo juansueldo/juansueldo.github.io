@@ -6,6 +6,7 @@ import Hero from '../../components/Hero.astro';
 import About from '../../components/About.astro';
 import Projects from '../../components/Projects.astro';
 import Experience from "../../components/Experience.astro";
+import Contact from "../../components/Contact.astro";
 import Footer from "../../components/Footer.astro";
 import Layout from '../../layouts/Layout.astro';
 
@@ -24,11 +25,12 @@ const t = translations[lang as 'es' | 'en'] || translations.es;
 ---
 
 <Layout title={t.layout.title}, description={t.layout.description} lang={lang}>
-  <Header about={t.nav.about} projects={t.nav.projects} experience={t.nav.experience} light={t.nav.light} dark={t.nav.dark} system={t.nav.system}/>
+  <Header about={t.nav.about} projects={t.nav.projects} experience={t.nav.experience} contact={t.nav.contact} light={t.nav.light} dark={t.nav.dark} system={t.nav.system}/>
 	<Hero hello={t.hero.hello} name={t.hero.name} text={t.hero.text} hightlight_text={t.hero.hightlight_text}/>
 	<About title={t.about.title} intro={t.about.intro} specialization={t.about.specialization} education={t.about.education} passion={t.about.passion} button_initial={t.about.button_initial} button_highlight={t.about.button_highlight} url={t.about.url} />
 	<Experience title={t.experience.title} experience={t.experience.experience}/>
 	<Projects title={t.projects.title} projects={t.projects.projects}/>
+  <Contact title={t.contact.title} name_placeholder={t.contact.name_placeholder} mail_placeholder={t.contact.mail_placeholder} message_placeholder={t.contact.message_placeholder} button_initial={t.contact.button_initial} button_highlight={t.contact.button_highlight} sending={t.contact.sending} success={t.contact.success} error={t.contact.error} errName={t.contact.errName} errEmail={t.contact.errEmail} errMessage={t.contact.errMessage}/>
   <Footer all_rights_reserved={t.footer.all_rights_reserved}/>
 </Layout>
 

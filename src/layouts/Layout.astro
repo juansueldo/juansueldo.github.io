@@ -15,6 +15,7 @@ const { description, title, lang } = Astro.props
 		  document.documentElement.classList.add('dark');
 		}
 	  </script>
+	  <!-- <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" is:inline async defer></script>-->
 	<head>
 		<meta charset="UTF-8" />
 		<title>{title}</title>
@@ -113,6 +114,72 @@ const { description, title, lang } = Astro.props
     		  content: "";
                   position: absolute;
   		}
+		.field-group {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+		}
+
+		.form-input {
+			padding: 0.75rem;
+			border-radius: 0.75rem;
+			border: 1px solid;
+			font-size: 1rem;
+			width: 100%;
+			outline: none;
+			transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+			background-color: #ececec;
+			color: #111827;
+			border-color: #d1d5db;
+		}
+
+		.form-input::placeholder {
+			color: #474747be;
+		}
+
+		.form-input:focus {
+			border-color: #6366f1;
+			box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+		}
+
+		.form-input.input-error {
+			border-color: #ef4444;
+			box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+		}
+
+		.field-error {
+			font-size: 0.78rem;
+			color: #dc2626;
+			min-height: 1rem;
+			padding-left: 2px;
+		}
+
+		.dark .form-input {
+			background-color: #1b1b1b;
+			color: #f9fafb;
+			border-color: #1b1b1b;
+		}
+
+		input:-webkit-autofill,
+		textarea:-webkit-autofill {
+			-webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+			-webkit-text-fill-color: #1b1b1b !important;;
+		}
+
+		.dark input:-webkit-autofill,
+		.dark textarea:-webkit-autofill {
+			-webkit-box-shadow: 0 0 0 1000px #1b1b1b inset !important;
+			-webkit-text-fill-color: #fff !important;
+		}
+
+		.dark  .form-input:focus {
+			border-color: #818cf8;
+			box-shadow: 0 0 0 3px rgba(40, 41, 44, 0.2);
+		}
+
+		.dark .field-error {
+			color: #f87171;
+		}
 		</style>
 	</body>
 </html>

@@ -1,0 +1,177 @@
+---
+import HiglightButton from "./HiglightButton.astro";
+import Toast from "./Toast.astro";
+
+interface Props {
+  title: string,
+  name_placeholder: string,
+  mail_placeholder: string,
+  message_placeholder: string,
+  button_initial: string,
+  button_highlight: string,
+  sending: string,
+  success: string,
+  error: string,
+  errName: string,
+  errEmail: string,
+  errMessage: string
+}
+const { title, name_placeholder, mail_placeholder, message_placeholder, button_initial, button_highlight, sending, success, error, errName, errEmail, errMessage } = Astro.props;
+
+---
+
+<Toast sending={sending} success={success} error={error} />
+
+<section id="contact" class="py-16 px-4 flex flex-col items-center justify-center mb-6">
+  <h2 class="text-[3rem] md:text-[4.5rem] hightlight-text text-center font-bold">
+    {title}
+  </h2>
+
+  <form id="contact-form" class="w-full max-w-xl flex flex-col gap-4 mt-8" novalidate>
+    <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" />
+
+    <div class="field-group">
+      <input
+        type="text"
+        name="name"
+        id="field-name"
+        placeholder={name_placeholder}
+        autocomplete="name"
+        class="form-input dark:bg-[#1b1b1b]"
+        aria-describedby="error-name"
+      />
+      <span id="error-name" class="field-error" role="alert"></span>
+    </div>
+
+    <div class="field-group">
+      <input
+        type="email"
+        name="email"
+        id="field-email"
+        placeholder={mail_placeholder}
+        autocomplete="email"
+        class="form-input"
+        aria-describedby="error-email"
+      />
+      <span id="error-email" class="field-error" role="alert"></span>
+    </div>
+
+    <div class="field-group">
+      <textarea
+        name="message"
+        id="field-message"
+        placeholder={message_placeholder}
+        rows="5"
+        class="form-input"
+        aria-describedby="error-message"
+      ></textarea>
+      <span id="error-message" class="field-error" role="alert"></span>
+    </div>
+
+    <HiglightButton
+      as="button"
+      type="submit"
+      width="fit"
+      id="send-mail"
+      text={button_initial}
+      hightlight_text={button_highlight}
+      btnstyle="btn"
+    />
+
+    </form>
+    <div
+      id="form-i18n"
+      data-err-name={errName}
+      data-err-email={errEmail}
+      data-err-message={errMessage}
+      style="display:none"
+    ></div>
+</section>
+
+
+<script>
+  // ── Diccionario de Traducciones ──────────────────────────────────────────
+  import { showToast } from '../utils/toast.ts';
+  const i18nEl = document.getElementById('form-i18n')!;
+  const errName    = i18nEl.dataset.errName!;
+  const errEmail   = i18nEl.dataset.errEmail!;
+  const errMessage = i18nEl.dataset.errMessage!;
+  // ── Validation ─────────────────────────────────────────────────────────────
+  interface FieldRule { id: string; errorId: string; test: (val: string) => string | null; }
+
+  const rules: FieldRule[] = [
+    { id: 'field-name', errorId: 'error-name', test: (v) => v.trim().length < 2 ? errName : null },
+    { id: 'field-email', errorId: 'error-email', test: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? null : errEmail },
+    { id: 'field-message', errorId: 'error-message', test: (v) => v.trim().length < 1 ? errMessage : null },
+  ];
+
+  function setFieldError(rule: FieldRule, msg: string | null) {
+    const input = document.getElementById(rule.id) as HTMLElement | null;
+    const error = document.getElementById(rule.errorId);
+    if (input && error) {
+      msg ? input.classList.add('input-error') : input.classList.remove('input-error');
+      error.textContent = msg || '';
+    }
+  }
+
+  function validateAll(): boolean {
+    return rules.reduce((acc, rule) => {
+      const val = (document.getElementById(rule.id) as HTMLInputElement)?.value || '';
+      const msg = rule.test(val);
+      setFieldError(rule, msg);
+      return msg ? false : acc;
+    }, true);
+  }
+
+  // ── Form Submission ────────────────────────────────────────────────────────
+  let isSubmitting = false;
+
+  async function submitForm() {
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    if (isSubmitting) return;
+
+    isSubmitting = true;
+    showToast('loading');
+
+    const formData = new FormData(form);
+    
+    // Honeypot check
+    if (formData.get('website')) {
+        //console.warn("Bot detected");
+        return;
+    }
+
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message'),
+      lang: document.documentElement.lang || 'en',
+    };
+
+    try {
+      const res = await fetch('https://ipinfo-tawny-psi.vercel.app/api/mailer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error();
+
+      showToast('success');
+      form.reset();
+    } catch {
+      showToast('error');
+    } finally {
+      isSubmitting = false;
+    }
+  }
+
+  // Event Listeners
+  document.getElementById('contact-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (validateAll()) {
+      submitForm();
+    }
+  });
+
+</script>

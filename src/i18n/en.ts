@@ -9,6 +9,7 @@ export default {
         about: "About", 
         projects: "Projects",
         experience: "Experience",
+        contact: "Contact",
         light: "Light",
         dark: "Dark",
         system: "System",
@@ -110,6 +111,20 @@ export default {
               technologies: ["laravel", "php", "javascript", "html", "css"]
             }
         ]
+    },
+    contact:{
+        title: "Contact",
+        name_placeholder: "Your name",
+        mail_placeholder: "Your email",
+        message_placeholder: "Your message",
+        button_initial: "Send",
+        button_highlight: "message",
+        sending: "Sending...",
+        success: "Message sent!",
+        error: "Error sending message",
+        errName: "Please enter your name (at least 2 characters).",
+        errEmail: "Please enter a valid email address.",
+        errMessage: "Please enter a message.",
     },
     footer:{
         all_rights_reserved: "All rights reserved",

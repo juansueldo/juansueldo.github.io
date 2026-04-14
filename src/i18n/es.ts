@@ -9,6 +9,7 @@ export default {
         about: "Sobre mí", 
         projects: "Proyectos",
         experience: "Experiencia",
+        contact: "Contacto",
         light: "Claro",
         dark: "Oscuro",
         system: "Sistema",
@@ -113,6 +114,20 @@ export default {
               technologies: ["laravel", "php", "javascript", "html", "css"]
             }
         ]
+    },
+    contact:{
+        title: "Contacto",
+        name_placeholder: "Tu nombre",
+        mail_placeholder: "Tu email",
+        message_placeholder: "Tu mensaje",
+        button_initial: "Enviar",
+        button_highlight: "mensaje",
+        sending: "Enviando...",
+        success: "¡Mensaje enviado!",
+        error: "Error al enviar el mensaje",
+        errName: "Por favor ingresa tu nombre (al menos 2 caracteres).",
+        errEmail: "Por favor ingresa una dirección de email válida.",
+        errMessage: "Por favor ingresa un mensaje.",
     },
     footer:{
         all_rights_reserved: "Todos los derechos reservados",

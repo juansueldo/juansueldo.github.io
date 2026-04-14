@@ -1,0 +1,37 @@
+---
+interface Props {
+  sending: string,
+  success: string,
+  error: string,
+}
+
+const { sending, success, error } = Astro.props;
+---
+
+<div
+  id="toast-msg"
+  data-sending={sending}
+  data-success={success}
+  data-error={error}
+  style="display:none"
+  aria-live="polite"
+  role="status"
+></div>
+
+<style>
+  @keyframes toast-in {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  .toast-spinner {
+    width: 10px; height: 10px;
+    border: 1.5px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    opacity: 0.6;
+  }
+</style>
