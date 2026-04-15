@@ -89,7 +89,7 @@ export default {
               "title": "Gastronomic Backend API",
               "description": "Backend API for a gastronomic system, responsible for business logic, data management, and database communication. It includes endpoints for managing users, orders, and system operations, ensuring scalability and performance.",
               "image": "/projects/demo-draggrid.png",
-              "live_url": "https://backend_gastronomico.onrender.com",
+              "live_url": "https://backend-gastronomico.onrender.com",
               "url_code": "https://github.com/juansueldo/backend_gastronomico",
               "technologies": ["node", "express", "postgres"]
             },
