@@ -90,14 +90,18 @@ const { title, name_placeholder, mail_placeholder, message_placeholder, button_i
 
 
 <script>
-  // ── Diccionario de Traducciones ──────────────────────────────────────────
   import { showToast } from '../utils/toast.ts';
+
   const i18nEl = document.getElementById('form-i18n')!;
   const errName    = i18nEl.dataset.errName!;
   const errEmail   = i18nEl.dataset.errEmail!;
   const errMessage = i18nEl.dataset.errMessage!;
-  // ── Validation ─────────────────────────────────────────────────────────────
-  interface FieldRule { id: string; errorId: string; test: (val: string) => string | null; }
+
+  interface FieldRule { 
+    id: string; 
+    errorId: string; 
+    test: (val: string) => string | null; 
+  }
 
   const rules: FieldRule[] = [
     { id: 'field-name', errorId: 'error-name', test: (v) => v.trim().length < 2 ? errName : null },
@@ -109,18 +113,37 @@ const { title, name_placeholder, mail_placeholder, message_placeholder, button_i
     const input = document.getElementById(rule.id) as HTMLElement | null;
     const error = document.getElementById(rule.errorId);
     if (input && error) {
-      msg ? input.classList.add('input-error') : input.classList.remove('input-error');
-      error.textContent = msg || '';
+      if (msg) {
+        input.classList.add('input-error');
+        error.textContent = msg;
+      } else {
+        input.classList.remove('input-error');
+        error.textContent = '';
+      }
     }
   }
 
+  // --- NUEVA LÓGICA DE VALIDACIÓN EN TIEMPO REAL ---
+  rules.forEach(rule => {
+    const input = document.getElementById(rule.id);
+    if (input) {
+      input.addEventListener('input', () => {
+        const val = (input as HTMLInputElement).value;
+        const msg = rule.test(val);
+        setFieldError(rule, msg);
+      });
+    }
+  });
+
   function validateAll(): boolean {
-    return rules.reduce((acc, rule) => {
+    let isValid = true;
+    rules.forEach(rule => {
       const val = (document.getElementById(rule.id) as HTMLInputElement)?.value || '';
       const msg = rule.test(val);
       setFieldError(rule, msg);
-      return msg ? false : acc;
-    }, true);
+      if (msg) isValid = false;
+    });
+    return isValid;
   }
 
   // ── Form Submission ────────────────────────────────────────────────────────
@@ -135,11 +158,7 @@ const { title, name_placeholder, mail_placeholder, message_placeholder, button_i
 
     const formData = new FormData(form);
     
-    // Honeypot check
-    if (formData.get('website')) {
-        //console.warn("Bot detected");
-        return;
-    }
+    if (formData.get('website')) return;
 
     const data = {
       name: formData.get('name'),
@@ -166,12 +185,10 @@ const { title, name_placeholder, mail_placeholder, message_placeholder, button_i
     }
   }
 
-  // Event Listeners
   document.getElementById('contact-form')?.addEventListener('submit', (e) => {
     e.preventDefault();
     if (validateAll()) {
       submitForm();
     }
   });
-
 </script>
