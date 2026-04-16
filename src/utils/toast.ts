@@ -39,7 +39,7 @@ function getIcon(type: ToastType, color: string) {
     </svg>
   `;
 }
-@@ -44,49 +28,39 @@ export function showToast(type: ToastType) {
+export function showToast(type: ToastType) {
   const toast = document.getElementById('toast-msg') as HTMLDivElement | null;
   if (!toast) return;
 
