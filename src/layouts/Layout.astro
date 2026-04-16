@@ -48,6 +48,17 @@ const { description, title, lang } = Astro.props
 				color-scheme: light dark;
 		  		--main-color: #0af019;
 		  		--highlight-color: #0088ff;
+				--text-light: #111;
+			    --text-dark: #e5e7eb;
+			
+			    --success-main: #0af019;
+			    --success-highlight: #0088ff;
+			
+			    --danger-main: #ff0000;
+			    --danger-highlight: #f55d5d;
+			
+			    --info-main: #38bdf8;
+			    --info-highlight: #6366f1;
 			}
 		
 			.hightlight-text{
@@ -80,121 +91,231 @@ const { description, title, lang } = Astro.props
 				z-index: 9999;
 			}
 		
-		@keyframes animate {
-		  0% {
-			transform: rotate(0deg);
-		  }
-		  100% {
-			transform: rotate(360deg);
-		  }
-		}
+			@keyframes animate {
+			  0% {
+				transform: rotate(0deg);
+			  }
+			  100% {
+				transform: rotate(360deg);
+			  }
+			}
 		
-		.box-before {
-		  content: "";
-		  position: absolute;
-		  background: linear-gradient(var(--highlight-color), var(--main-color));
-		  animation: animate 4s linear infinite;
-		}
-		
-		.box-after {
-		  content: "";
-		  position: absolute;
-		  inset: 4px;
-		  border-radius: 5px;
-		}
-		.btn-hover{
-			background: linear-gradient(45deg, var(--main-color), var(--highlight-color));
-			animation: animate 4s linear infinite;
-		}
-		.group:hover .btn-before {
-  			@apply btn-hover;
-		}
-
-		.btn-before{
-    		  content: "";
-                  position: absolute;
-  		}
-		.field-group {
-			display: flex;
-			flex-direction: column;
-			gap: 4px;
-		}
-
-		.form-input {
-			padding: 0.75rem;
-			border-radius: 0.75rem;
-			border: 1px solid;
-			font-size: 1rem;
-			width: 100%;
-			outline: none;
-			transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-			background-color: #ececec;
-			color: #111827;
-			border-color: #d1d5db;
-		}
-
-		.form-input::placeholder {
-			color: #474747be;
-		}
-
-		.form-input:focus {
-			border-color: #6366f1;
-			box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-		}
-
-		.form-input.input-error {
-			border-color: #ef4444;
-			box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-		}
-
-		.field-error {
-			font-size: 0.78rem;
-			color: #dc2626;
-			min-height: 1rem;
-			padding-left: 2px;
-		}
-
-		.dark .form-input {
-			background-color: #1b1b1b;
-			color: #f9fafb;
-			border-color: #1b1b1b;
-		}
-
-		input:-webkit-autofill,
-		textarea:-webkit-autofill {
-			-webkit-box-shadow: 0 0 0 1000px #fff inset !important;
-			-webkit-text-fill-color: #1b1b1b !important;;
-		}
-
-		.dark input:-webkit-autofill,
-		.dark textarea:-webkit-autofill {
-			-webkit-box-shadow: 0 0 0 1000px #1b1b1b inset !important;
-			-webkit-text-fill-color: #fff !important;
-		}
-
-		.dark  .form-input:focus {
-			border-color: #818cf8;
-			box-shadow: 0 0 0 3px rgba(40, 41, 44, 0.2);
-		}
-
-		.dark .field-error {
-			color: #f87171;
-		}
-		@keyframes toast-in {
-			from { opacity: 0; transform: translateX(20px); }
-			to   { opacity: 1; transform: translateX(0); }
-		}
-		@keyframes spin {
-			to { transform: rotate(360deg); }
-		}
-		.toast-spinner {
-			width: 10px; height: 10px;
-			border: 1.5px solid currentColor;
-			border-top-color: transparent;
-			border-radius: 50%;
-			animation: spin 0.7s linear infinite;
-			opacity: 0.6;
-  }
+			.box-before {
+			  content: "";
+			  position: absolute;
+			  background: linear-gradient(var(--highlight-color), var(--main-color));
+			  animation: animate 4s linear infinite;
+			}
+			
+			.box-after {
+			  content: "";
+			  position: absolute;
+			  inset: 4px;
+			  border-radius: 5px;
+			}
+			.btn-hover{
+				background: linear-gradient(45deg, var(--main-color), var(--highlight-color));
+				animation: animate 4s linear infinite;
+			}
+			.group:hover .btn-before {
+	  			@apply btn-hover;
+			}
+	
+			.btn-before{
+	    		  content: "";
+	                  position: absolute;
+	  		}
+			.field-group {
+				display: flex;
+				flex-direction: column;
+				gap: 4px;
+			}
+	
+			.form-input {
+				padding: 0.75rem;
+				border-radius: 0.75rem;
+				border: 1px solid;
+				font-size: 1rem;
+				width: 100%;
+				outline: none;
+				transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+				background-color: #ececec;
+				color: #111827;
+				border-color: #d1d5db;
+			}
+	
+			.form-input::placeholder {
+				color: #474747be;
+			}
+	
+			.form-input:focus {
+				border-color: #6366f1;
+				box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+			}
+	
+			.form-input.input-error {
+				border-color: #ef4444;
+				box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+			}
+	
+			.field-error {
+				font-size: 0.78rem;
+				color: #dc2626;
+				min-height: 1rem;
+				padding-left: 2px;
+			}
+	
+			.dark .form-input {
+				background-color: #1b1b1b;
+				color: #f9fafb;
+				border-color: #1b1b1b;
+			}
+	
+			input:-webkit-autofill,
+			textarea:-webkit-autofill {
+				-webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+				-webkit-text-fill-color: #1b1b1b !important;;
+			}
+	
+			.dark input:-webkit-autofill,
+			.dark textarea:-webkit-autofill {
+				-webkit-box-shadow: 0 0 0 1000px #1b1b1b inset !important;
+				-webkit-text-fill-color: #fff !important;
+			}
+	
+			.dark  .form-input:focus {
+				border-color: #818cf8;
+				box-shadow: 0 0 0 3px rgba(40, 41, 44, 0.2);
+			}
+	
+			.dark .field-error {
+				color: #f87171;
+			}
+			@keyframes toast-in {
+				from { opacity: 0; transform: translateX(20px); }
+				to   { opacity: 1; transform: translateX(0); }
+			}
+			@keyframes spin {
+				to { transform: rotate(360deg); }
+			}
+			.toast-spinner {
+				width: 10px; height: 10px;
+				border: 1.5px solid currentColor;
+				border-top-color: transparent;
+				border-radius: 50%;
+				animation: spin 0.7s linear infinite;
+				opacity: 0.6;
+	  		}
+			toast {
+			  --toast-main: #999;
+			  --toast-highlight: #666;
+			
+			  position: fixed;
+			  bottom: 24px;
+			  right: 24px;
+			
+			  display: flex;
+			  flex-direction: column;
+			  gap: 6px;
+			
+			  padding: 14px 16px;
+			  border-radius: 12px;
+			  border: 2px solid transparent;
+			
+			  background:
+			    linear-gradient(var(--bg-light), var(--bg-light)) padding-box,
+			    linear-gradient(45deg, var(--toast-main), var(--toast-highlight)) border-box;
+			
+			  color: var(--text-light);
+			
+			  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+			  z-index: 9999;
+			
+			  animation: toast-in 0.3s ease;
+			
+			  /* 🔥 reflect */
+			  -webkit-box-reflect: below -20px -webkit-gradient(
+			    linear,
+			    left top,
+			    left bottom,
+			    from(transparent),
+			    to(color-mix(in srgb, var(--toast-main) 40%, transparent))
+			  );
+			}
+			
+			.dark .toast {
+			  background:
+			    linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
+			    linear-gradient(45deg, var(--toast-main), var(--toast-highlight)) border-box;
+			
+			  color: var(--text-dark);
+			
+			  -webkit-box-reflect: below -20px -webkit-gradient(
+			    linear,
+			    left top,
+			    left bottom,
+			    from(transparent),
+			    to(rgba(255,255,255,0.25))
+			  );
+			}
+			
+			/* HEADER */
+			.toast-header {
+			  display: flex;
+			  align-items: center;
+			  gap: 10px;
+			}
+			
+			.toast-icon {
+			  display: flex;
+			  align-items: center;
+			  justify-content: center;
+			
+			  width: 22px;
+			  height: 22px;
+			  border-radius: 50%;
+			
+			  color: var(--toast-main);
+			  background: color-mix(in srgb, var(--toast-main) 20%, transparent);
+			}
+			
+			.toast-title {
+			  font-weight: bold;
+			  color: var(--toast-main);
+			}
+			
+			.toast-desc {
+			  font-size: 14px;
+			  opacity: 0.85;
+			}
+			
+			/* TIPOS */
+			.toast-success {
+			  --toast-main: var(--success-main);
+			  --toast-highlight: var(--success-highlight);
+			}
+			
+			.toast-danger {
+			  --toast-main: var(--danger-main);
+			  --toast-highlight: var(--danger-highlight);
+			}
+			
+			.toast-info {
+			  --toast-main: var(--info-main);
+			  --toast-highlight: var(--info-highlight);
+			}
+			
+			/* ANIMACIÓN */
+			@keyframes toast-in {
+			  from {
+			    transform: translateY(20px);
+			    opacity: 0;
+			  }
+			  to {
+			    transform: translateY(0);
+			    opacity: 1;
+			  }
+			}
 		</style>
 	</body>
 </html>
