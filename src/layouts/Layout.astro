@@ -15,14 +15,13 @@ const { description, title, lang } = Astro.props
 		  document.documentElement.classList.add('dark');
 		}
 	  </script>
-	  <!-- <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" is:inline async defer></script>-->
 	<head>
 		<meta charset="UTF-8" />
 		<title>{title}</title>
         <meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<meta name="google-site-verification" content="i6BnF5EZmwyr49RbT4goT7AVN_hTk0r3qCfBgNQAj6A" />
+		<meta name="google-site-verification" content="i6BnF5EZmwyr49RbT4goT7AVN_hTk0r3qCfBgNQAj6A" />
 		<!-- Open Graph -->
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
@@ -136,34 +135,34 @@ const { description, title, lang } = Astro.props
 			}
 	
 			.form-input {
-  --input-main: var(--info-main);
-  --input-highlight: var(--info-highlight);
-
-  padding: 0.75rem;
-  border-radius: 0.75rem;
-  border: 2px solid transparent;
-  width: 100%;
-  font-size: 1rem;
-
-  background:
-    linear-gradient(var(--bg-light), var(--bg-light)) padding-box,
-    linear-gradient(45deg,
-      color-mix(in srgb, var(--input-main) 40%, transparent),
-      color-mix(in srgb, var(--input-highlight) 40%, transparent)
-    ) border-box;
-
-  color: var(--text-light);
-  outline: none;
-  transition: 0.25s;
-}
+			  --input-main: var(--info-main);
+			  --input-highlight: var(--info-highlight);
+			
+			  padding: 0.75rem;
+			  border-radius: 0.75rem;
+			  border: 2px solid transparent;
+			  width: 100%;
+			  font-size: 1rem;
+			
+			  background:
+			    linear-gradient(var(--bg-light), var(--bg-light)) padding-box,
+			    linear-gradient(45deg,
+			      color-mix(in srgb, var(--input-main) 40%, transparent),
+			      color-mix(in srgb, var(--input-highlight) 40%, transparent)
+			    ) border-box;
+			
+			  color: var(--text-light);
+			  outline: none;
+			  transition: 0.25s;
+			}
 	
 			.form-input::placeholder {
-  color: color-mix(in srgb, var(--text-light) 50%, transparent);
-}
-
-.dark .form-input::placeholder {
-  color: color-mix(in srgb, var(--text-dark) 50%, transparent);
-}
+			  color: color-mix(in srgb, var(--text-light) 50%, transparent);
+			}
+			
+			.dark .form-input::placeholder {
+			  color: color-mix(in srgb, var(--text-dark) 50%, transparent);
+			}
 	
 	
 			.form-input.input-error {
@@ -179,20 +178,20 @@ const { description, title, lang } = Astro.props
 			}
 	
 			.dark .form-input {
-  background:
-    linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
-    linear-gradient(45deg,
-      color-mix(in srgb, var(--input-main) 40%, transparent),
-      color-mix(in srgb, var(--input-highlight) 40%, transparent)
-    ) border-box;
-
-  color: var(--text-dark);
-}
+			  background:
+			    linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
+			    linear-gradient(45deg,
+			      color-mix(in srgb, var(--input-main) 40%, transparent),
+			      color-mix(in srgb, var(--input-highlight) 40%, transparent)
+			    ) border-box;
+			
+			  color: var(--text-dark);
+			}
 	
 			input:-webkit-autofill,
 			textarea:-webkit-autofill {
 				-webkit-box-shadow: 0 0 0 1000px #fff inset !important;
-				-webkit-text-fill-color: #1b1b1b !important;;
+				-webkit-text-fill-color: #1b1b1b !important;
 			}
 	
 			.dark input:-webkit-autofill,
@@ -202,37 +201,40 @@ const { description, title, lang } = Astro.props
 			}
 	
 			.form-input:focus {
-  background:
-    linear-gradient(var(--bg-light), var(--bg-light)) padding-box,
-    linear-gradient(45deg, var(--input-main), var(--input-highlight)) border-box;
+			  background:
+			    linear-gradient(var(--bg-light), var(--bg-light)) padding-box,
+			    linear-gradient(45deg, var(--input-main), var(--input-highlight)) border-box;
+			
+			  box-shadow: 0 0 0 2px color-mix(in srgb, var(--input-main) 30%, transparent);
+			}
 
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--input-main) 30%, transparent);
-}
+			.dark .form-input:focus {
+			  background:
+			    linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
+			    linear-gradient(45deg, var(--input-main), var(--input-highlight)) border-box;
+			}
 
-.dark .form-input:focus {
-  background:
-    linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
-    linear-gradient(45deg, var(--input-main), var(--input-highlight)) border-box;
-}
-.form-input:hover {
-  background:
-    linear-gradient(var(--bg-light), var(--bg-light)) padding-box,
-    linear-gradient(45deg,
-      color-mix(in srgb, var(--input-main) 60%, transparent),
-      color-mix(in srgb, var(--input-highlight) 60%, transparent)
-    ) border-box;
-}
-	.form-input.input-success {
-  --input-main: var(--success-main);
-  --input-highlight: var(--success-highlight);
-}
-.form-input.input-error {
-  --input-main: var(--danger-main);
-  --input-highlight: var(--danger-highlight);
-}
+			.form-input:hover {
+			  background:
+			    linear-gradient(var(--bg-light), var(--bg-light)) padding-box,
+			    linear-gradient(45deg,
+			      color-mix(in srgb, var(--input-main) 60%, transparent),
+			      color-mix(in srgb, var(--input-highlight) 60%, transparent)
+			    ) border-box;
+			}
+
+			.form-input.input-success {
+			  --input-main: var(--success-main);
+			  --input-highlight: var(--success-highlight);
+			}
+			.form-input.input-error {
+			  --input-main: var(--danger-main);
+			  --input-highlight: var(--danger-highlight);
+			}
 			.dark .field-error {
 				color: #f87171;
 			}
+
 			@keyframes toast-in {
 				from { opacity: 0; transform: translateX(20px); }
 				to   { opacity: 1; transform: translateX(0); }
