@@ -4,9 +4,11 @@ import Css from "./icons/Css.astro";
 import Javascript from "./icons/Javascript.astro";
 import Laravel from "./icons/Laravel.astro";
 import Php from "./icons/Php.astro";
+import Php_light from "./icons/Php_light.astro";
 import Nodejs from "./icons/Nodejs.astro";
 import React from "./icons/React.astro";  
 import Express from "./icons/Express.astro";
+import Express_dark from "./icons/Express_dark.astro";
 import Postgres from "./icons/Postgres.astro";
 import SocketIO from "./icons/SocketIO.astro";
 
@@ -18,16 +20,46 @@ const { projects } = Astro.props;
 const PROJECTS = projects;
 // Mapeo simple para los íconos de tecnologías
 const techIcons = {
-  html: Html,
-  css: Css,
-  javascript: Javascript,
-  laravel: Laravel,
-  php: Php,
-  node: Nodejs,
-  react: React,
-  express: Express,
-  postgres: Postgres,
-  socketio: SocketIO,
+  html: {
+    light: Html,
+    dark: Html,
+  },
+  css: {
+    light: Css,
+    dark: Css,
+  },
+  javascript: {
+    light: Javascript,
+    dark: Javascript,
+  },
+  laravel: {
+    light: Laravel,
+    dark: Laravel,
+  },
+  php: {
+    light: Php,
+    dark: Php_light,
+  },
+  node: {
+    light: Nodejs,
+    dark: Nodejs,
+  },
+  react: {
+    light: React,
+    dark: React,
+  },
+  express: {
+    light: Express_dark,
+    dark: Express,
+  },
+  postgres: {
+    light: Postgres,
+    dark: Postgres,
+  },
+  socketio: {
+    light: SocketIO,
+    dark: SocketIO,
+  },
 };
 ---
 
@@ -61,11 +93,21 @@ const techIcons = {
 
     <ul class="flex flex-wrap gap-2 text-sm text-gray-700 dark:text-gray-300">
       {project.technologies.map((tech: string) => {
-        const Icon = techIcons[tech as keyof typeof techIcons];
-        return Icon ? (
-          <li class="bg-gray-100 dark:bg-[#292828] px-2 py-1 rounded">
-            <Icon class="size-5 cursor-pointer hover:scale-110 transition-all duration-300" />
+        const icons = techIcons[tech as keyof typeof techIcons];
+
+        return icons ? (
+          <li class="flex flex-col items-center justify-center text-center bg-gray-100 bg-[#e6dfe6] dark:bg-[#292828] px-3 py-2 rounded min-w-[60px]">
+            {/* Light */}
+            <icons.light class="size-5 dark:hidden hover:scale-110 transition-all duration-300" />
+
+            {/* Dark */}
+            <icons.dark class="size-5 hidden dark:block hover:scale-110 transition-all duration-300" />
+            <span class="mt-1 text-[11px] capitalize text-center">
+          {tech}
+        </span>
           </li>
+          
+  
         ) : null;
       })}
     </ul>
