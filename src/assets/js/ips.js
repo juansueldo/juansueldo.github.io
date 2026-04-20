@@ -37,13 +37,3 @@ export const trackVisit = async () => {
     }
   };
 
-import ScrollReveal from "scrollreveal";
-
-ScrollReveal().reveal('.reveal', {
-  distance: '40px',
-  duration: 800,
-  easing: 'ease',
-  origin: 'bottom',
-  interval: 100,
-  reset: false // Cambia a true si quieres que se repita al hacer scroll
-});
