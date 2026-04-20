@@ -10,6 +10,11 @@ const t = translations[lang as 'es' | 'en'] || translations.es;
 
 <Layout title={t.layout.title}, description={t.layout.description} lang={lang}>
     <script>
-        window.location.href = '/es';
+        const userLang = navigator.language || navigator.userLanguage;
+        if (userLang && userLang.startsWith('es')) {
+            window.location.href = '/es';
+        } else {
+            window.location.href = '/en';
+        }
     </script>
 </Layout>
