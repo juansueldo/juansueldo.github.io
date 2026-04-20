@@ -83,8 +83,8 @@ export default {
               description:
                 "Aplicación frontend para la gestión de un sistema SaaS gastronómico, orientada a dispositivos móviles. Permite administrar operaciones clave del negocio mediante una interfaz intuitiva, rápida y adaptada a entornos reales de uso. Construida con React y Capacitor para una experiencia tipo app nativa.",
               image: "/projects/demo-draggrid.png",
-              live_url: "https://mobile-tomatina.vercel.app",
-              url_code: "https://github.com/juansueldo/mobile-tomatina",
+              live_url: "https://front-gastronomico.vercel.app",
+              url_code: "https://github.com/juansueldo/front_gastronomico",
               technologies: ["react", "capacitor"]
             },
             {
