@@ -73,16 +73,16 @@ export default {
               title: "Landing Saas Gastronómico",
               description:
                 "Landing page para un SaaS gastronómico, diseñada para presentar servicios de forma clara. El proyecto cuenta con componentes reutilizables y diseño responsive.",
-              image: "/projects/demo-draggrid.png",
-              live_url: "https://landing-saas-mu.vercel.app",
-              url_code: "https://github.com/juansueldo/landing_saas",
+              image: "/projects/landing_gastronomico.png",
+              live_url: "https://landing-gastronomico.vercel.app",
+              url_code: "https://github.com/juansueldo/landing_gastronomico",
               technologies: ["react"]
             },
             {
               title: "Saas Gastronómico",
               description:
                 "Aplicación frontend para la gestión de un sistema SaaS gastronómico, orientada a dispositivos móviles. Permite administrar operaciones clave del negocio mediante una interfaz intuitiva, rápida y adaptada a entornos reales de uso. Construida con React y Capacitor para una experiencia tipo app nativa.",
-              image: "/projects/demo-draggrid.png",
+              image: "/projects/front_gastronomico.png",
               live_url: "https://front-gastronomico.vercel.app",
               url_code: "https://github.com/juansueldo/front_gastronomico",
               technologies: ["react", "capacitor"]
@@ -91,7 +91,7 @@ export default {
               title: "Backend Gastronómico",
               description:
                 "API backend para un sistema gastronómico, encargada de la lógica de negocio, gestión de datos y comunicación con la base de datos. Incluye endpoints para manejar usuarios, pedidos y operaciones del sistema, asegurando escalabilidad y rendimiento.",
-              image: "/projects/demo-draggrid.png",
+              image: "/projects/backend_gastronomico.png",
               live_url: "https://backend-gastronomico.onrender.com",
               url_code: "https://github.com/juansueldo/backend_gastronomico",
               technologies: ["node", "express", "postgres"]
