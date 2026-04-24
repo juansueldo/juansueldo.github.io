@@ -7,8 +7,8 @@ export default {
     },
     nav:{
         about: "About", 
-        projects: "Projects",
         experience: "Experience",
+        projects: "Projects",
         contact: "Contact",
         light: "Light",
         dark: "Dark",
