@@ -15,7 +15,6 @@ const { description, title, lang } = Astro.props
 		  document.documentElement.classList.add('dark');
 		}
 	  </script>
-	  <script src="../assets/js/scrollReveal.js"></script>
 	<head>
 		<meta charset="UTF-8" />
 		<title>{title}</title>
@@ -58,8 +57,6 @@ const { description, title, lang } = Astro.props
 				--text-light: #111;
 			    --text-dark: #e5e7eb;
 			
-			    --success-main: #0af019;
-			    --success-highlight: #0088ff;
 			
 			    --danger-main: #ff0000;
 			    --danger-highlight: #f55d5d;
@@ -221,8 +218,8 @@ const { description, title, lang } = Astro.props
 			}
 
 			.form-input.input-success {
-			  --input-main: var(--success-main);
-			  --input-highlight: var(--success-highlight);
+			  --input-main: var(--main-color);
+			  --input-highlight: var(--highlight-color);
 			}
 			.form-input.input-error {
 			  --input-main: var(--danger-main);
