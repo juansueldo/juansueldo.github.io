@@ -94,6 +94,14 @@ export default {
               "technologies": ["node", "express", "postgres"]
             },
             {
+                title: "IP API",
+                description: "API that provides detailed geolocation and network information based on an IP address.",
+                image: "/projects/backend_gastronomico.png",
+                live_url: "https://demo-ip-api.vercel.app",
+                url_code: "https://github.com/juansueldo/ipinfo-js",
+                technologies: ["node", "express", "javascript", "docker"]
+            },
+            {
               title: "DragGrid",
               description:
                 "A lightweight JavaScript library for creating grid layouts with draggable and resizable elements, perfect for building dashboards, control panels, and other modular interface systems.",
