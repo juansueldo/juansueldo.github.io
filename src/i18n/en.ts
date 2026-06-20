@@ -96,7 +96,7 @@ export default {
             {
                 title: "IP API",
                 description: "API that provides detailed geolocation and network information based on an IP address.",
-                image: "/projects/backend_gastronomico.png",
+                image: "/projects/IPInfoAPI.png",
                 live_url: "https://demo-ip-api.vercel.app",
                 url_code: "https://github.com/juansueldo/ipinfo-js",
                 technologies: ["node", "express", "javascript", "docker"]

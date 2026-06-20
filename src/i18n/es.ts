@@ -99,7 +99,7 @@ export default {
             {
                 title: "IPInfo API",
                 description: "API que proporciona información detallada de geolocalización y red a partir de una dirección IP.",
-                image: "/projects/backend_gastronomico.png",
+                image: "/projects/IPInfoAPI.png",
                 live_url: "https://demo-ip-api.vercel.app",
                 url_code: "https://github.com/juansueldo/ipinfo-js",
                 technologies: ["node", "express", "javascript", "docker"]
