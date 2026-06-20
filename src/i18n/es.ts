@@ -110,7 +110,7 @@ export default {
               description:
                 "Aplicación frontend para la gestión de un sistema SaaS gastronómico, orientada a dispositivos móviles. Permite administrar operaciones clave del negocio mediante una interfaz intuitiva, rápida y adaptada a entornos reales de uso. Construida con React y Capacitor para una experiencia tipo app nativa.",
               image: "/projects/front_gastronomico.png",
-              live_url: "https://front-gastronomico.vercel.app",
+              live_url: "https://front-gastronomico.vercel.app/demo",
               url_code: "https://github.com/juansueldo/front_gastronomico",
               technologies: ["React", "Capacitor"]
             },
