@@ -1,0 +1,50 @@
+---
+interface Props {
+  type: string;
+  class?: string;
+}
+
+const { type, class: className = "" } = Astro.props;
+---
+
+<svg
+  aria-hidden="true"
+  class={className}
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="1.8"
+>
+  {type === "frontend" && (
+    <>
+      <path d="m8.5 8-4 4 4 4" />
+      <path d="m15.5 8 4 4-4 4" />
+      <path d="m13.5 5-3 14" />
+    </>
+  )}
+
+  {type === "backend" && (
+    <>
+      <rect x="3" y="4" width="18" height="6" rx="1.5" />
+      <rect x="3" y="14" width="18" height="6" rx="1.5" />
+      <path d="M7 7h.01M7 17h.01M11 7h7M11 17h7" />
+    </>
+  )}
+
+  {type === "database" && (
+    <>
+      <ellipse cx="12" cy="5.5" rx="7.5" ry="3" />
+      <path d="M4.5 5.5v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6" />
+      <path d="M4.5 11.5v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6" />
+    </>
+  )}
+
+  {type === "tools" && (
+  <>
+    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9l-3.8 3.8Z" />
+  </>
+)}
+</svg>

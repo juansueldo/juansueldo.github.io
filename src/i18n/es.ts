@@ -7,6 +7,7 @@ export default {
     },
     nav:{
         about: "Sobre mí", 
+        skills: "Habilidades",
         experience: "Experiencia",
         projects: "Proyectos",
         contact: "Contacto",
@@ -31,6 +32,31 @@ export default {
         skills: "Habilidades",
         url: "/files/es/Juan_Sueldo_CV.pdf",
     },
+    skills: {
+        title: "Habilidades",
+        groups: [
+            {
+                title: "Frontend",
+                icon: "frontend",
+                technologies: ["HTML", "CSS", "JavaScript", "React", "Astro", "Tailwind CSS", "Bootstrap"],
+            },
+            {
+                title: "Backend",
+                icon: "backend",
+                technologies: ["PHP", "Laravel", "CodeIgniter", "Node", "Express", "Socket.IO"],
+            },
+            {
+                title: "Bases de datos",
+                icon: "database",
+                technologies: ["MySQL", "PostgreSQL"],
+            },
+            {
+                title: "Herramientas y plataformas",
+                icon: "tools",
+                technologies: ["Git", "Docker", "Capacitor"],
+            },
+        ],
+    },
     experience:{
         title: "Experiencia",
         experience: [
@@ -39,7 +65,7 @@ export default {
                 end: "Presente",
                 position: "Desarrollador Full Stack",
                 company: "INTERPLAN S.A.",
-                description:"Desarrollo de aplicaciones web y soporte técnico.",
+                description:"Desarrollo de aplicaciones web y mantenimiento de aplicaciones. Participo en el desarrollo de un SAAS omincanal que integra canales de comunicación como WhatsApp, Facebook Messenger, Instagram, entre otros, para brindar una experiencia de atención al cliente fluida y eficiente.",
                 technologies: [
                     'CodeIgniter',
                     'PHP',
@@ -48,6 +74,7 @@ export default {
                     'HTML',
                     'CSS',
                     'Bootstrap',
+                    'React',
                     'Git'
                 ],
             },
@@ -74,9 +101,9 @@ export default {
               description:
                 "Landing page para un SaaS gastronómico, diseñada para presentar servicios de forma clara. El proyecto cuenta con componentes reutilizables y diseño responsive.",
               image: "/projects/landing_gastronomico.png",
-              live_url: "https://landing-gastronomico.vercel.app",
-              url_code: "https://github.com/juansueldo/landing_gastronomico",
-              technologies: ["react"]
+              live_url: "https://comiio-landing.vercel.app/",
+              url_code: "https://github.com/juansueldo/driver_comiio",
+              technologies: ["Astro"]
             },
             {
               title: "Saas Gastronómico",
@@ -85,7 +112,7 @@ export default {
               image: "/projects/front_gastronomico.png",
               live_url: "https://front-gastronomico.vercel.app",
               url_code: "https://github.com/juansueldo/front_gastronomico",
-              technologies: ["react", "capacitor"]
+              technologies: ["React", "Capacitor"]
             },
             {
               title: "Backend Gastronómico",
@@ -94,7 +121,7 @@ export default {
               image: "/projects/backend_gastronomico.png",
               live_url: "https://backend-gastronomico.onrender.com",
               url_code: "https://github.com/juansueldo/backend_gastronomico",
-              technologies: ["node", "express", "postgres"]
+              technologies: ["Node", "Express", "PostgreSQL"]
             },
             {
                 title: "IPInfo API",
@@ -102,7 +129,7 @@ export default {
                 image: "/projects/IPInfoAPI.png",
                 live_url: "https://demo-ip-api.vercel.app",
                 url_code: "https://github.com/juansueldo/ipinfo-js",
-                technologies: ["node", "express", "javascript", "docker"]
+                technologies: ["Node", "Express", "JavaScript", "Docker"]
             },
             {
               title: "DragGrid",
@@ -111,7 +138,7 @@ export default {
               image: "/projects/demo-draggrid.png",
               live_url: "https://draggrid.netlify.app",
               url_code: "https://github.com/juansueldo/draggrid",
-              technologies: ["javascript", "html", "css"]
+              technologies: ["JavaScript", "HTML", "CSS"]
             },
             {
               title: "Shiftmanager",
@@ -119,7 +146,7 @@ export default {
               image: "/projects/demo-draggrid.png",
               live_url: "https://draggrid.netlify.app",
               url_code: "https://github.com/juansueldo/draggrid",
-              technologies: ["laravel", "php", "javascript", "html", "css"]
+              technologies: ["Laravel", "PHP", "JavaScript", "HTML", "CSS"]
             }
         ]
     },

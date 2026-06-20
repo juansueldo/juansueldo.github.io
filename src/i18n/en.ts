@@ -7,6 +7,7 @@ export default {
     },
     nav:{
         about: "About", 
+        skills: "Skills",
         experience: "Experience",
         projects: "Projects",
         contact: "Contact",
@@ -31,6 +32,31 @@ export default {
         skills: "Skills",
         url: "/files/en/Juan_Sueldo_CV.pdf",
     },
+    skills: {
+        title: "Skills",
+        groups: [
+            {
+                title: "Frontend",
+                icon: "frontend",
+                technologies: ["HTML", "CSS", "JavaScript", "React", "Astro", "Tailwind CSS", "Bootstrap"],
+            },
+            {
+                title: "Backend",
+                icon: "backend",
+                technologies: ["PHP", "Laravel", "CodeIgniter", "Node", "Express", "Socket.IO"],
+            },
+            {
+                title: "Databases",
+                icon: "database",
+                technologies: ["MySQL", "PostgreSQL"],
+            },
+            {
+                title: "Tools and platforms",
+                icon: "tools",
+                technologies: ["Git", "Docker", "Capacitor"],
+            },
+        ],
+    },
     experience:{
         title: "Experience",
         experience: [
@@ -39,7 +65,7 @@ export default {
                 end: "Present",
                 position: "Full Stack Developer",
                 company: "INTERPLAN S.A.",
-                description:"Web application development and technical support.",
+                description:"Web application development and maintenance. I participate in the development of a omnichannel SaaS that integrates communication channels like WhatsApp, Facebook Messenger, Instagram, among others, to provide a fluid and efficient customer service experience.",
                 technologies: [
                     'CodeIgniter',
                     'PHP',
@@ -48,6 +74,7 @@ export default {
                     'HTML',
                     'CSS',
                     'Bootstrap',
+                    'React',
                     'Git'
                 ],
             },
@@ -73,8 +100,8 @@ export default {
               "title": "Gastronomic SaaS Landing Page",
               "description": "Landing page for a gastronomic SaaS, designed to showcase services clearly. The project features reusable components and a fully responsive design.",
               "image": "/projects/landing_gastronomico.png",
-              "live_url": "https://landing-gastronomico.vercel.app",
-              "url_code": "https://github.com/juansueldo/landing_gastronomico",
+              "live_url": "https://comiio-landing.vercel.app/",
+              "url_code": "https://github.com/juansueldo/driver_comiio",
               "technologies": ["react"]
             },
             {

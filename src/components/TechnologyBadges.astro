@@ -1,0 +1,85 @@
+---
+import Astrologo from "./icons/Astrologo.astro";
+import Bootstrap from "./icons/Bootstrap.astro";
+import Capacitor from "./icons/Capacitor.astro";
+import Codeigniter from "./icons/Codeigniter.astro";
+import Css from "./icons/Css.astro";
+import Docker from "./icons/Docker.astro";
+import Express from "./icons/Express.astro";
+import Express_dark from "./icons/Express_dark.astro";
+import Git from "./icons/Git.astro";
+import Html from "./icons/Html.astro";
+import Javascript from "./icons/Javascript.astro";
+import Laravel from "./icons/Laravel.astro";
+import Mysql from "./icons/Mysql.astro";
+import Nodejs from "./icons/Nodejs.astro";
+import Php from "./icons/Php.astro";
+import Php_light from "./icons/Php_light.astro";
+import Postgres from "./icons/Postgres.astro";
+import React from "./icons/React.astro";
+import SocketIO from "./icons/SocketIO.astro";
+import TailwindCss from "./icons/TailwindCss.astro";
+
+interface Props {
+  technologies: string[];
+  class?: string;
+}
+
+const { technologies, class: className = "" } = Astro.props;
+
+const techIcons = {
+  astro: { light: Astrologo, dark: Astrologo },
+  bootstrap: { light: Bootstrap, dark: Bootstrap },
+  capacitor: { light: Capacitor, dark: Capacitor },
+  codeigniter: { light: Codeigniter, dark: Codeigniter },
+  css: { light: Css, dark: Css },
+  docker: { light: Docker, dark: Docker },
+  express: { light: Express_dark, dark: Express },
+  git: { light: Git, dark: Git },
+  html: { light: Html, dark: Html },
+  javascript: { light: Javascript, dark: Javascript },
+  laravel: { light: Laravel, dark: Laravel },
+  mysql: { light: Mysql, dark: Mysql },
+  node: { light: Nodejs, dark: Nodejs },
+  nodejs: { light: Nodejs, dark: Nodejs },
+  php: { light: Php, dark: Php_light },
+  postgres: { light: Postgres, dark: Postgres },
+  postgresql: { light: Postgres, dark: Postgres },
+  react: { light: React, dark: React },
+  socketio: { light: SocketIO, dark: SocketIO },
+  tailwind: { light: TailwindCss, dark: TailwindCss },
+  tailwindcss: { light: TailwindCss, dark: TailwindCss },
+};
+
+const normalizeTechnology = (technology: string) =>
+  technology.trim().toLowerCase().replace(/[^a-z0-9]+/g, "");
+---
+
+<ul class:list={["flex flex-wrap gap-2 text-sm text-gray-700 dark:text-gray-300", className]}>
+  {technologies.map((technology) => {
+    const iconPair =
+      techIcons[normalizeTechnology(technology) as keyof typeof techIcons];
+    const LightIcon = iconPair?.light;
+    const DarkIcon = iconPair?.dark;
+
+    return (
+      <li class="flex min-w-[60px] flex-col items-center justify-center rounded bg-[#e6dfe6] px-3 py-2 text-center dark:bg-[#292828]">
+        {LightIcon && (
+          <LightIcon
+            aria-hidden="true"
+            class="size-5 transition-all duration-300 hover:scale-110 dark:hidden"
+          />
+        )}
+        {DarkIcon && (
+          <DarkIcon
+            aria-hidden="true"
+            class="hidden size-5 transition-all duration-300 hover:scale-110 dark:block"
+          />
+        )}
+        <span class:list={["text-center text-[11px]", iconPair ? "mt-1" : undefined]}>
+          {technology}
+        </span>
+      </li>
+    );
+  })}
+</ul>
