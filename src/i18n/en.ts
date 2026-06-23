@@ -43,7 +43,7 @@ export default {
             {
                 title: "Backend",
                 icon: "backend",
-                technologies: ["PHP", "Laravel", "CodeIgniter", "Node", "Express", "Socket.IO"],
+                technologies: ["PHP", "Laravel", "CodeIgniter", "Node", "Express"],
             },
             {
                 title: "Databases",
@@ -102,7 +102,7 @@ export default {
               "image": "/projects/landing_gastronomico.png",
               "live_url": "https://comiio-landing.vercel.app/",
               "url_code": "https://github.com/juansueldo/driver_comiio",
-              "technologies": ["react"]
+              "technologies": ["React"]
             },
             {
               "title": "Gastronomic SaaS Mobile App",
@@ -110,7 +110,7 @@ export default {
               "image": "/projects/front_gastronomico.png",
               "live_url": "https://front-gastronomico.vercel.app/demo",
               "url_code": "https://github.com/juansueldo/front_gastronomico",
-              "technologies": ["react", "capacitor"]
+              "technologies": ["React", "Capacitor"]
             },
             {
               "title": "Gastronomic Backend API",
@@ -118,7 +118,7 @@ export default {
               "image": "/projects/backend_gastronomico.png",
               "live_url": "https://backend-gastronomico.onrender.com",
               "url_code": "https://github.com/juansueldo/backend_gastronomico",
-              "technologies": ["node", "express", "postgres"]
+              "technologies": ["Node", "Express", "Postgres"]
             },
             {
                 title: "IP API",
@@ -126,7 +126,7 @@ export default {
                 image: "/projects/IPInfoAPI.png",
                 live_url: "https://demo-ip-api.vercel.app",
                 url_code: "https://github.com/juansueldo/ipinfo-js",
-                technologies: ["node", "express", "javascript", "docker"]
+                technologies: ["Node", "Express", "JavaScript", "Docker"]
             },
             {
               title: "DragGrid",
@@ -135,16 +135,16 @@ export default {
               image: "/projects/demo-draggrid.png",
               live_url: "https://draggrid.netlify.app",
               url_code: "https://github.com/juansueldo/draggrid",
-              technologies: ["javascript", "html", "css"]
+              technologies: ["JavaScript", "HTML", "CSS"]
             },
-            {
+            /*{
               title: "Shiftmanager",
               description:"App that allows you to register users, doctors and patients, to assign and manage shifts, scheduling events on Google Calendar.",
               image: "/projects/demo-draggrid.png",
               live_url: "https://draggrid.netlify.app",
               url_code: "https://github.com/juansueldo/draggrid",
-              technologies: ["laravel", "php", "javascript", "html", "css"]
-            }
+              technologies: ["Laravel", "PHP", "JavaScript", "HTML", "CSS"]
+            }*/
         ]
     },
     contact:{
