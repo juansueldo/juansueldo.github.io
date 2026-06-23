@@ -43,7 +43,7 @@ export default {
             {
                 title: "Backend",
                 icon: "backend",
-                technologies: ["PHP", "Laravel", "CodeIgniter", "Node", "Express", "Socket.IO"],
+                technologies: ["PHP", "Laravel", "CodeIgniter", "Node", "Express"],
             },
             {
                 title: "Bases de datos",
@@ -140,14 +140,14 @@ export default {
               url_code: "https://github.com/juansueldo/draggrid",
               technologies: ["JavaScript", "HTML", "CSS"]
             },
-            {
+            /*{
               title: "Shiftmanager",
               description:"Aplicación que permite registrar usuarios, médicos y pacientes, asignar y gestionar turnos, programar eventos en Google Calendar.",
               image: "/projects/demo-draggrid.png",
               live_url: "https://draggrid.netlify.app",
               url_code: "https://github.com/juansueldo/draggrid",
               technologies: ["Laravel", "PHP", "JavaScript", "HTML", "CSS"]
-            }
+            }*/
         ]
     },
     contact:{
