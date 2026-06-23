@@ -101,7 +101,7 @@ export default {
               "description": "Landing page for a gastronomic SaaS, designed to showcase services clearly. The project features reusable components and a fully responsive design.",
               "image": "/projects/landing_gastronomico.png",
               "live_url": "https://comiio-landing.vercel.app/",
-              "url_code": "https://github.com/juansueldo/driver_comiio",
+              "url_code": "https://github.com/juansueldo/comiio_landing",
               "technologies": ["React"]
             },
             {
