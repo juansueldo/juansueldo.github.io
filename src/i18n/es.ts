@@ -102,7 +102,7 @@ export default {
                 "Landing page para un SaaS gastronómico, diseñada para presentar servicios de forma clara. El proyecto cuenta con componentes reutilizables y diseño responsive.",
               image: "/projects/landing_gastronomico.png",
               live_url: "https://comiio-landing.vercel.app/",
-              url_code: "https://github.com/juansueldo/driver_comiio",
+              url_code: "https://github.com/juansueldo/comiio_landing",
               technologies: ["Astro"]
             },
             {
