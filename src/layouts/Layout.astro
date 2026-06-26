@@ -6,6 +6,10 @@ interface Props {
   lang: string
 }
 const { description, title, lang } = Astro.props
+
+const baseUrl = "https://juansueldo.dev";
+const currentUrl = `${baseUrl}/${lang}`;
+const image = `${baseUrl}/thumbnail/thumbnail_light.png`;
 ---
 <!doctype html>
 <html lang={lang} class="scroll-smooth">
@@ -24,28 +28,54 @@ const { description, title, lang } = Astro.props
 		})(window,document,'script','dataLayer','GTM-WDG4QKXC');</script>
 		<!-- End Google Tag Manager -->
 		<meta charset="UTF-8" />
-		<title>{title}</title>
-        <meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="alternate" hreflang="es" href="https://juansueldo.dev/es" />
-		<link rel="alternate" hreflang="en" href="https://juansueldo.dev/en" />
-		<link rel="alternate" hreflang="x-default" href="https://juansueldo.dev/" />
-		<meta name="google-site-verification" content="i6BnF5EZmwyr49RbT4goT7AVN_hTk0r3qCfBgNQAj6A" />
-		<!-- Open Graph -->
-		<meta property="og:type" content="website" />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:url" content={`https://juansueldo.dev/${lang}`} />
-		<meta property="og:image" content="https://juansueldo.dev/thumbnail/thumbnail_light.png" />
-		<meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
-		<meta property="og:site_name" content="Juan Sueldo" />
-		
-		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content="https://juansueldo.dev/thumbnail/thumbnail_light.png" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	
+	    <title>{title}</title>
+	
+	    <meta name="description" content={description} />
+	    <meta name="robots" content="index,follow" />
+	    <meta name="theme-color" content="#111111" />
+	
+	    <link rel="canonical" href={currentUrl} />
+	
+	    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+	
+	    <!-- Idiomas -->
+	    <link rel="alternate" hreflang="es" href={`${baseUrl}/es`} />
+	    <link rel="alternate" hreflang="en" href={`${baseUrl}/en`} />
+	    <link rel="alternate" hreflang="x-default" href={baseUrl} />
+	
+	    <!-- Google -->
+	    <meta
+	        name="google-site-verification"
+	        content="i6BnF5EZmwyr49RbT4goT7AVN_hTk0r3qCfBgNQAj6A"
+	    />
+	
+	    <!-- Open Graph -->
+	    <meta property="og:type" content="website" />
+	    <meta property="og:site_name" content="Juan Sueldo" />
+	    <meta property="og:title" content={title} />
+	    <meta property="og:description" content={description} />
+	    <meta property="og:url" content={currentUrl} />
+	    <meta property="og:locale" content={lang === "es" ? "es_AR" : "en_US"} />
+	    <meta
+	        property="og:locale:alternate"
+	        content={lang === "es" ? "en_US" : "es_AR"}
+	    />
+	
+	    <meta property="og:image" content={image} />
+	    <meta property="og:image:secure_url" content={image} />
+	    <meta property="og:image:type" content="image/png" />
+	    <meta property="og:image:width" content="1200" />
+	    <meta property="og:image:height" content="630" />
+	    <meta property="og:image:alt" content="Juan Sueldo Portfolio" />
+	
+	    <!-- Twitter / X -->
+	    <meta name="twitter:card" content="summary_large_image" />
+	    <meta name="twitter:title" content={title} />
+	    <meta name="twitter:description" content={description} />
+	    <meta name="twitter:image" content={image} />
+	    <meta name="twitter:url" content={currentUrl} />
 		<ViewTransitions />
 	</head>
 	<body class="bg-[#f8f7fa] dark:bg-[#111] flex flex-col min-h-screen justify-center content-center">
