@@ -9,19 +9,11 @@ export const onRequest = defineMiddleware(({ request, redirect }, next) => {
 
   if (url.pathname === "/") {
     const acceptLang = request.headers.get("accept-language") || "";
-    const userAgent = request.headers.get("user-agent") || "";
-
-    const isBot = /bot|crawler|spider|crawling/i.test(userAgent);
 
     let lang = "en";
     if (acceptLang.startsWith("es")) lang = "es";
 
-    if (isBot) {
-      return redirect(`/${lang}`);
-    }
-
-    const newUrl = new URL(`/${lang}`, request.url);
-    return next(new Request(newUrl, request));
+    return redirect(`/${lang}`);
   }
 
   return next();
