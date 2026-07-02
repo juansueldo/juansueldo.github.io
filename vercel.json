@@ -1,5 +1,25 @@
 {
   "redirects": [
-    { "source": "/", "destination": "/en", "permanent": true }
+    {
+      "source": "/",
+      "has": [
+        { "type": "header", "key": "accept-language", "value": "^(es|es-).*" }
+      ],
+      "destination": "/es",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        { "type": "header", "key": "accept-language", "value": "^(en|en-).*" }
+      ],
+      "destination": "/en",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "destination": "/en",
+      "permanent": false
+    }
   ]
 }
