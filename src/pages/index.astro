@@ -3,12 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import es from '../i18n/es';
 import en from '../i18n/en';
 
-const lang  = Astro.params.lang;
+const lang  = Astro.params.lang ?? 'es';
 const translations = { es, en };
 const t = translations[lang as 'es' | 'en'] || translations.es;
+const layoutTitle = t.layout.title ?? "";
+const layoutDescription = t.layout.description ?? "";
 ---
 
-<Layout title={t.layout.title ?? ""} description={t.layout.description ?? ""} lang={lang}>
+<Layout title={layoutTitle} description={layoutDescription} lang={lang}>
     <script>
         const userLang = navigator.language || (navigator as Navigator & { userLanguage?: string }).userLanguage;
         if (userLang && userLang.startsWith('es')) {
