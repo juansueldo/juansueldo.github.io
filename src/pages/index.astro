@@ -8,9 +8,9 @@ const translations = { es, en };
 const t = translations[lang as 'es' | 'en'] || translations.es;
 ---
 
-<Layout title={t.layout.title ?? ""} description={t.layout.description} lang={lang}>
+<Layout title={t.layout.title ?? ""} description={t.layout.description ?? ""} lang={lang}>
     <script>
-        const userLang = navigator.language || navigator.userLanguage;
+        const userLang = navigator.language || (navigator as Navigator & { userLanguage?: string }).userLanguage;
         if (userLang && userLang.startsWith('es')) {
             window.location.href = '/es';
         } else {
