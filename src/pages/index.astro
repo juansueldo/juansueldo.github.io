@@ -11,7 +11,7 @@ const layoutDescription = t.layout.description ?? "";
 ---
 
 <Layout title={layoutTitle} description={layoutDescription} lang={lang}>
-    <script>
+    <script>F
         const userLang = navigator.language || (navigator as Navigator & { userLanguage?: string }).userLanguage;
         if (userLang && userLang.startsWith('es')) {
             window.location.href = '/es';

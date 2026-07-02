@@ -6,7 +6,7 @@ import robotsTxt from "astro-robots-txt"
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), robotsTxt()],
-  site: 'https://juansueldo.dev/',
+  site: 'https://juansueldo.vercel.app',
   i18n: {
     locales: ['en', 'es'],
     defaultLocale: 'es',
