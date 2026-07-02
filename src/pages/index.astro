@@ -11,12 +11,5 @@ const layoutDescription = t.layout.description ?? "";
 ---
 
 <Layout title={layoutTitle} description={layoutDescription} lang={lang}>
-    <script>
-        const userLang = navigator.language || (navigator as Navigator & { userLanguage?: string }).userLanguage;
-        if (userLang && userLang.startsWith('es')) {
-            window.location.href = '/es';
-        } else {
-            window.location.href = '/en';
-        }
-    </script>
+    <!-- Server-side redirect handled by vercel.json; keep page minimal to avoid flicker. -->
 </Layout>
