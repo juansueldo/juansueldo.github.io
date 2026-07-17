@@ -1,6 +1,6 @@
 ---
 interface Props {
-  width: string
+  width: 'full' | 'fit' | '50%'
   id: string
   text: any
   hightlight_text: any
@@ -19,9 +19,15 @@ const {
   btnstyle = 'box',
   as = 'a',
   type = 'button'
-} = Astro.props;
+}: Props = Astro.props;
 
-const baseClass = `group w-${width} card reveal box relative p-4 flex justify-center items-center bg-[#f8f7fa] dark:bg-[#111] overflow-hidden -skew-y-1 mb-2.5 mt-2.5 rounded cursor-pointer reflect-below dark:reflect-below`;
+const widthClass = {
+  full: 'w-full',
+  fit: 'w-fit',
+  '50%': 'w-full sm:w-1/2'
+}[width];
+
+const baseClass = `group ${widthClass} card reveal box relative my-2.5 flex min-h-14 items-center justify-center overflow-hidden rounded bg-[#f8f7fa] px-5 py-3 text-center cursor-pointer -skew-y-1 reflect-below dark:bg-[#111] dark:reflect-below`;
 ---
 
 {as === 'a' ? (
@@ -34,10 +40,9 @@ const baseClass = `group w-${width} card reveal box relative p-4 flex justify-ce
     <div class={`absolute ${btnstyle}-before h-[600%] w-[30px] group-hover:btn-hover`}></div>
     <div class="absolute box-after bg-[#111] dark:bg-[#f8f7fa]"></div>
 
-    <h1 class="relative text-[#f8f7fa] dark:text-[#111] flex gap-1 text-base font-bold z-10">
-      <slot />
-      {text} <span class="hightlight-text">{hightlight_text}</span>
-    </h1>
+    <span class="relative z-10 block max-w-full text-sm font-bold leading-snug text-[#f8f7fa] dark:text-[#111] sm:text-base">
+      <slot />{text}{text && hightlight_text && ' '}<span class="hightlight-text">{hightlight_text}</span>
+    </span>
   </a>
 ) : (
   <button
@@ -48,9 +53,8 @@ const baseClass = `group w-${width} card reveal box relative p-4 flex justify-ce
     <div class={`absolute ${btnstyle}-before h-[600%] w-[30px] group-hover:btn-hover`}></div>
     <div class="absolute box-after bg-[#111] dark:bg-[#f8f7fa]"></div>
 
-    <h1 class="relative text-[#f8f7fa] dark:text-[#111] flex gap-1 text-base font-bold z-10">
-      <slot />
-      {text} <span class="hightlight-text">{hightlight_text}</span>
-    </h1>
+    <span class="relative z-10 block max-w-full text-sm font-bold leading-snug text-[#f8f7fa] dark:text-[#111] sm:text-base">
+      <slot />{text}{text && hightlight_text && ' '}<span class="hightlight-text">{hightlight_text}</span>
+    </span>
   </button>
 )}

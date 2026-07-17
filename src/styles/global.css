@@ -1,2 +1,350 @@
-@import "tailwindcss";
+:root {
+	color-scheme: light dark;
+		  		--main-color: #0af019;
+		  		--highlight-color: #0088ff;
 
+	--bg-light: #f1f0ea;
+	--bg-dark: #1c1c1c;
+
+	--text-light: #111;
+    --text-dark: #e5e7eb;
+
+
+
+    --danger-main: #ff0000;
+    --danger-highlight: #f55d5d;
+
+    --info-main: #38bdf8;
+    --info-highlight: #6366f1;
+}
+		
+.hightlight-text{
+		  		background: linear-gradient(45deg, var(--main-color), var(--highlight-color));
+		  		-webkit-background-clip: text;
+		  		-webkit-text-fill-color: transparent;
+}
+.dark .hightlight-text{
+	background: linear-gradient(45deg, var(--main-color), var(--highlight-color));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+		
+.dark .reflect-below {
+		  		-webkit-box-reflect: below -25px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(255, 255, 255, 0.3)));
+}
+		
+.reflect-below {
+		  		-webkit-box-reflect: below -25px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(235, 15, 15, 0.61)));
+}
+
+.scrolled {
+		  		background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(10px);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+}
+		
+@keyframes animate {
+  0% {
+	transform: rotate(0deg);
+  }
+  100% {
+	transform: rotate(360deg);
+  }
+}
+		
+.box-before {
+  content: "";
+  position: absolute;
+  background: linear-gradient(var(--highlight-color), var(--main-color));
+  animation: animate 4s linear infinite;
+}
+
+.box-after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 5px;
+}
+.btn-hover{
+	background: linear-gradient(45deg, var(--main-color), var(--highlight-color));
+	animation: animate 4s linear infinite;
+}
+
+.group:hover .btn-before {
+    @apply btn-hover; 
+}
+	
+.btn-before{
+	    		  content: "";
+	                  position: absolute;
+	  		}
+
+.field-group {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+	
+.form-input {
+  --input-main: var(--info-main);
+  --input-highlight: var(--info-highlight);
+
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  border: 2px solid transparent;
+  width: 100%;
+  font-size: 1rem;
+
+  background:
+    linear-gradient(var(--bg-light), var(--bg-light)) padding-box,
+    linear-gradient(45deg,
+      color-mix(in srgb, var(--input-main) 40%, transparent),
+      color-mix(in srgb, var(--input-highlight) 40%, transparent)
+    ) border-box;
+
+  color: var(--text-light);
+  outline: none;
+  transition: 0.25s;
+}
+	
+.form-input::placeholder {
+  color: color-mix(in srgb, var(--text-light) 50%, transparent);
+}
+
+.dark .form-input::placeholder {
+  color: color-mix(in srgb, var(--text-dark) 50%, transparent);
+}
+	
+	
+.form-input.input-error {
+	border-color: #ef4444;
+	box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+	
+.field-error {
+	font-size: 0.78rem;
+	color: #dc2626;
+	min-height: 1rem;
+	padding-left: 2px;
+}
+	
+.dark .form-input {
+  background:
+    linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
+    linear-gradient(45deg,
+      color-mix(in srgb, var(--input-main) 40%, transparent),
+      color-mix(in srgb, var(--input-highlight) 40%, transparent)
+    ) border-box;
+
+  color: var(--text-dark);
+}
+	
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+	-webkit-text-fill-color: #1b1b1b !important;
+}
+	
+.dark input:-webkit-autofill,
+.dark textarea:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 1000px #1b1b1b inset !important;
+	-webkit-text-fill-color: #fff !important;
+}
+	
+.form-input:focus {
+  background:
+    linear-gradient(var(--bg-light), var(--bg-light)) padding-box,
+    linear-gradient(45deg, var(--input-main), var(--input-highlight)) border-box;
+
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--input-main) 30%, transparent);
+}
+
+.dark .form-input:focus {
+  background:
+    linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box,
+    linear-gradient(45deg, var(--input-main), var(--input-highlight)) border-box;
+}
+
+.form-input.input-success {
+  --input-main: var(--main-color);
+  --input-highlight: var(--highlight-color);
+}
+.form-input.input-error {
+  --input-main: var(--danger-main);
+  --input-highlight: var(--danger-highlight);
+}
+.dark .field-error {
+	color: #f87171;
+}
+
+@keyframes toast-in {
+	from { opacity: 0; transform: translateX(20px); }
+	to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes spin {
+	to { transform: rotate(360deg); }
+}
+.toast-spinner {
+	width: 10px; height: 10px;
+	border: 1.5px solid currentColor;
+	border-top-color: transparent;
+	border-radius: 50%;
+	animation: spin 0.7s linear infinite;
+	opacity: 0.6;
+	  		}
+.hexagon-scene {
+	--hex-core: rgba(248, 250, 252, .96);
+	--hex-shadow: color-mix(in srgb, var(--main-color) 24%, transparent);
+	--hex-code: var(--text-light);
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16/9;
+	display: grid;
+	place-items: center;
+	overflow: hidden;
+}
+.section-title {
+	position: relative;
+	width: fit-content;
+	padding-bottom: 0.65rem;
+}
+
+.section-title::after {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 2.75rem;
+	height: 2px;
+	content: "";
+	background: linear-gradient(90deg, var(--main-color), var(--highlight-color));
+}
+.dark .hexagon-scene {
+	--hex-core: rgba(10, 20, 26, .94);
+	--hex-shadow: color-mix(in srgb, var(--highlight-color) 20%, transparent);
+	--hex-code: #f8f7fa;
+}
+.hexagon-core { position:relative;width:42%;max-width:270px;filter:drop-shadow(0 0 28px var(--hex-shadow));animation:core-turn 10s ease-in-out infinite; }
+.hexagon-shape { fill:var(--hex-core);stroke:url(#hexGradient);stroke-width:2;transition:fill .3s ease; }
+.hexagon-gradient-main { stop-color:var(--main-color); }
+.hexagon-gradient-highlight { stop-color:var(--highlight-color); }
+.hexagon-code { fill:none;stroke:var(--hex-code);stroke-width:11;stroke-linecap:round;stroke-linejoin:round; }
+.hexagon-code-left { animation:code-left 10s cubic-bezier(.22,1,.36,1) infinite; }
+.hexagon-code-right { animation:code-right 10s cubic-bezier(.22,1,.36,1) infinite; }
+.hexagon-code-slash { stroke:url(#codeSlashGradient);animation:code-up 10s cubic-bezier(.22,1,.36,1) infinite; }
+@media (max-width: 639px) {
+	.hexagon-scene { min-height:240px;aspect-ratio:4/3; }
+	.hexagon-core { width:48%; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.hexagon-core,.hexagon-code-left,.hexagon-code-right,.hexagon-code-slash { animation:none; }
+}
+@keyframes core-turn { 0%,62%{transform:rotate(0)}84%,100%{transform:rotate(360deg)} }
+@keyframes code-left { 0%,62%{transform:translateX(0);opacity:1}70%,84%{transform:translateX(-18px);opacity:0}96%,100%{transform:translateX(0);opacity:1} }
+@keyframes code-right { 0%,62%{transform:translateX(0);opacity:1}70%,84%{transform:translateX(18px);opacity:0}96%,100%{transform:translateX(0);opacity:1} }
+@keyframes code-up { 0%,62%{transform:translateY(0);opacity:1}70%,84%{transform:translateY(-18px);opacity:0}96%,100%{transform:translateY(0);opacity:1} }
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important; } }
+
+  .experience-timeline {
+    position: relative;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .experience-timeline::before {
+    position: absolute;
+    top: 0.8rem;
+    bottom: 0.8rem;
+    left: 0.35rem;
+    width: 1px;
+    content: "";
+    background: linear-gradient(var(--main-color), var(--highlight-color));
+    opacity: 0.65;
+  }
+
+  .experience-item {
+    position: relative;
+    display: grid;
+    min-width: 0;
+    gap: 0.75rem;
+    padding-left: 2rem;
+  }
+
+  .experience-marker {
+    position: absolute;
+    top: 0.55rem;
+    left: 0;
+    width: 0.75rem;
+    height: 0.75rem;
+    border: 2px solid color-mix(in srgb, var(--main-color) 70%, var(--highlight-color));
+    border-radius: 999px;
+    background: var(--main-color);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--main-color) 12%, transparent), 0 0 14px var(--main-color);
+  }
+
+  .experience-date {
+    padding-top: 0.25rem;
+    color: var(--experience-muted);
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .experience-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem;
+    color: #0f172a;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .dark .experience-heading { color: #f8fafc; }
+  .experience-company { font-weight: 800; }
+  .experience-separator, .experience-position { color: var(--experience-muted); }
+
+  .experience-description {
+    margin-top: 0.65rem;
+    color: var(--experience-muted);
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+
+  .experience-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .experience-technologies li {
+    padding: 0.35rem 0.6rem;
+    border: 1px solid var(--experience-badge-border);
+    border-radius: 0.3rem;
+    background: var(--experience-badge);
+    color: var(--experience-muted);
+    font-size: 0.675rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  @media (min-width: 768px) {
+    .experience-timeline { gap: 1.5rem; }
+    .experience-item {
+      grid-template-columns: 9rem minmax(0, 1fr);
+      gap: 1.75rem;
+      padding-left: 2rem;
+    }
+    .experience-card { padding: 1.4rem 1.5rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .experience-item {
+      grid-template-columns: 10rem minmax(0, 1fr);
+      gap: 2rem;
+    }
+  }

@@ -27,12 +27,26 @@ const t = translations[lang as 'es' | 'en'] || translations.es;
 
 <Layout title={t.layout.title} description={t.layout.description ?? ""} lang={lang}>
   <Header about={t.nav.about} skills={t.nav.skills} projects={t.nav.projects} experience={t.nav.experience} contact={t.nav.contact} light={t.nav.light} dark={t.nav.dark} system={t.nav.system}/>
-	<Hero hello={t.hero.hello} name={t.hero.name} text={t.hero.text} hightlight_text={t.hero.hightlight_text}/>
+	<Hero
+		hello={t.hero.hello}
+		name={t.hero.name}
+		role={t.hero.role}
+		hightlight_text={'hightlight_text' in t.hero ? t.hero.hightlight_text : ''}
+		description={t.hero.description}
+		projectsLabel={t.hero.projectsLabel}
+		projectsUrl={t.hero.projectsUrl}
+		cvLabel={t.hero.cvLabel}
+		cvUrl={t.hero.cvUrl}
+		githubLabel={t.hero.githubLabel}
+		githubUrl={t.hero.githubUrl}
+		linkedinLabel={t.hero.linkedinLabel}
+		linkedinUrl={t.hero.linkedinUrl}
+	/>
 	<About title={t.about.title} intro={t.about.intro} specialization={t.about.specialization} education={t.about.education} passion={t.about.passion} button_initial={t.about.button_initial} button_highlight={t.about.button_highlight} url={t.about.url} />
   <Skills title={t.skills.title} groups={t.skills.groups} />
 	<Experience title={t.experience.title} experience={t.experience.experience}/>
 	<Projects title={t.projects.title} projects={t.projects.projects}/>
-  <Contact title={t.contact.title} name_placeholder={t.contact.name_placeholder} mail_placeholder={t.contact.mail_placeholder} message_placeholder={t.contact.message_placeholder} button_initial={t.contact.button_initial} button_highlight={t.contact.button_highlight} sending={t.contact.sending} success={t.contact.success} error={t.contact.error} errName={t.contact.errName} errEmail={t.contact.errEmail} errMessage={t.contact.errMessage}/>
+  <Contact title={t.contact.title} intro_title={t.contact.intro_title} intro_description={t.contact.intro_description} intro_cta={t.contact.intro_cta} email={t.contact.email} location={t.contact.location} response={t.contact.response} name_placeholder={t.contact.name_placeholder} mail_placeholder={t.contact.mail_placeholder} message_placeholder={t.contact.message_placeholder} button_initial={t.contact.button_initial} button_highlight={t.contact.button_highlight} sending={t.contact.sending} success={t.contact.success} error={t.contact.error} errName={t.contact.errName} errEmail={t.contact.errEmail} errMessage={t.contact.errMessage}/>
   <Footer all_rights_reserved={t.footer.all_rights_reserved}/>
 </Layout>
 

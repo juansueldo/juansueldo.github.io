@@ -1,24 +1,51 @@
 ---
 import HiglightButton from "./HiglightButton.astro";
+import Hexagon from './Hexagon.astro';
+import GitHubIcon from './icons/Github.astro';
+import LinkedInIcon from './icons/Linkedin.astro';
+import Links from './Links.astro';
 interface Props {
   hello: string,
   name: string
-  text: string,
-  hightlight_text: string
+  hightlight_text?: string,
+  role: string
+  description: string
+  projectsLabel: string
+  projectsUrl: string
+  cvLabel: string
+  cvUrl: string
+  githubLabel: string
+  githubUrl: string
+  linkedinLabel: string
+  linkedinUrl: string
 }
 
-const { hello,name, text, hightlight_text } = Astro.props
+const {
+  hello, name, hightlight_text, role, description,
+  projectsLabel, projectsUrl, cvLabel, cvUrl,
+  githubLabel, githubUrl, linkedinLabel, linkedinUrl
+}: Props = Astro.props
 ---
-<section id="hero" class="relative md:w-full md:min-h-screen h-[750px] flex flex-col justify-center items-center text-center px-4 overflow-hidden">
+<section id="hero" class="relative flex min-h-screen w-full items-center justify-center overflow-hidden px-4 text-center">
     <div class="absolute inset-0 -z-10 bg-[url('/bgLight.svg')] dark:bg-[url('/bgDark.svg')] bg-repeat bg-[length:500px]"></div>
     <div class="absolute inset-0 -z-10 pointer-events-none bg-gradient-to-b from-[rgba(255,255,255,0.3)] via-transparent to-[#f8f7fa] dark:from-[rgba(17,17,17,0.8)] dark:via-transparent dark:to-[#111]"></div>
-
-    <h1 class="reveal-left md:text-[7.5rem] text-[5.5rem] hightlight-text font-bold">{hello}</h1>
-    <h1 class="reveal-left md:text-[7.5rem] text-[5.5rem] text-black dark:text-white font-bold">{name}</h1>
-
-    <HiglightButton width="fit" id="hero-button" text={text} hightlight_text={hightlight_text} url={'#'}/>
-
     <div id="light" class="absolute w-40 h-20 -z-50  blur-[15px] opacity-100 bg-gradient-to-r from-blue-400 via-[#0af019] to-[#0088ff] rounded-full pointer-events-none transition-transform duration-300 ease-linear" style="transform: translate(-50%, -50%)"></div>
+    <div class="mx-auto grid w-full min-w-0 max-w-6xl items-center gap-10 py-24 sm:px-5 lg:grid-cols-[.9fr_1.1fr] lg:px-8">
+      <div class="relative z-10 min-w-0 text-center lg:text-left">
+        <h1 class="reveal-left break-words text-[clamp(3rem,15vw,5.5rem)] font-bold leading-[1.05] hightlight-text">{hello}</h1>
+        <h2 class="reveal-left mt-3 break-words text-[clamp(3rem,15vw,5.5rem)] font-bold leading-[1.05] text-black dark:text-white">{name}</h2>
+        <HiglightButton width="50%" id="hero-button" text={role} hightlight_text={hightlight_text} url={'#experience'}/>
+        <p class="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-slate-600 dark:text-slate-300 sm:text-base lg:mx-0 lg:text-lg">{description}</p>
+        <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
+          <a href={projectsUrl} class="rounded-md px-6 py-3 text-sm font-bold text-black shadow-lg transition hover:-translate-y-1" style="background:linear-gradient(45deg, var(--main-color), var(--highlight-color));">{projectsLabel} →</a>
+          <a href={cvUrl} download class="rounded-md border border-black/20 bg-black/[.03] px-6 py-3 text-sm font-bold text-black transition hover:border-black/50 hover:bg-black/5 dark:border-white/30 dark:bg-white/[.02] dark:text-white dark:hover:border-white/60 dark:hover:bg-white/5">{cvLabel} ↓</a>
+        </div>
+        <div class="mt-7 flex flex-wrap justify-center gap-x-7 gap-y-3 text-xs text-slate-600 dark:text-slate-400 lg:justify-start">
+          <Links showText />
+        </div>
+    </div>
+    <div class="relative mx-auto w-full min-w-0 max-w-[620px]"><Hexagon /></div>
+  </div>
 </section>
 <script>
     const hero = document.getElementById("hero");

@@ -18,8 +18,17 @@ export default {
     hero: {
         hello: "Hello,",
         name: "I'm Juan",
-        text: "WEB",
-        hightlight_text: "DEVELOPER"
+        role: "Web",
+        hightlight_text: "Developer",
+        description: "I build modern, fast and scalable web applications using current technologies and best practices.",
+        projectsLabel: "View projects",
+        projectsUrl: "#projects",
+        cvLabel: "Download CV",
+        cvUrl: "/files/en/Juan_Sueldo_CV.pdf",
+        githubLabel: "GitHub",
+        githubUrl: "https://github.com/juansueldo",
+        linkedinLabel: "LinkedIn",
+        linkedinUrl: "https://ar.linkedin.com/in/juan-sueldo"
     },
     about:{
         title: "About",
@@ -149,6 +158,12 @@ export default {
     },
     contact:{
         title: "Contact",
+        intro_title: "Have a project in mind?",
+        intro_description: "I'm available for new projects and collaborations.",
+        intro_cta: "Let's talk!",
+        email: "hola@juansueldo.dev",
+        location: "Argentina",
+        response: "Quick response",
         name_placeholder: "Your name",
         mail_placeholder: "Your email",
         message_placeholder: "Your message",

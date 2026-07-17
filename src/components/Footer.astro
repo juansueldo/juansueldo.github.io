@@ -1,12 +1,18 @@
 ---
+import Links from './Links.astro';
+
 interface Props {
   all_rights_reserved: string,
 }
 const { all_rights_reserved } = Astro.props;
 const YEAR = new Date().getFullYear();
 ---
-<footer class="dark:bg-[#111] bg-[#f8f7fa]  text-white py-4 fixed bottom-0 left-0 w-full z-100">
-    <div class="container mx-auto px-4 text-center">
-        <p class="text-black/50 dark:text-white/50">&copy; {YEAR} Juan Sueldo. {all_rights_reserved}</p>
+<footer class="w-full bg-[#f8f7fa] py-5 dark:bg-[#111]">
+    <div class="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-4 text-center sm:flex-row sm:text-left">
+        <p class="text-sm text-black/50 dark:text-white/50">&copy; {YEAR} Juan Sueldo. {all_rights_reserved}</p>
+
+        <nav class="flex items-center gap-4" aria-label="Social networks">
+            <Links/>
+        </nav>
     </div>
 </footer>
