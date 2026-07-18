@@ -288,7 +288,6 @@ textarea:-webkit-autofill {
 
   .experience-date {
     padding-top: 0.25rem;
-    color: var(--experience-muted);
     font-size: 0.75rem;
     line-height: 1.4;
   }
@@ -305,11 +304,9 @@ textarea:-webkit-autofill {
 
   .dark .experience-heading { color: #f8fafc; }
   .experience-company { font-weight: 800; }
-  .experience-separator, .experience-position { color: var(--experience-muted); }
 
   .experience-description {
     margin-top: 0.65rem;
-    color: var(--experience-muted);
     font-size: 0.875rem;
     line-height: 1.7;
   }
@@ -326,7 +323,6 @@ textarea:-webkit-autofill {
     border: 1px solid var(--experience-badge-border);
     border-radius: 0.3rem;
     background: var(--experience-badge);
-    color: var(--experience-muted);
     font-size: 0.675rem;
     font-weight: 600;
     line-height: 1;
