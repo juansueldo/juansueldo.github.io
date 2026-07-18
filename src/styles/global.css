@@ -201,6 +201,7 @@ textarea:-webkit-autofill {
 	--hex-core: rgba(248, 250, 252, .96);
 	--hex-shadow: color-mix(in srgb, var(--main-color) 24%, transparent);
 	--hex-code: var(--text-light);
+
 	position: relative;
 	width: 100%;
 	aspect-ratio: 16/9;
@@ -228,25 +229,121 @@ textarea:-webkit-autofill {
 	--hex-shadow: color-mix(in srgb, var(--highlight-color) 20%, transparent);
 	--hex-code: #f8f7fa;
 }
-.hexagon-core { position:relative;width:42%;max-width:270px;filter:drop-shadow(0 0 28px var(--hex-shadow));animation:core-turn 10s ease-in-out infinite; }
-.hexagon-shape { fill:var(--hex-core);stroke:url(#hexGradient);stroke-width:2;transition:fill .3s ease; }
-.hexagon-gradient-main { stop-color:var(--main-color); }
-.hexagon-gradient-highlight { stop-color:var(--highlight-color); }
-.hexagon-code { fill:none;stroke:var(--hex-code);stroke-width:11;stroke-linecap:round;stroke-linejoin:round; }
-.hexagon-code-left { animation:code-left 10s cubic-bezier(.22,1,.36,1) infinite; }
-.hexagon-code-right { animation:code-right 10s cubic-bezier(.22,1,.36,1) infinite; }
-.hexagon-code-slash { stroke:url(#codeSlashGradient);animation:code-up 10s cubic-bezier(.22,1,.36,1) infinite; }
+
+.hexagon-core {
+	position: relative;
+	width: 42%;
+	max-width: 270px;
+	filter: drop-shadow(0 0 28px var(--hex-shadow));
+	transform-origin: center;
+}
+
+.hexagon-scene.is-changing .hexagon-core {
+	animation: hexagon-turn 1.3s cubic-bezier(.65, 0, .35, 1);
+}
+
+.hexagon-shape {
+	fill: var(--hex-core);
+	stroke: url(#hexGradient);
+	stroke-width: 2;
+	transition: fill .3s ease;
+}
+
+.hexagon-gradient-main { stop-color: var(--main-color); }
+.hexagon-gradient-highlight { stop-color: var(--highlight-color); }
+
+.hexagon-content {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	pointer-events: none;
+}
+
+.hexagon-slide {
+	position: absolute;
+	width: min(25%, 165px);
+	display: grid;
+	place-items: center;
+	text-align: center;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(15px) scale(.85);
+	transition:
+		opacity .55s ease,
+		transform .55s cubic-bezier(.22, 1, .36, 1),
+		visibility .55s;
+}
+
+.hexagon-slide.is-active {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0) scale(1);
+}
+
+.hexagon-scene.is-changing .hexagon-slide.is-active {
+	opacity: 0;
+	transform: translateY(-15px) scale(.85);
+}
+
+.hexagon-code {
+	width: 100%;
+	overflow: visible;
+	fill: none;
+	stroke: var(--hex-code);
+	stroke-width: 9;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.hexagon-code-slash { stroke: var(--highlight-color); }
+
+.hexagon-value {
+	margin: 0;
+	color: var(--hex-code);
+	font-size: clamp(2rem, 4vw, 3.5rem);
+	font-weight: 800;
+	line-height: .9;
+}
+
+.hexagon-value span {
+	display: block;
+	margin-top: .45rem;
+	color: var(--highlight-color);
+	font-size: clamp(.7rem, 1.2vw, .95rem);
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: .12em;
+}
+
+.hexagon-label {
+	max-width: 150px;
+	margin: .7rem 0 0;
+	color: var(--hex-code);
+	font-size: clamp(.65rem, 1.2vw, .9rem);
+	font-weight: 500;
+	line-height: 1.3;
+}
+
 @media (max-width: 639px) {
-	.hexagon-scene { min-height:240px;aspect-ratio:4/3; }
-	.hexagon-core { width:48%; }
+	.hexagon-scene { min-height: 240px; aspect-ratio: 4/3; }
+	.hexagon-core { width: 55%; }
+	.hexagon-slide { width: 32%; }
 }
+
 @media (prefers-reduced-motion: reduce) {
-	.hexagon-core,.hexagon-code-left,.hexagon-code-right,.hexagon-code-slash { animation:none; }
+	.hexagon-core,
+	.hexagon-slide {
+		animation: none !important;
+		transition-duration: .01ms !important;
+	}
 }
-@keyframes core-turn { 0%,62%{transform:rotate(0)}84%,100%{transform:rotate(360deg)} }
-@keyframes code-left { 0%,62%{transform:translateX(0);opacity:1}70%,84%{transform:translateX(-18px);opacity:0}96%,100%{transform:translateX(0);opacity:1} }
-@keyframes code-right { 0%,62%{transform:translateX(0);opacity:1}70%,84%{transform:translateX(18px);opacity:0}96%,100%{transform:translateX(0);opacity:1} }
-@keyframes code-up { 0%,62%{transform:translateY(0);opacity:1}70%,84%{transform:translateY(-18px);opacity:0}96%,100%{transform:translateY(0);opacity:1} }
+
+@keyframes hexagon-turn {
+	from { transform: rotate(0deg) scale(1); }
+	50% { transform: rotate(180deg) scale(.92); }
+	to { transform: rotate(360deg) scale(1); }
+}
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important; } }
 
   .experience-timeline {

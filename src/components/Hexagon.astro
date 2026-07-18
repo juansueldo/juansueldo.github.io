@@ -1,20 +1,126 @@
-<div class="hexagon-scene" role="img" aria-label="Hexágono animado con símbolo de código">
-  <svg class="hexagon-core" viewBox="0 0 160 180" aria-hidden="true">
-    <defs>
-      <linearGradient id="hexGradient" x1="15" y1="20" x2="145" y2="160">
-        <stop class="hexagon-gradient-main" />
-        <stop class="hexagon-gradient-highlight" offset="1" />
-      </linearGradient>
-      <linearGradient id="codeSlashGradient" x1="0" y1="0" x2="0" y2="1">
-        <stop class="hexagon-gradient-highlight" />
-        <stop class="hexagon-gradient-main" offset="1" />
-      </linearGradient>
-    </defs>
-    <path class="hexagon-shape" d="M74 5Q80 1 86 5l61 35q6 3 6 10v80q0 7-6 10l-61 35q-6 4-12 0l-61-35q-6-3-6-10V50q0-7 6-10Z"/>
-    <g class="hexagon-code">
-      <path class="hexagon-code-left" d="M52 64 27 90l25 26"/>
-      <path class="hexagon-code-right" d="m108 64 25 26-25 26"/>
-      <path class="hexagon-code-slash" d="m89 55-18 70"/>
-    </g>
-  </svg>
+---
+interface ProfileItem {
+	type: string;
+	label: string;
+	value?: string;
+	suffix?: string;
+}
+
+interface Props {
+	ariaLabel: string;
+	items: ProfileItem[];
+}
+
+const { ariaLabel, items }: Props = Astro.props;
+---
+
+<div
+	class="hexagon-scene"
+	role="region"
+	aria-label={ariaLabel}
+	data-hexagon-carousel
+>
+	<svg class="hexagon-core" viewBox="0 0 160 180" aria-hidden="true">
+		<defs>
+			<linearGradient id="hexGradient" x1="15" y1="20" x2="145" y2="160">
+				<stop class="hexagon-gradient-main" />
+				<stop class="hexagon-gradient-highlight" offset="1" />
+			</linearGradient>
+		</defs>
+
+		<path
+			class="hexagon-shape"
+			d="M74 5Q80 1 86 5l61 35q6 3 6 10v80q0 7-6 10l-61 35q-6 4-12 0l-61-35q-6-3-6-10V50q0-7 6-10Z"
+		/>
+	</svg>
+
+	<div class="hexagon-content">
+		{
+			items.map((item, index) => (
+				<div
+					class:list={['hexagon-slide', { 'is-active': index === 0 }]}
+					aria-hidden={index !== 0}
+				>
+					{item.type === 'code' ? (
+						<svg
+							class="hexagon-code"
+							viewBox="0 0 120 100"
+							role="img"
+							aria-label={item.label}
+						>
+							<path class="hexagon-code-left" d="M38 25 15 50l23 25" />
+							<path class="hexagon-code-right" d="m82 25 23 25-23 25" />
+							<path class="hexagon-code-slash" d="m68 18-16 64" />
+						</svg>
+					) : (
+						<>
+							<p class="hexagon-value">
+								{item.value}
+								{item.suffix && <span>{item.suffix}</span>}
+							</p>
+							<p class="hexagon-label">{item.label}</p>
+						</>
+					)}
+				</div>
+			))
+		}
+	</div>
+
 </div>
+
+<script>
+	type CarouselTimers = {
+		intervalId: number;
+		transitionId?: number;
+	};
+
+	const carouselTimers = new Map<HTMLElement, CarouselTimers>();
+
+	const initializeHexagonCarousels = () => {
+		document
+			.querySelectorAll<HTMLElement>('[data-hexagon-carousel]')
+			.forEach((carousel) => {
+				if (carousel.dataset.initialized === 'true') return;
+
+				carousel.dataset.initialized = 'true';
+
+				const slides = Array.from(
+					carousel.querySelectorAll<HTMLElement>('.hexagon-slide')
+				);
+				if (slides.length <= 1) return;
+
+				let currentIndex = 0;
+				const timers: CarouselTimers = { intervalId: 0 };
+
+				const changeSlide = () => {
+					carousel.classList.add('is-changing');
+
+					timers.transitionId = window.setTimeout(() => {
+						slides[currentIndex].classList.remove('is-active');
+						slides[currentIndex].setAttribute('aria-hidden', 'true');
+
+						currentIndex = (currentIndex + 1) % slides.length;
+
+						slides[currentIndex].classList.add('is-active');
+						slides[currentIndex].setAttribute('aria-hidden', 'false');
+						carousel.classList.remove('is-changing');
+					}, 650);
+				};
+
+				timers.intervalId = window.setInterval(changeSlide, 10_000);
+				carouselTimers.set(carousel, timers);
+			});
+	};
+
+	const clearHexagonCarousels = () => {
+		carouselTimers.forEach(({ intervalId, transitionId }) => {
+			window.clearInterval(intervalId);
+			if (transitionId) window.clearTimeout(transitionId);
+		});
+		carouselTimers.clear();
+	};
+
+	initializeHexagonCarousels();
+	document.addEventListener('astro:page-load', initializeHexagonCarousels);
+	document.addEventListener('astro:before-swap', clearHexagonCarousels);
+</script>

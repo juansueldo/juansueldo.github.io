@@ -18,12 +18,21 @@ interface Props {
   githubUrl: string
   linkedinLabel: string
   linkedinUrl: string
+  hexagon: {
+    ariaLabel: string
+    items: Array<{
+      type: string
+      label: string
+      value?: string
+      suffix?: string
+    }>
+  }
 }
 
 const {
   hello, name, hightlight_text, role, description,
   projectsLabel, projectsUrl, cvLabel, cvUrl,
-  githubLabel, githubUrl, linkedinLabel, linkedinUrl
+  githubLabel, githubUrl, linkedinLabel, linkedinUrl, hexagon
 }: Props = Astro.props
 ---
 <section id="hero" class="relative flex min-h-screen w-full items-center justify-center overflow-hidden px-4 text-center">
@@ -44,36 +53,117 @@ const {
           <Links showText />
         </div>
     </div>
-    <div class="relative mx-auto w-full min-w-0 max-w-[620px]"><Hexagon /></div>
+    <div class="relative mx-auto w-full min-w-0 max-w-[620px]"><Hexagon {...hexagon} /></div>
   </div>
 </section>
 <script>
-    const hero = document.getElementById("hero");
-    const light = document.getElementById("light");
+    let clearHeroLight: (() => void) | undefined;
 
-    if (hero && light) {
+    const initializeHeroLight = () => {
+        const hero = document.getElementById("hero");
+        const light = document.getElementById("light");
+
+        if (!hero || !light || hero.dataset.lightInitialized === "true") return;
+
+        hero.dataset.lightInitialized = "true";
+
+        const initialRect = hero.getBoundingClientRect();
+        let currentX = initialRect.width / 2;
+        let currentY = initialRect.height / 2;
+        let pointerX = currentX;
+        let pointerY = currentY;
+        let isPointerMoving = false;
+        let pointerIdleTimeout: number | undefined;
+        let animationFrameId = 0;
         let angle = 0;
+        let orbitOffsetX = 0;
+        let orbitOffsetY = 0;
+        const abortController = new AbortController();
 
-        function animateLight() {
-            if (!hero) return;
+        light.style.left = `${currentX}px`;
+        light.style.top = `${currentY}px`;
+
+        const getAutomaticPosition = () => {
             const rect = hero.getBoundingClientRect();
 
-            const radiusX = rect.width / 3;
-            const radiusY = rect.height / 3;
+            return {
+                x: Math.cos(angle) * (rect.width / 3) + rect.width / 2,
+                y: Math.sin(angle) * (rect.height / 3) + rect.height / 2.1,
+            };
+        };
+
+        const resumeAutomaticFromCurrentPosition = () => {
+            const automaticPosition = getAutomaticPosition();
+
+            orbitOffsetX = currentX - automaticPosition.x;
+            orbitOffsetY = currentY - automaticPosition.y;
+            isPointerMoving = false;
+        };
+
+        const renderLight = () => {
             angle += 0.01;
 
-            const x = Math.cos(angle) * radiusX + rect.width / 2;
-            const y = Math.sin(angle) * radiusY + rect.height / 2.1;
+            const automaticPosition = getAutomaticPosition();
+            const automaticX = automaticPosition.x + orbitOffsetX;
+            const automaticY = automaticPosition.y + orbitOffsetY;
 
-            if (light) {
-                light.style.left = `${x}px`;
-                light.style.top = `${y}px`;
+            const targetX = isPointerMoving ? pointerX : automaticX;
+            const targetY = isPointerMoving ? pointerY : automaticY;
+            const easing = 0.1;
+
+            currentX += (targetX - currentX) * easing;
+            currentY += (targetY - currentY) * easing;
+
+            light.style.left = `${currentX}px`;
+            light.style.top = `${currentY}px`;
+
+            if (!isPointerMoving) {
+                orbitOffsetX *= 0.985;
+                orbitOffsetY *= 0.985;
             }
 
-            requestAnimationFrame(animateLight);
-        }
+            animationFrameId = window.requestAnimationFrame(renderLight);
+        };
 
-        animateLight();
-    }
+        hero.addEventListener('pointermove', (event) => {
+            const rect = hero.getBoundingClientRect();
+            pointerX = event.clientX - rect.left;
+            pointerY = event.clientY - rect.top;
+            isPointerMoving = true;
+
+            if (pointerIdleTimeout !== undefined) {
+                window.clearTimeout(pointerIdleTimeout);
+            }
+
+            pointerIdleTimeout = window.setTimeout(() => {
+                resumeAutomaticFromCurrentPosition();
+                pointerIdleTimeout = undefined;
+            }, 200);
+        }, { signal: abortController.signal });
+
+        hero.addEventListener('pointerleave', () => {
+            resumeAutomaticFromCurrentPosition();
+
+            if (pointerIdleTimeout !== undefined) {
+                window.clearTimeout(pointerIdleTimeout);
+                pointerIdleTimeout = undefined;
+            }
+        }, { signal: abortController.signal });
+
+        animationFrameId = window.requestAnimationFrame(renderLight);
+
+        clearHeroLight = () => {
+            abortController.abort();
+            window.cancelAnimationFrame(animationFrameId);
+            if (pointerIdleTimeout !== undefined) {
+                window.clearTimeout(pointerIdleTimeout);
+            }
+            clearHeroLight = undefined;
+        };
+    };
+
+    initializeHeroLight();
+    document.addEventListener('astro:page-load', initializeHeroLight);
+    document.addEventListener('astro:before-swap', () => clearHeroLight?.());
 
 </script>

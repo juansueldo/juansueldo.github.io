@@ -28,7 +28,32 @@ export default {
         githubLabel: "GitHub",
         githubUrl: "https://github.com/juansueldo",
         linkedinLabel: "LinkedIn",
-        linkedinUrl: "https://ar.linkedin.com/in/juan-sueldo"
+        linkedinUrl: "https://ar.linkedin.com/in/juan-sueldo",
+        hexagon: {
+            ariaLabel: "Información de mi perfil profesional",
+            items: [
+                {
+                    type: "code",
+                    label: "Desarrollador web",
+                },
+                {
+                    type: "text",
+                    value: yearsOfExperience,
+                    suffix: "años",
+                    label: "de experiencia",
+                },
+                {
+                    type: "text",
+                    value: "PHP",
+                    label: "Laravel y CodeIgniter",
+                },
+                {
+                    type: "text",
+                    value: "Full Stack",
+                    label: "Node.js · React · MySQL",
+                },
+            ],
+        },
     },
     about:{
         title: "Sobre mí",
